@@ -1,0 +1,11 @@
+language: ruby
+rvm: 2.1.0
+script:
+   - bundle exec rake
+   - bundle exec rake spec
+before_install:
+   - export DISPLAY=:99.0
+   - sh -e /etc/init.d/xvfb start
+branches:
+  only:
+    - tests
