@@ -8,7 +8,7 @@
 
 ##Descripción
 
-
+SocialManager es un gestor de redes sociales.
 
 ##Aplicación
 
