@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-flash'
 gem 'thin'
+gem 'haml'
 
 group :development do
   gem 'sinatra-contrib'

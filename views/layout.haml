@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html, charset=utf-8"}
+    %title Social Manager
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+    %link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}/
+    /[if lt IE 9]
+    %script{:src=>"//html5shim.googlecode.com/svn/trunk/html5.js"}
+    %script{:src => "/js/bootstrap.min.js"}
+    %script{:src => "/js/bootstrap.js"}
+  %body
+    =yield
+    %footer
+      .container
+        .row
+          %hr
+          %p
+            Creditos aqui
+          %span
+            %a#jz{:href => "https://github.com/alu0100595727"} Jazer Abreu Chinea
+            &
+            %a#jc{:href => "https://github.com/alu0100505023"} Javier Clemente Rodriguez Gomez
+            &
+            %a#aa1{:href => "http://alu0100207385.github.io"} Aarón Socas Gaspar
+            &
+            %a#aa2{:href => "https://github.com/alu0100537451"} Aarón Vera Cerdeña
+          %br
+          %a#pro{:href => "https://github.com/alu0100207385/SocialManager"} Proyecto
+          %br
+          %a#help{:href => "/help"} Help
+          %br ULL- SYTW - Copyright ©2014
+

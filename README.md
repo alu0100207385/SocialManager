@@ -1,10 +1,10 @@
 # Sistemas y Tecnologías Web: Proyecto SocialManager
 
 **Integrantes**
-  - Jazer Abreu Chinea
-  - Javier Clemente Rodriguez Gomez
-  - Aarón Socas Gaspar
-  - Aarón José Vera Cerdeña
+  - Jazer Abreu Chinea (alu0100595727)
+  - Javier Clemente Rodriguez Gomez (alu0100505023)
+  - Aarón Socas Gaspar (alu0100207385)
+  - Aarón José Vera Cerdeña (alu0100537451)
 
 ##Descripción
 
@@ -50,9 +50,21 @@ Las opciones posibles son:
 
 ##Recursos
 
+* [Apuntes](http://nereida.deioc.ull.es/~lpp/perlexamples/)
+* [Sinatra](http://www.rubydoc.info/gems/sinatra)
+* [Heroku dev center](https://devcenter.heroku.com/)
+* [Omniauth](http://intridea.github.io/omniauth/)
+* [Lista de estrategias](https://github.com/intridea/omniauth/wiki/List-of-Strategies)
+* [Google API Console](https://code.google.com/apis/console)
+* [Twitter Developers](https://dev.twitter.com/overview/documentation)
+* [DataMapper](http://datamapper.org/getting-started.html)
+* [Haml](http://haml.info/)
+* [Bootstrap](http://getbootstrap.com/css/)
+* [jQuery API Documentation](http://api.jquery.com/)
 * [Selenium](http://www.seleniumhq.org/)
 * [Travis](https://travis-ci.org/)
-* [Coveralls](http://nereida.deioc.ull.es/~lpp/perlexamples/node314.html#section:coveralls)
+* [Coveralls](https://coveralls.io/)
+* [Capybara & PhantomJS example](http://nereida.deioc.ull.es/~lpp/perlexamples/node305.html#chapter:capybara)
 
 -------------------------
 *Sistemas y Tecnologías Web (Curso 2014-2015)*
