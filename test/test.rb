@@ -26,16 +26,16 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
    after :all do
 	  @browser.quit
    end
-   
+
    it "##1. I can access index page" do
 	  assert_equal(@site, @browser.current_url)
    end
    
    it "##2. I can see index page" do
-	  element = @browser.find_element(:id,"title").text
-	  assert_equal("Social Manager", element)
+	  element = @browser.find_element(:tag_name,"h1").text
+	  assert_equal("Bienvenido a Social Manager", element)
    end
-=begin
+
    it "##3. I can access Jazer's page" do
 	  @browser.find_element(:id,"jz").click
 	  @browser.manage.timeouts.implicit_wait = 3
@@ -51,9 +51,9 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
    it "##5. I can access AaronS's page" do
 	  @browser.find_element(:id,"aa1").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("http://alu0100207385.github.io", @browser.current_url)
+	  assert_equal("http://alu0100207385.github.io/", @browser.current_url)
    end
-   
+
    it "##6. I can access AaronV's page" do
 	  @browser.find_element(:id,"aa2").click
 	  @browser.manage.timeouts.implicit_wait = 3
@@ -63,19 +63,13 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
    it "##7. I can access Repository page" do
 	  @browser.find_element(:id,"repo").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("https://github.com/alu0100207385/SocialManager", @browser.current_url)
+	  assert_equal("https://github.com/TEC-INFO-GROUP/SocialManager", @browser.current_url)
    end
    
    it "##8. I can access Help page" do
-	  @browser.find_element(:id,"repo").click
+	  @browser.find_element(:id,"help").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("/help", @browser.current_url)
+	  assert_equal("http://localhost:4567/help", @browser.current_url)
    end
-   
-   it "##9. I can access Help page" do
-	  @browser.find_element(:id,"repo").click
-	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("/help", @browser.current_url)
-   end
-=end
+
 end
