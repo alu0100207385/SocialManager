@@ -2,11 +2,11 @@ class User
   include DataMapper::Resource
 
   property :id, Serial
-  property :url, Text
+  property :name, Text
   property :opcional, Text
   property :email, Text
   property :nickname, Text
-  property :idF, Serial
+  property :idF, Serial   #O el token
   property :idG, Serial
   property :idT, Serial
 end
