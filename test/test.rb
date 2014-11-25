@@ -17,7 +17,7 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
    
    before :all do
 	  @browser = Selenium::WebDriver.for :firefox
-	  @site = 'http://localhost:4567/'
+	  @site = 'http://localhost:9292/'
 	  @browser.get(@site)
 	  @browser.manage().window().maximize()
 	  @browser.manage.timeouts.implicit_wait = 5
@@ -69,7 +69,7 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
    it "##8. I can access Help page" do
 	  @browser.find_element(:id,"help").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("http://localhost:4567/help", @browser.current_url)
+	  assert_equal(@site+"help", @browser.current_url)
    end
 
 end
