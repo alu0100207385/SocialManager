@@ -1,12 +1,13 @@
 language: ruby
 rvm: 2.1.0
-script: "rake tests"
+script: bundle exec rake
 before_install:
    - export DISPLAY=:99.0
    - sh -e /etc/init.d/xvfb start
    - sleep 3
-   - bundle exec rackup &
-   - sleep 10
+   #- sudo bundle exec rake server &
+   - bundle exec rake rackup &
+   - sleep 5
 branches:
   only:
     - testing
