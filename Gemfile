@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-flash'
 gem 'thin'
 gem 'haml'
+gem 'rack','1.5.2'
 
 group :development do
   gem 'sinatra-contrib'

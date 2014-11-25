@@ -52,6 +52,7 @@ PLATFORMS
 DEPENDENCIES
   haml
   minitest
+  rack (= 1.5.2)
   rack-test
   rake
   selenium-webdriver (= 2.43.0)
