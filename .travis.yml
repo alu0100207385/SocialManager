@@ -4,7 +4,7 @@ script: "rake tests"
 before_install:
    - export DISPLAY=:99.0
    - sh -e /etc/init.d/xvfb start
-   - sleep 3
+   - sleep 3 
    - bundle exec rake server &
    - sleep 1 
 branches:

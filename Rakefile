@@ -1,4 +1,4 @@
-task :default => :server
+task :default => :tests
 
 desc "run the chat server (default)"
 task :server do
@@ -42,5 +42,5 @@ end
 
 desc "Open repository"
 task :repo do
-  sh "gnome-open https://github.com/alu0100207385/SocialManager"
+  sh "gnome-open https://github.com/TEC-INFO-GROUP/SocialManager"
 end
