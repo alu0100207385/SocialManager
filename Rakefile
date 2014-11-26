@@ -34,3 +34,13 @@ desc "Open repository"
 task :repo do
   sh "gnome-open https://github.com/TEC-INFO-GROUP/SocialManager"
 end
+
+desc "Run coveralls"
+task :coveralls do
+  sh "coveralls report"
+end
+
+desc "Run tests with rspec"
+task :spec do
+  sh "rspec -I. spec/app_spec.rb"
+end
