@@ -9,6 +9,7 @@ class User
   property :idF, String   #O el token
   property :idG, String
   property :idT, String
+
 end
 
 class Facebook

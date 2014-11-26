@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-flash'
 gem 'thin'
 gem 'haml'
+gem 'rack','1.5.2'
 gem 'data_mapper'
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
@@ -28,9 +29,9 @@ end
 group :test do
    gem 'rack-test'
    gem 'rake'
-   gem 'rspec'
    gem 'minitest'
    gem 'test-unit'
    gem 'selenium-webdriver','2.43.0'
+   gem 'rspec'
    gem 'coveralls', require: false
 end

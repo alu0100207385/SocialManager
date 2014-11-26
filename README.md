@@ -17,8 +17,9 @@ Podemos acceder a la aplicación subida a heroku desde [aqui](https://sytw6.hero
 
 ##Tests
 
-[IMG]
-$ Comando
+[![Build Status](https://travis-ci.org/alu0100207385/SocialManager.svg)](https://travis-ci.org/alu0100207385/SocialManager)
+
+Para ejecutar `$ rake local_tests` o arranque el servidor y ejecute `$ rake tests`.
 
 
 ##Coveralls
@@ -37,14 +38,15 @@ Con el comando `$ rake -T` podemos ver las opciones posibles.
 Las opciones posibles son:
 
 ```
- rake server       # Run Server
- rake heroku       # Open app in Heroku
- rake local_tests  # Run tests in local machine
- rake rackup       # Run the server via rackup
- rake repo         # Open repository
- rake sinatra      # Run the server via Sinatra
- rake tests        # Run tests
- rake coveralls    # Run coveralls
+rake coveralls    # Run coveralls
+rake heroku       # Open app in Heroku
+rake local_tests  # Run tests in local machine
+rake rackup       # Run the server via rackup
+rake repo         # Open repository
+rake server       # Run the chat server
+rake sinatra      # Run the server via Sinatra
+rake spec         # Run tests with rspec
+rake tests        # Run tests (default)
 
 ```
 
