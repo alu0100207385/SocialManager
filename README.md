@@ -17,7 +17,7 @@ Podemos acceder a la aplicación subida a heroku desde [aqui](https://sytw6.hero
 
 ##Tests
 
-[![Build Status](https://travis-ci.org/TEC-INFO-GROUP/SocialManager.svg)](https://travis-ci.org/TEC-INFO-GROUP/SocialManager)
+[![Build Status](https://travis-ci.org/alu0100207385/SocialManager.svg)](https://travis-ci.org/alu0100207385/SocialManager)
 
 Para ejecutar `$ rake local_tests` o arranque el servidor y ejecute `$ rake tests`.
 
