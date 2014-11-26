@@ -32,8 +32,38 @@ use OmniAuth::Builder do
 
 end
 
+#Configuracion DB
 
-get '/signup'
+configure :development do
+
+  DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/social_manager.db" )
+end
+
+configure :production do
+  DataMapper.setup(:default,ENV['HEROKU_POSTGRESQL_RED_URL'])
+end
+
+
+DataMapper::Logger.new($stdout, :debug)
+DataMapper::Model.raise_on_save_failure = true
+
+require_relative 'model'
+
+DataMapper.finalize
+
+DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
+
+use Rack::MethodOverride
+
+Base = 36
+
+enable :sessions
+set :session_secret, '*&(^#234a)'
+
+
+
+get '/signup' do
 
   #Registro del usuario en la web, para rellenar los campos se podra hacer mediante oauth, esos datos recogidos se usaran para
   #crear el usuario de nuestra base de datos

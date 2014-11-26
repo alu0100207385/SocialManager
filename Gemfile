@@ -9,10 +9,21 @@ gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'bcrypt'
 
 group :development do
   gem 'sinatra-contrib'
+  gem 'dm-sqlite-adapter'
+  gem 'sqlite3'
 end
+
+group :production do
+
+  gem "do_postgres"
+  gem "pg"
+  gem "dm-postgres-adapter"
+end
+
 
 group :test do
    gem 'rack-test'

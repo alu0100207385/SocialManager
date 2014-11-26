@@ -6,9 +6,9 @@ class User
   property :opcional, Text
   property :email, Text
   property :nickname, Text
-  property :idF, Serial   #O el token
-  property :idG, Serial
-  property :idT, Serial
+  property :idF, String   #O el token
+  property :idG, String
+  property :idT, String
 end
 
 class Facebook
@@ -23,8 +23,8 @@ end
 class Twitter
   include DataMapper::Resource
   property  :id, Serial
-  property  :name, Strings
-  property  :token,     String
+  property  :name, String
+  property  :token, String
 
   belongs_to  :User
 end
@@ -33,7 +33,7 @@ class Google
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
-  property  :token,     String
+  property  :token, String
 
   belongs_to  :User
 end
