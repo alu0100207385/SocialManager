@@ -67,6 +67,20 @@ get '/signup' do
 
   #Registro del usuario en la web, para rellenar los campos se podra hacer mediante oauth, esos datos recogidos se usaran para
   #crear el usuario de nuestra base de datos
+  
+  user = User.new
+  user.name = params[:name]
+  user.nickname = params[:nickname]
+  user.password = params[:password]
+  user.password = params[:mail]
+  
+  
+  if User.count(:nickname => user.nickname) == 0
+      user.save
+
+  else
+      puts 'nope'
+  end
 
   haml :signup 
 end
