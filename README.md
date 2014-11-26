@@ -43,10 +43,10 @@ rake heroku       # Open app in Heroku
 rake local_tests  # Run tests in local machine
 rake rackup       # Run the server via rackup
 rake repo         # Open repository
-rake server       # run the chat server (default)
+rake server       # Run the chat server
 rake sinatra      # Run the server via Sinatra
-rake spec         # Run specs
-rake tests        # Run tests
+rake spec         # Run tests with rspec
+rake tests        # Run tests (default)
 
 ```
 

@@ -16,4 +16,6 @@ group :test do
    gem 'minitest'
    gem 'test-unit'
    gem 'selenium-webdriver','2.43.0'
+   gem 'rspec'
+   gem 'coveralls', require: false
 end
