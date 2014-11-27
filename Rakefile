@@ -47,5 +47,5 @@ end
 
 desc "Run Rubocop static code analyzer"
 task :rubocop do
-  sh "rubocop app.rb"
+  sh "rubocop"
 end
