@@ -61,9 +61,12 @@ Base = 36
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
-
-
 get '/signup' do
+
+  haml :signup   
+end
+
+post '/signup' do
 
   #Registro del usuario en la web, para rellenar los campos se podra hacer mediante oauth, esos datos recogidos se usaran para
   #crear el usuario de nuestra base de datos
@@ -72,7 +75,7 @@ get '/signup' do
   user.name = params[:name]
   user.nickname = params[:nickname]
   user.password = params[:password]
-  user.password = params[:mail]
+  user.mail = params[:mail]
   
   
   if User.count(:nickname => user.nickname) == 0
@@ -82,7 +85,6 @@ get '/signup' do
       puts 'nope'
   end
 
-  haml :signup 
 end
 
 

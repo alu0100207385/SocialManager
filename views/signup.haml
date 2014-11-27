@@ -1,4 +1,10 @@
 %h1 Bienvenido a Social Manager
-%span
-  %a.btn.btn-primary.btn-lg.active{:href=>"/index",:role=>"button"} Sign In
-/ <button type="button" class="btn btn-default">Normal</button>
+%form{:action=>"/signup", :method => "POST"}
+
+    %label{:for => "nickname"} Introduce tu Nickname
+    %input{:name => "nickname", :type => "text"}
+    %label{:for => "mail"} Introduce tu email
+    %input{:name => "mail", :type => "text"}
+    %label{:for => "password"} Introduce tu Password
+    %input{:name => "password", :type => "password"}
+    %button.btn.btn-danger{:type => "submit"} Registrarse
