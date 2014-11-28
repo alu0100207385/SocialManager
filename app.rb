@@ -51,7 +51,7 @@ require_relative 'model'
 
 DataMapper.finalize
 
-DataMapper.auto_migrate!
+#DataMapper.auto_migrate!
 DataMapper.auto_upgrade!
 
 use Rack::MethodOverride
@@ -92,6 +92,10 @@ get '/' do
    haml :signin
    
    #Login de nuestro usuario de la base de datos
+end
+
+post '/index' do
+  
 end
 
 get '/index' do
