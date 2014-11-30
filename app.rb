@@ -94,6 +94,29 @@ get '/' do
    #Login de nuestro usuario de la base de datos
 end
 
+get '/auth/:name/callback' do
+    config = YAML.load_file 'config/config.yml'
+    case params[:name]
+    when 'google_oauth2'
+      @auth = request.env['omniauth.auth']
+      session[:name] = @auth['info'].name
+      session[:email] = @auth['info'].email
+#     session[:image] = @auth['info'].image
+      redirect "user/index"
+
+    when 'facebook'
+      @auth = request.env['omniauth.auth']
+      session[:name] = @auth['info'].name
+#       puts "#{session[:name]}"
+      session[:nickname] = @auth['info'].nickname
+#       puts "#{session[:nickname]}"
+      redirect "/index"
+    else
+      redirect "/auth/failure"
+    end
+end
+
+
 post '/index' do
   
 end
@@ -104,6 +127,11 @@ end
 
 get '/help' do
    haml :help
+end
+
+get '/logout' do
+   session.clear
+   redirect '/'
 end
 
 get '/auth/failure' do

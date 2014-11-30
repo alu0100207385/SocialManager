@@ -13,5 +13,11 @@
       Twitter
     %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
       Facebook
-%br/
-%a.btn.btn-default{:href=>"/",:role=>"button"} Sign Out
+%hr
+%h4 Asociar a una cuenta
+%span
+  %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
+  %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
+  %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+%hr
+%a.btn.btn-default{:href=>"/logout",:role=>"button"} Sign Out
