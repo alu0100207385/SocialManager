@@ -1,2 +1,17 @@
-%h1 Bienvenido usuario
+%h1 Bienvenido %usuario%
+#enter.panel-footer
+  .input-group
+    %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text"}/
+    %span.input-group-btn
+      %button#bsend.btn.btn-default Enviar
+%form
+  %strong Postear en: 
+  %span
+    %input{:name => "network", :type => "checkbox", :value => "google", :checked => ""}
+      Google+
+    %input{:name => "network", :type => "checkbox", :value => "twitter", :checked => ""}
+      Twitter
+    %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
+      Facebook
+%br/
 %a.btn.btn-default{:href=>"/",:role=>"button"} Sign Out

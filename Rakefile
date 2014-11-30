@@ -44,3 +44,8 @@ desc "Run tests with rspec"
 task :spec do
   sh "rspec -I. spec/app_spec.rb"
 end
+
+desc "Run Rubocop static code analyzer"
+task :rubocop do
+  sh "rubocop"
+end
