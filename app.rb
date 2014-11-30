@@ -51,7 +51,7 @@ require_relative 'model'
 
 DataMapper.finalize
 
-DataMapper.auto_migrate!
+#DataMapper.auto_migrate!
 DataMapper.auto_upgrade!
 
 use Rack::MethodOverride
@@ -61,14 +61,30 @@ Base = 36
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
-
-
 get '/signup' do
+
+  haml :signup   
+end
+
+post '/signup' do
 
   #Registro del usuario en la web, para rellenar los campos se podra hacer mediante oauth, esos datos recogidos se usaran para
   #crear el usuario de nuestra base de datos
+  
+  user = User.new
+  user.name = params[:name]
+  user.nickname = params[:nickname]
+  user.password = params[:password]
+  user.mail = params[:mail]
+  
+  
+  if User.count(:nickname => user.nickname) == 0
+      user.save
 
-  haml :signup 
+  else
+      puts 'nope'
+  end
+
 end
 
 
@@ -76,6 +92,10 @@ get '/' do
    haml :signin
    
    #Login de nuestro usuario de la base de datos
+end
+
+post '/index' do
+  
 end
 
 get '/index' do

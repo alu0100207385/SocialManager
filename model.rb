@@ -4,11 +4,13 @@ class User
   property :id, Serial
   property :name, Text
   property :opcional, Text
-  property :email, Text
+  property :mail, Text
+  property :password, Text
   property :nickname, Text
   property :idF, String   #O el token
   property :idG, String
   property :idT, String
+
 end
 
 class Facebook

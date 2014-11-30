@@ -17,7 +17,7 @@ Podemos acceder a la aplicación subida a heroku desde [aqui](https://sytw6.hero
 
 ##Tests
 
-[![Build Status](https://travis-ci.org/TEC-INFO-GROUP/SocialManager.svg)](https://travis-ci.org/TEC-INFO-GROUP/SocialManager)
+[![Build Status](https://travis-ci.org/alu0100207385/SocialManager.svg)](https://travis-ci.org/alu0100207385/SocialManager)
 
 Para ejecutar `$ rake local_tests` o arranque el servidor y ejecute `$ rake tests`.
 
@@ -43,10 +43,11 @@ rake heroku       # Open app in Heroku
 rake local_tests  # Run tests in local machine
 rake rackup       # Run the server via rackup
 rake repo         # Open repository
-rake server       # run the chat server (default)
+rake rubocop      # Run Rubocop static code analyzer
+rake server       # Run the chat server
 rake sinatra      # Run the server via Sinatra
-rake spec         # Run specs
-rake tests        # Run tests
+rake spec         # Run tests with rspec
+rake tests        # Run tests (default)
 
 ```
 

@@ -1,6 +1,6 @@
 task :default => :tests
 
-desc "run the chat server (default)"
+desc "Run the chat server"
 task :server do
   sh "bundle exec ruby app.rb"
 end
@@ -20,7 +20,7 @@ task :heroku do
    sh "heroku open"
 end
 
-desc "Run tests"
+desc "Run tests (default)"
 task :tests do
    sh "ruby test/test.rb"
 end
@@ -30,17 +30,22 @@ task :local_tests do
    sh "gnome-terminal -x sh -c 'ruby app.rb' && sh -c 'ruby test/test.rb local'"
 end
 
-desc "Run coveralls"
-task :coveralls do
-   sh "coveralls report"
-end
-
-desc "Run specs"
-task :spec do
-   sh "rspec -I. spec/chat_spec.rb"
-end
-
 desc "Open repository"
 task :repo do
   sh "gnome-open https://github.com/TEC-INFO-GROUP/SocialManager"
+end
+
+desc "Run coveralls"
+task :coveralls do
+  sh "coveralls report"
+end
+
+desc "Run tests with rspec"
+task :spec do
+  sh "rspec -I. spec/app_spec.rb"
+end
+
+desc "Run Rubocop static code analyzer"
+task :rubocop do
+  sh "rubocop"
 end
