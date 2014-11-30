@@ -15,21 +15,20 @@
     %footer
       .container
         .row
-          %hr
-          %p
-            Creditos aqui
-          %span
-            %a#jz{:href => "https://github.com/alu0100595727"} Jazer Abreu Chinea
-            &
-            %a#jc{:href => "https://github.com/alu0100505023"} Javier Clemente Rodriguez Gomez
-            &
-            %a#aa1{:href => "http://alu0100207385.github.io"} Aarón Socas Gaspar
-            &
-            %a#aa2{:href => "https://github.com/alu0100537451"} Aarón Vera Cerdeña
-          %br
-          %a#repo{:href => "https://github.com/TEC-INFO-GROUP/SocialManager"} Proyecto
-          %br
-          %a#help{:href => "/help"} Help
-          %br 
-          %a#repo{:href => "http://www.ull.es/"} ULL
-          &#45; SYTW - Copyright ©2014-2015
+          .col-md-6.col-md-offset-3.text-center
+            %hr
+            %p
+              Design by
+              %i.icon-heart-empty
+                = succeed "." do
+                  %a{:href => "https://github.com/alu0100595727",:id=>"jz"} Jazer
+                  &
+                  %a{:href => "https://github.com/alu0100505023",:id=>"jc"} Javier
+                  &
+                  %a{:href => "http://alu0100207385.github.io",:id=>"aa2"} Aarón Socas
+                  &
+                  %a{:href => "https://github.com/alu0100537451",:id=>"aa1"} Aarón Vera
+                  %br Copyright ©2014
+                  %a{:href => "/help",:id=>"aa3"} Help
+                  %br
+                  %a{:href => "https://github.com/TEC-INFO-GROUP/SocialManager",:id=>"repo"} Proyecto
