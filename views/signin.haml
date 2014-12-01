@@ -5,6 +5,11 @@
   %input{:name => "nickname", :type => "text"}
   %label{:for => "password"} Introduce tu Password
   %input{:name => "password", :type => "password"}
-  %button.btn.btn-default{:type => "submit"} Sign In
+  %button.btn.btn-primary.btn-lg.active{:type => "submit"} Sign In
 %a.btn.btn-primary.btn-lg.active{:href=>"/signup",:role=>"button"} Registrarse
-/   %a.btn.btn-primary.btn-lg.active{:type=>"submit"} Sign In
+%br
+#warning-message{:style => "color:black"}
+  - if @control == 1
+    %p.bg-danger Nickname inválido. Pruebe con otro.
+  - elsif @control == 2
+    %p.bg-danger Error en la contraseña. Vuelva a intentarlo.

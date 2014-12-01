@@ -1,4 +1,4 @@
-%h1 Bienvenido %usuario%
+%h1 Bienvenido #{@user}
 #enter.panel-footer
   .input-group
     %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text"}/
@@ -14,7 +14,7 @@
     %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
       Facebook
 %hr
-%h4 Asociar a una cuenta
+%h4 Asociar una cuenta
 %span
   %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
   %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
