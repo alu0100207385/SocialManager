@@ -61,8 +61,8 @@ Base = 36
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
+#Pagina de registro
 get '/signup' do
-
   haml :signup   
 end
 
@@ -87,12 +87,25 @@ post '/signup' do
 
 end
 
-
+#Pagina bienvenida
 get '/' do
    haml :signin
-   
    #Login de nuestro usuario de la base de datos
 end
+
+post '/login' do
+   nick = params[:nickname]
+   pass = params[:password]
+   user = User.first(:nickname => nick)
+   puts "---------------#{user.class}"
+   if (user.is_a? NilClass) #el usuario NO existe en la bbdd
+	  @control = 1;
+	  redirect '/'
+   else
+	  redirect '/index'
+   end
+end
+
 
 get '/auth/:name/callback' do
     config = YAML.load_file 'config/config.yml'
@@ -117,12 +130,13 @@ get '/auth/:name/callback' do
 end
 
 
-post '/index' do
-  
+get '/index' do
+#    /index/:user
+   haml :index
 end
 
-get '/index' do
-   haml :index
+post '/index' do
+  
 end
 
 get '/help' do
