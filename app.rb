@@ -4,6 +4,7 @@ require 'sinatra/flash'
 require 'sinatra/reloader' if development?
 require 'haml'
 require 'omniauth-twitter'
+require 'twitter'
 require 'data_mapper'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
@@ -80,10 +81,11 @@ post '/signup' do
   if User.count(:nickname => user.nickname) == 0
       user.save
 	  puts "Usuario creado con exito"
-	  redirect '/' ##Considerar redirigirlo a user/index
+	  redirect '/' ##Considerar redirigirlo a user/index si tiene exito el registro
 
   else
       puts 'nope'
+	  redirect '/signup'
   end
 
 end
@@ -146,6 +148,9 @@ get '/user/:url' do
 	  case(params[:url])
 		 when "index"
 			@user = session[:nickname]
+			@F_on = session[:idF] #Para marcar en la vista las casillas en las que el user esta logueado
+			@G_on = session[:idG]
+			@T_on = session[:idT]
 			haml :index
 	  end
    else

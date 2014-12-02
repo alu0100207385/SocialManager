@@ -10,6 +10,7 @@ gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'twitter'
 gem 'bcrypt'
 gem 'rubocop'
 

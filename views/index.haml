@@ -7,12 +7,24 @@
 %form
   %strong Postear en:
   %span
-    %input{:name => "network", :type => "checkbox", :value => "google", :checked => ""}
-      Google+
-    %input{:name => "network", :type => "checkbox", :value => "twitter", :checked => ""}
-      Twitter
-    %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
-      Facebook
+    - if @T_on != nil
+      %input{:name => "network", :type => "checkbox", :value => "google", :checked => ""}
+        Google+
+    - else
+      %input{:name => "network", :type => "checkbox", :value => "google"}
+        Google+
+    - if @T_on != nil
+      %input{:name => "network", :type => "checkbox", :value => "twitter", :checked => ""}
+        Twitter
+    - else
+      %input{:name => "network", :type => "checkbox", :value => "twitter"}
+        Twitter
+    - if @F_on != nil
+      %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
+        Facebook
+    - else
+      %input{:name => "network", :type => "checkbox", :value => "facebook"}
+        Facebook
 %hr
 %h4 Asociar una cuenta
 %span
