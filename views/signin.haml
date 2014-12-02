@@ -17,12 +17,12 @@
           %button.btn.btn-primary.btn-md.center-block{:href => "/login",:type => "submit"} Login
   .col-md-5
     .jumbotron
-      %h2 Registrarse
+      %h4 Si no tiene cuenta, empiece aqui
 
       .row
         .col-md-4
         .col-md-5
-          %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button"} Registrarse
+          %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button"} Registro
 %br
 #warning-message{:style => "color:black"}
   - if @control == 1

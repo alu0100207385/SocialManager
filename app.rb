@@ -140,7 +140,7 @@ get '/auth/:name/callback' do
     end
 end
 
-
+#Pagina principal del usuario
 get '/user/:url' do
    if (session[:nickname] != nil)
 	  case(params[:url])
