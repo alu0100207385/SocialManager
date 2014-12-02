@@ -10,27 +10,27 @@
     %script{:src => "/js/bootstrap.min.js"}
     %script{:src => "/js/bootstrap.js"}
     %link{:href => "/css/styles.css", :rel => "stylesheet"}
+    %link{:href => "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css", :rel => "stylesheet"}/
   %body
     =yield
     %footer
       .container
-        .row
-          .col-md-6.col-md-offset-3.text-center
-            %hr
-            %p
-              Design by
-              %i.icon-heart-empty
-                = succeed "." do
-                  %a{:href => "https://github.com/alu0100595727",:id=>"jz"} Jazer
-                  &
-                  %a{:href => "https://github.com/alu0100505023",:id=>"jc"} Javier
-                  &
-                  %a{:href => "http://alu0100207385.github.io",:id=>"aa2"} Aarón Socas
-                  &
-                  %a{:href => "https://github.com/alu0100537451",:id=>"aa1"} Aarón Vera
-                  %br Copyright ©2014
-                  %a{:href => "/help",:id=>"aa3"} Help
-                  %br
-                  %a{:href => "https://github.com/TEC-INFO-GROUP/SocialManager",:id=>"repo"} Proyecto
-                  %br
-                  %a#repo{:href => "http://www.ull.es/"} ULL
+        .row.text-center
+          %br
+          %p
+            Creditos
+          %span
+            %a#jz{:href => "https://github.com/alu0100595727"} Jazer
+            &
+            %a#jc{:href => "https://github.com/alu0100505023"} Javier
+            &
+            %a#aa1{:href => "http://alu0100207385.github.io"} Aarón Socas
+            &
+            %a#aa2{:href => "https://github.com/alu0100537451"} Aarón Vera
+          %br
+          %a#repo{:href => "https://github.com/TEC-INFO-GROUP/SocialManager"} Proyecto
+          %br
+          %a#help{:href => "/help"} Help
+          %br
+          %a#repo{:href => "http://www.ull.es/"} ULL
+          &#45; SYTW - Copyright ©2014-2015

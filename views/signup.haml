@@ -1,14 +1,21 @@
 %h1 Bienvenido a Social Manager
-%form{:action=>"/signup", :method => "POST"}
-
-    %label{:for => "name"} Introduce tu Nombre
-    %input{:name => "name", :type => "text"}
-    %label{:for => "nickname"} Introduce tu Nickname
-    %input{:name => "nickname", :type => "text"}
-    %label{:for => "mail"} Introduce tu email
-    %input{:name => "mail", :type => "text"}
-    %label{:for => "password"} Introduce tu Password
-    %input{:name => "password", :type => "text"}
-    %button.btn.btn-danger{:type => "submit"} Registrarse
-    
-%a.btn.btn-default{:href=>"/auth/:facebook/callback",:role=>"button"} Caga de campos con Facebook
+.row
+  .col-md-2
+  .col-md-8
+    .jumbotron
+      %h3 Registro
+      %form{:action=>"/signup", :method => "POST"}
+        .row{:style => "padding-top:20px"}
+          %label{:for => "name"} Nombre:
+          %input{:name => "name", :type => "text"}
+        .row{:style => "padding-top:20px"}
+          %label{:for => "nickname"} Nickname:
+          %input{:name => "nickname", :type => "text"}
+        .row{:style => "padding-top:20px"}
+          %label{:for => "mail"} Email:
+          %input{:name => "mail", :type => "email"}
+        .row{:style => "padding-top:20px;padding-bottom:20px;"}
+          %label{:for => "password"} Password:
+          %input{:name => "password", :type => "password"}
+        %button.btn.btn-danger.center-block{:type => "submit"} Registrarse
+  .col-md-2

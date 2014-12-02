@@ -1,12 +1,40 @@
-.header.alt.vert
-  .container
-    %h1 Bienvenido a Social Manager
-    %span
-    %form{:action=>"/sigin", :method => "POST"}
-      %label{:for => "nickname"} Introduce tu Nickname
-      %input{:name => "nickname", :type => "text"}
-      %label{:for => "password"} Introduce tu Password
-      %input{:name => "password", :type => "password"}
-    %br
-    %a.btn.btn-primary.btn-lg.active{:href=>"/index",:role=>"button"} Sign In
-    %a.btn.btn-primary.btn-lg.active{:href=>"/signup",:role=>"button"} Registrarse
+.container-full
+  .row
+    .col-lg-12.text-center.v-center
+      %h1 Bienvenido Social Manager
+      %form.form-inline{:action=>"/login", :method => "POST"}
+        .col-md-6
+          .row{:style => "padding-top:30px"}
+            %h3 Login App
+            %label{:for => "nickname"} Nickname:
+            %input{:name => "nickname", :type => "text",:style =>"color:black"}
+          .row{:style => "padding-top:20px"}
+            %label{:for => "password"} Password:
+            %input{:name => "password", :type => "password",:style =>"color:black"}
+          .row.text-center{:style => "padding-top:20px;"}
+            %button.btn.btn-primary.btn-md.center-block{:href => "/login",:type => "submit"} Login
+            %br
+            #warning-message{:style => "color:black"}
+              - if @control == 1
+                %p.bg-danger{:style => "width:350px"} Nickname inválido. Pruebe con otro.
+              - elsif @control == 2
+                %p.bg-danger{:style => "width:350px"} Error en la contraseña. Vuelva a intentarlo.        
+        .col-md-6
+          .row{:style => "padding-top:60px"}
+            %h4 Si no tiene cuenta, empiece aqui
+            %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro 
+        .col-md-7
+          %img.pull-right{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/onlinelogomaker-120214-0430_zps811b8aa4.png", :width => "200px", :height => "150px"}   
+  / /row 
+  .row
+    .col-lg-12.text-center.v-center{:style => "font-size:39pt;"}
+      %a{:href => "#"}
+        %i.icon-google-plus
+      %a{:href => "#"}
+        %i.icon-facebook
+      %a{:href => "#"}
+        %i.icon-twitter
+      %a{:href => "#"}
+        %i.icon-github
+      %a{:href => "#"}
+        %i.icon-pinterest

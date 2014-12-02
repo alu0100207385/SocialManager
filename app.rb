@@ -54,32 +54,33 @@ DataMapper.finalize
 #DataMapper.auto_migrate!
 DataMapper.auto_upgrade!
 
-use Rack::MethodOverride
-
-Base = 36
 
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
+#Pagina de registro
 get '/signup' do
+  haml :signup
 
-  haml :signup   
 end
 
+#Enviar datos de registro
 post '/signup' do
 
   #Registro del usuario en la web, para rellenar los campos se podra hacer mediante oauth, esos datos recogidos se usaran para
   #crear el usuario de nuestra base de datos
-  
+
   user = User.new
   user.name = params[:name]
   user.nickname = params[:nickname]
   user.password = params[:password]
   user.mail = params[:mail]
-  
-  
+
+  #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
+	  puts "Usuario creado con exito"
+	  redirect '/' ##Considerar redirigirlo a user/index
 
   else
       puts 'nope'
@@ -87,12 +88,35 @@ post '/signup' do
 
 end
 
-
+#Pagina bienvenida
 get '/' do
    haml :signin
-   
    #Login de nuestro usuario de la base de datos
 end
+
+#El usuario introduce los campos para ingresar en la app
+post '/login' do
+   @control = 0
+   nick = params[:nickname]
+   pass = params[:password]
+   user = User.first(:nickname => nick)
+   if(!user.is_a? NilClass)
+     if(user.password == pass) then user_pass = user.password end
+   end
+
+   if (user.is_a? NilClass) #el usuario NO existe en la bbdd
+	  @control = 1;
+	  haml :signin
+   elsif (user_pass.is_a? NilClass) #la pass no coincide
+	  @control = 2;
+	  haml :signin
+   else
+
+    session[:nickname] = nick
+	  redirect '/user/index'
+   end
+end
+
 
 get '/auth/:name/callback' do
     config = YAML.load_file 'config/config.yml'
@@ -117,23 +141,35 @@ get '/auth/:name/callback' do
 end
 
 
+get '/user/:url' do
+   if (session[:nickname] != nil)
+	  case(params[:url])
+		 when "index"
+			@user = session[:nickname]
+			haml :index
+	  end
+   else
+	  redirect '/'
+   end
+end
+
+#Enviar un post desde la app a las redes sociales asociadas
 post '/index' do
-  
+
 end
 
-get '/index' do
-   haml :index
-end
-
+#Pagina de ayuda
 get '/help' do
    haml :help
 end
 
+#Salir de la app
 get '/logout' do
    session.clear
    redirect '/'
 end
 
+#Cualquier error de ruta debe ser redireccionada aqui
 get '/auth/failure' do
   flash[:notice] =
     %Q{<h3>Se ha producido un error en la autenticacion</h3> &#60; <a href="/">Volver</a> }
