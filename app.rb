@@ -61,7 +61,7 @@ set :session_secret, '*&(^#234a)'
 #Pagina de registro
 get '/signup' do
   haml :signup
-  
+
 end
 
 #Enviar datos de registro
@@ -100,7 +100,9 @@ post '/login' do
    nick = params[:nickname]
    pass = params[:password]
    user = User.first(:nickname => nick)
-   if(user.password == pass) then user_pass = user.password end
+   if(!user.is_a? NilClass)
+     if(user.password == pass) then user_pass = user.password end
+   end
 
    if (user.is_a? NilClass) #el usuario NO existe en la bbdd
 	  @control = 1;
