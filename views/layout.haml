@@ -10,8 +10,12 @@
     %script{:src => "/js/bootstrap.min.js"}
     %script{:src => "/js/bootstrap.js"}
   %body
-    =yield
-    %footer
+    %nav.navbar.navbar-inverse{:role => "navegation"}
+      .navbar-header
+        %a.navbar-brand{:href => "/"} Social Manager
+    .container
+      =yield
+    %footer.navbar-fixed-bottom
       .container
         .row
           %hr
@@ -29,6 +33,6 @@
           %a#repo{:href => "https://github.com/TEC-INFO-GROUP/SocialManager"} Proyecto
           %br
           %a#help{:href => "/help"} Help
-          %br 
+          %br
           %a#repo{:href => "http://www.ull.es/"} ULL
           &#45; SYTW - Copyright ©2014-2015

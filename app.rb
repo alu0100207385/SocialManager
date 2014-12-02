@@ -61,6 +61,7 @@ set :session_secret, '*&(^#234a)'
 #Pagina de registro
 get '/signup' do
   haml :signup
+  
 end
 
 #Enviar datos de registro
@@ -109,7 +110,7 @@ post '/login' do
 	  haml :signin
    else
 
-    session[:nickname] = nick 
+    session[:nickname] = nick
 	  redirect '/user/index'
    end
 end
