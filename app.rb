@@ -19,13 +19,13 @@ use OmniAuth::Builder do
   provider :google_oauth2, config['gidentifier'], config['gsecret'],
   {
      :authorize_params => {
-        :force_login => 'true'
+        :force_login => 'false'
       }
     }
 	provider :twitter, config['tidentifier'], config['tsecret'],
   {
      :authorize_params => {
-        :force_login => 'true'
+        :force_login => 'false'
       }
     }
   provider :facebook, config['fidentifier'], config['fsecret'],
@@ -128,6 +128,11 @@ get '/auth/:name/callback' do
       session[:name] = @auth['info'].name
       session[:email] = @auth['info'].email
 #     session[:image] = @auth['info'].image
+      redirect "user/index"
+    when 'twitter'
+        @auth = request.env['omniauth.auth']
+        session[:name] = @auth['info'].name
+        session[:nickname] = @auth['info'].nickname   #Todo esto deberia guardarse en la bd, al menos el token de autentificacion
       redirect "user/index"
 
     when 'facebook'

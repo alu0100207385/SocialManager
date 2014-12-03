@@ -13,7 +13,7 @@ class User
 
 end
 
-class Facebook
+class FacebookData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
@@ -22,7 +22,7 @@ class Facebook
   belongs_to  :User
 end
 
-class Twitter
+class TwitterData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
@@ -31,7 +31,7 @@ class Twitter
   belongs_to  :User
 end
 
-class Google
+class GoogleData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
