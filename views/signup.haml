@@ -6,16 +6,16 @@
     .row
       .col-md-10.text-center
         .row{:style => "padding-top:20px"}
-          %label{:for => "name"} Nombre
-          %input#name{:name => "name", :type => "text"}
+          %label{:for => "name"} Nombre:
+          %input#name{:name => "name", :type => "text", :required => ""}
         .row{:style => "padding-top:20px"}
-          %label{:for => "nickname"} Nickname
-          %input#nickname{:name => "nickname", :type => "text"}
+          %label{:for => "nickname"} Nickname:
+          %input#nickname{:name => "nickname", :type => "text", :required => ""}
         .row{:style => "padding-top:20px"}
-          %label{:for => "mail"} Email
-          %input#mail{:name => "mail", :type => "email"}
+          %label{:for => "mail"} Email:
+          %input#mail{:name => "mail", :type => "email", :required => ""}
         .row{:style => "padding-top:20px;padding-bottom:20px;"}
-          %label{:for => "password"} Password
-          %input#password{:name => "password", :type => "password"}
+          %label{:for => "password"} Password:
+          %input#password{:name => "password", :type => "password", :required => ""}
         %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
 %script{:src => "/js/signup.js"}
