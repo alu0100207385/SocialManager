@@ -9,27 +9,25 @@
     %script{:src=>"//html5shim.googlecode.com/svn/trunk/html5.js"}
     %script{:src => "/js/bootstrap.min.js"}
     %script{:src => "/js/bootstrap.js"}
-
+    %link{:href => "/css/styles.css", :rel => "stylesheet"}
+    %link{:href => "/css/freeze.css", :rel => "stylesheet"}
+    %link{:href => "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css", :rel => "stylesheet"}/
   %body
-    %nav.navbar.navbar-inverse{:role => "navegation"}
-      .navbar-header
-        %a.navbar-brand{:href => "/"} Social Manager
-    .container#container
-      =yield
-    %footer.navbar-fixed-bottom
+    =yield
+    %footer
       .container
-        .row
-          %hr
+        .row.text-center
+          %br
           %p
-            Creditos aqui
+            Creditos
           %span
-            %a#jz{:href => "https://github.com/alu0100595727"} Jazer Abreu Chinea
+            %a#jz{:href => "https://github.com/alu0100595727"} Jazer
             &
-            %a#jc{:href => "https://github.com/alu0100505023"} Javier Clemente Rodriguez Gomez
+            %a#jc{:href => "https://github.com/alu0100505023"} Javier
             &
-            %a#aa1{:href => "http://alu0100207385.github.io"} Aarón Socas Gaspar
+            %a#aa1{:href => "http://alu0100207385.github.io"} Aarón Socas
             &
-            %a#aa2{:href => "https://github.com/alu0100537451"} Aarón Vera Cerdeña
+            %a#aa2{:href => "https://github.com/alu0100537451"} Aarón Vera
           %br
           %a#repo{:href => "https://github.com/TEC-INFO-GROUP/SocialManager"} Proyecto
           %br
