@@ -8,22 +8,22 @@
   %strong Postear en:
   %span
     - if @T_on != nil
-      %input{:name => "network", :type => "checkbox", :value => "google", :checked => ""}
+      %input{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
         Google+
     - else
-      %input{:name => "network", :type => "checkbox", :value => "google"}
+      %input{:name => "networkG", :type => "checkbox", :value => "google"}
         Google+
     - if @T_on != nil
-      %input{:name => "network", :type => "checkbox", :value => "twitter", :checked => ""}
+      %input{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
         Twitter
     - else
-      %input{:name => "network", :type => "checkbox", :value => "twitter"}
+      %input{:name => "networkT", :type => "checkbox", :value => "twitter"}
         Twitter
     - if @F_on != nil
-      %input{:name => "network", :type => "checkbox", :value => "facebook", :checked => ""}
+      %input{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
         Facebook
     - else
-      %input{:name => "network", :type => "checkbox", :value => "facebook"}
+      %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
         Facebook
 %hr
 %h4 Asociar una cuenta
@@ -31,6 +31,12 @@
   %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
   %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
   %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+%hr
+%h4 Desvincular una cuenta
+%span
+  %a.btn.btn-danger{:href=>"/user/index/delete/g",:role=>"button"} Log Out Google+
+  %a.btn.btn-info{:href=>"/user/index/delete/t",:role=>"button"} Log Out Twitter
+  %a.btn.btn-primary{:href=>"/user/index/delete/f",:role=>"button"} Log Out Facebook
 %hr
 %a{:href => "https://plus.google.com/share?url={URL}", :onclick => "javascript:window.open(this.href,\r\n  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"}
   %img{:alt => "Share on Google+", :src => "https://www.gstatic.com/images/icons/gplus-64.png"}/

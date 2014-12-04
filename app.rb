@@ -124,19 +124,26 @@ end
 
 
 get '/auth/:name/callback' do
-    config = YAML.load_file 'config/config.yml'
-    case params[:name]
-    when 'google_oauth2'
-      @auth = request.env['omniauth.auth']
-      session[:name] = @auth['info'].name
-      session[:email] = @auth['info'].email
-#     session[:image] = @auth['info'].image
-      redirect "user/index"
-    when 'twitter'
-        @auth = request.env['omniauth.auth']
-        session[:name] = @auth['info'].name
-        session[:nickname] = @auth['info'].nickname   #Todo esto deberia guardarse en la bd, al menos el token de autentificacion
-      redirect "user/index"
+   config = YAML.load_file 'config/config.yml'
+   case params[:name] #nickname unico en nuestra app
+
+   when 'twitter'
+	  @auth = request.env['omniauth.auth']
+# 	  puts "---------------#{@auth}"
+	  user = User.first(:nickname => session[:nickname])
+	  tweet = TwitterData.new(:user => user)
+# 	  tweet.name = @auth['info'].name
+	  tweet.access_token = @auth.credentials.token
+	  tweet.access_token_secret = @auth.credentials.secret
+	  tweet.save
+# 	  property  :id, Serial
+	  redirect '/user/index'
+=begin
+   when 'google_oauth2'
+	  @auth = request.env['omniauth.auth']
+	  session[:name] = @auth['info'].name
+	  session[:email] = @auth['info'].email
+	  redirect "user/index"
 
     when 'facebook'
       @auth = request.env['omniauth.auth']
@@ -145,6 +152,7 @@ get '/auth/:name/callback' do
       session[:nickname] = @auth['info'].nickname
 #       puts "#{session[:nickname]}"
       redirect "/index"
+=end
     else
       redirect "/auth/failure"
     end

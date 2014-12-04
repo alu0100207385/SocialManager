@@ -7,38 +7,34 @@ class User
   property :mail, Text
   property :password, BCryptHash
   property :nickname, Text
-  property :idF, String   #O el token
-  property :idG, String
-  property :idT, String
-
 end
 
 class FacebookData
   include DataMapper::Resource
   property  :id, Serial
-  property  :name, String
+#   property  :name, String
   property  :token, String
 
-  belongs_to  :User
+  belongs_to  :user
 end
 
 class TwitterData
   include DataMapper::Resource
   property  :id, Serial
-  property  :name, String
+#   property  :name, String
   property  :access_token, String
   property  :access_token_secret, String
 
-  belongs_to  :User
+  belongs_to  :user
 end
 
 class GoogleData
   include DataMapper::Resource
   property  :id, Serial
-  property  :name, String
+#   property  :name, String
   property  :token, String
 
-  belongs_to  :User
+  belongs_to  :user
 end
 
 class Post
