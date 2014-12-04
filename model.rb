@@ -13,7 +13,7 @@ class User
 
 end
 
-class Facebook
+class FacebookData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
@@ -22,16 +22,17 @@ class Facebook
   belongs_to  :User
 end
 
-class Twiter
+class TwitterData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
-  property  :token, String
+  property  :access_token, String
+  property  :access_token_secret, String
 
   belongs_to  :User
 end
 
-class Google
+class GoogleData
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
@@ -46,6 +47,7 @@ class Post
   property :nickname, String  #Se puede escoger otro campo para asociarlo
   property :text, String
   property :date, DateTime
+  property :public, Boolean, :default  => true
 
   belongs_to :User
 end

@@ -19,13 +19,13 @@ use OmniAuth::Builder do
   provider :google_oauth2, config['gidentifier'], config['gsecret'],
   {
      :authorize_params => {
-        :force_login => 'true'
+        :force_login => 'false'
       }
     }
 	provider :twitter, config['tidentifier'], config['tsecret'],
   {
      :authorize_params => {
-        :force_login => 'true'
+        :force_login => 'false'
       }
     }
   provider :facebook, config['fidentifier'], config['fsecret'],
@@ -75,17 +75,20 @@ post '/signup' do
   user.name = params[:name]
   user.nickname = params[:nickname]
   user.password = params[:password]
-  user.mail = params[:mail]
+  user.mail = params[:email]
 
   #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
-	  puts "Usuario creado con exito"
-	  redirect '/' ##Considerar redirigirlo a user/index si tiene exito el registro
-
+      erb <<-'HTML', :layout => false
+        <br>
+        <p class="bg-success">Usuario Creado con exito </p>
+        HTML
   else
-      puts 'nope'
-	  redirect '/signup'
+    erb <<-'HTML', :layout => false
+    <br>
+    <p class="bg-danger">El usuario ya existe, por favor utiliza otro nickname. </p>
+    HTML
   end
 
 end
@@ -128,6 +131,11 @@ get '/auth/:name/callback' do
       session[:name] = @auth['info'].name
       session[:email] = @auth['info'].email
 #     session[:image] = @auth['info'].image
+      redirect "user/index"
+    when 'twitter'
+        @auth = request.env['omniauth.auth']
+        session[:name] = @auth['info'].name
+        session[:nickname] = @auth['info'].nickname   #Todo esto deberia guardarse en la bd, al menos el token de autentificacion
       redirect "user/index"
 
     when 'facebook'
