@@ -222,6 +222,7 @@ DEPENDENCIES
   dm-sqlite-adapter
   do_postgres
   haml
+  json
   minitest
   omniauth-facebook
   omniauth-google-oauth2
