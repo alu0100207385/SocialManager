@@ -231,6 +231,9 @@ get '/help' do
    haml :help
 end
 
+get '/support' do
+   haml :support
+end
 #Salir de la app
 get '/logout' do
    session.clear
