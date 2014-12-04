@@ -75,17 +75,20 @@ post '/signup' do
   user.name = params[:name]
   user.nickname = params[:nickname]
   user.password = params[:password]
-  user.mail = params[:mail]
+  user.mail = params[:email]
 
   #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
-	  puts "Usuario creado con exito"
-	  redirect '/' ##Considerar redirigirlo a user/index si tiene exito el registro
-
+      erb <<-'HTML', :layout => false
+        <br>
+        <p class="bg-success">Usuario Creado con exito </p>
+        HTML
   else
-      puts 'nope'
-	  redirect '/signup'
+    erb <<-'HTML', :layout => false
+    <br>
+    <p class="bg-danger">El usuario ya existe, por favor utiliza otro nickname. </p>
+    HTML
   end
 
 end
