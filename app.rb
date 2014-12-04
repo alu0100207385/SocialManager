@@ -62,6 +62,7 @@ set :session_secret, '*&(^#234a)'
 
 #Pagina de registro
 get '/signup' do
+  
   haml :signup
 
 end

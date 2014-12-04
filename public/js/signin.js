@@ -15,14 +15,14 @@ $(document).ready(function(){
         if(data.key1 == 'error1'){
 
         $("#text").hide();
-        $("#text").html('<p class = "bg-danger"> <strong> El usuario no existe en la base de datos.');
+        $("#text").html('<p class = "text-danger"> <strong> El usuario no existe en la base de datos.');
         $("#text").show(1000);
 
         }
         if(data.key1 == 'error2'){
 
           $("#text").hide();
-          $("#text").html('<p class = "bg-danger"> <strong> La contraseña no coincide con el usuario.');
+          $("#text").html('<p class = "text-danger"> <strong> La contraseña no coincide con el usuario.');
           $("#text").show(1000);
 
         }
