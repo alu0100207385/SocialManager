@@ -99,27 +99,6 @@ get '/' do
    #Login de nuestro usuario de la base de datos
 end
 
-post '/desvincular/twitter' do
-  user = User.first(:nickname => session[:nickname])
-  cuentaT=TwitterData(:user =>user.id)
-  cuentaT.destroy
-  
-end
-
-post '/desvincular/facebook' do
-  user = User.first(:nickname => session[:nickname])
-  cuentaT=FacebookData(:user =>user.id)
-  cuentaT.destroy
-  
-end
-
-post '/desvincular/google' do
-  user = User.first(:nickname => session[:nickname])
-  cuentaT=GoogleData(:user =>user.id)
-  cuentaT.destroy
-  
-end
-
 
 #El usuario introduce los campos para ingresar en la app
 post '/login' do
@@ -183,7 +162,7 @@ get '/auth/:name/callback' do
 end
 
 #Pagina principal del usuario
-get '/user/:url' do
+get '/user/:url' do 
    if (session[:nickname] != nil)
 	  case(params[:url])
 		 when "index"
@@ -215,11 +194,17 @@ end
 get '/desvincular/:net' do
    case(params[:net])
    when "twitter"
-	  redirect '/user/index'
+	   user = User.first(:nickname => session[:nickname])
+	   cuentaT=TwitterData.first(:user =>user)
+	   cuentaT.destroy
    when "facebook"
-	  redirect '/user/index'
+	  user = User.first(:nickname => session[:nickname])
+	  cuentaT=FacebookData.first(:user =>user)
+	  cuentaT.destroy
    when "google"
-	  redirect '/user/index'
+	  user = User.first(:nickname => session[:nickname])
+	  cuentaT=GoogleData.first(:user =>user)
+	  cuentaT.destroy
    end
 end
 
