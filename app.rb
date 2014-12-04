@@ -10,6 +10,9 @@ require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
 require 'json'
+require_relative 'helper/helpers.rb'
+
+helpers AppHelpers
 
 set :environment, :development
 
@@ -201,9 +204,21 @@ end
 
 #Enviar un post desde la app a las redes sociales asociadas
 post '/user/index' do
-# Twitter
-#    client = my_twitter_client()
-#    client.update("cadena")
+   config = YAML.load_file 'config/config.yml'
+   cad = params[:text]
+   puts "---#{cad}"
+   user = User.first(:nickname => session[:nickname])
+   
+   if ( cad != "") and (cad.length < 40)
+#  Twitter
+	  t = TwitterData.first(:id => user.id)
+	  client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
+	  client.update(cad)
+	  redirect '/user/index'
+   else
+	  puts "Error en el envio a twitter"
+	  redirect '/user/index'
+   end
 
 # Facebook
 

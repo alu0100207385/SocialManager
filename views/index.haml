@@ -1,9 +1,10 @@
 %h1 Bienvenido #{@user}
 #enter.panel-footer
   .input-group
-    %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text"}/
-    %span.input-group-btn
-      %button#bsend.btn.btn-default Enviar
+    %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form"}
+      %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text"}/
+      %span.input-group-btn
+        %button#bsend.btn.btn-default{:type=>"submit"} Enviar
 %form
   %strong Postear en:
   %span
