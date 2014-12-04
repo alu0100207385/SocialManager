@@ -166,9 +166,10 @@ get '/user/:url' do
 	  case(params[:url])
 		 when "index"
 			@user = session[:nickname]
-			@F_on = session[:idF] #Para marcar en la vista las casillas en las que el user esta logueado
-			@G_on = session[:idG]
-			@T_on = session[:idT]
+			user = User.first(:nickname => @user)
+			@F_on = FacebookData.first(:id => user.id) #Para marcar en la vista las casillas en las que el user esta logueado
+			@G_on = GoogleData.first(:id => user.id)
+			@T_on = TwitterData.first(:id => user.id)
 			haml :index
 	  end
    else
@@ -177,8 +178,27 @@ get '/user/:url' do
 end
 
 #Enviar un post desde la app a las redes sociales asociadas
-post '/index' do
+post '/user/index' do
+# Twitter
+#    client = my_twitter_client()
+#    client.update("cadena")
 
+# Facebook
+
+# Google+
+
+end
+
+#Desasociar una cuenta del usuario en la bbdd
+get '/desvincular/:net' do
+   case(params[:net])
+   when "twitter"
+	  redirect '/user/index'
+   when "facebook"
+	  redirect '/user/index'
+   when "google"
+	  redirect '/user/index'
+   end
 end
 
 #Pagina de ayuda
