@@ -22,7 +22,7 @@ class Facebook
   belongs_to  :User
 end
 
-class Twitter
+class Twiter
   include DataMapper::Resource
   property  :id, Serial
   property  :name, String
