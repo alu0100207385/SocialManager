@@ -9,6 +9,7 @@ require 'data_mapper'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
+require 'json'
 
 set :environment, :development
 
@@ -81,12 +82,10 @@ post '/signup' do
   if User.count(:nickname => user.nickname) == 0
       user.save
       erb <<-'HTML', :layout => false
-        <br>
         <p class="bg-success">Usuario Creado con exito </p>
         HTML
   else
     erb <<-'HTML', :layout => false
-    <br>
     <p class="bg-danger">El usuario ya existe, por favor utiliza otro nickname. </p>
     HTML
   end
@@ -101,24 +100,26 @@ end
 
 #El usuario introduce los campos para ingresar en la app
 post '/login' do
-   @control = 0
+
    nick = params[:nickname]
    pass = params[:password]
    user = User.first(:nickname => nick)
+   content_type :json
+
    if(!user.is_a? NilClass)
      if(user.password == pass) then user_pass = user.password end
    end
 
    if (user.is_a? NilClass) #el usuario NO existe en la bbdd
-	  @control = 1;
-	  haml :signin
+
+     { :key1 => 'error1' }.to_json
    elsif (user_pass.is_a? NilClass) #la pass no coincide
-	  @control = 2;
-	  haml :signin
+     { :key1 => 'error2' }.to_json
    else
 
     session[:nickname] = nick
-	  redirect '/user/index'
+    { :key1 => 'ok' }.to_json
+
    end
 end
 

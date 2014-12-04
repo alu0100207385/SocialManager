@@ -13,6 +13,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'bcrypt'
 gem 'rubocop'
+gem 'json'
 
 group :development do
   gem 'sinatra-contrib'

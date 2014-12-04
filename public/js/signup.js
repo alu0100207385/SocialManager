@@ -13,7 +13,10 @@ $(document).ready(function(){
 
       success: function(result){
 
-        $("#jumbotron").append(result);
+        $("#text").hide();
+        $("#text").html(result);
+        $("#text").show(1000);
+
       }
 
     });
