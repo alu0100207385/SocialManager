@@ -99,6 +99,28 @@ get '/' do
    #Login de nuestro usuario de la base de datos
 end
 
+post '/desvincular/twitter' do
+  user = User.first(:nickname => session[:nickname])
+  cuentaT=TwitterData(:user =>user.id)
+  cuentaT.destroy
+  
+end
+
+post '/desvincular/facebook' do
+  user = User.first(:nickname => session[:nickname])
+  cuentaT=FacebookData(:user =>user.id)
+  cuentaT.destroy
+  
+end
+
+post '/desvincular/google' do
+  user = User.first(:nickname => session[:nickname])
+  cuentaT=GoogleData(:user =>user.id)
+  cuentaT.destroy
+  
+end
+
+
 #El usuario introduce los campos para ingresar en la app
 post '/login' do
 
