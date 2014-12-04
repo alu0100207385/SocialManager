@@ -1,7 +1,7 @@
 .container-full
   .row
     .col-lg-12.text-center.v-center
-      %h1 Bienvenido Social Manager
+      %h1 Bienvenido a Social Manager
       %form.form-inline{:action=>"/login", :method => "POST"}
         .col-md-6
           .row{:style => "padding-top:30px"}
@@ -18,14 +18,14 @@
               - if @control == 1
                 %p.bg-danger{:style => "width:350px"} Nickname inválido. Pruebe con otro.
               - elsif @control == 2
-                %p.bg-danger{:style => "width:350px"} Error en la contraseña. Vuelva a intentarlo.        
+                %p.bg-danger{:style => "width:350px"} Error en la contraseña. Vuelva a intentarlo.
         .col-md-6
           .row{:style => "padding-top:60px"}
             %h4 Si no tiene cuenta, empiece aqui
-            %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro 
+            %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro
         .col-md-7
-          %img.pull-right{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/onlinelogomaker-120214-0430_zps811b8aa4.png", :width => "200px", :height => "150px"}   
-  / /row 
+          %img.pull-right{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/onlinelogomaker-120214-0430_zps811b8aa4.png", :width => "200px", :height => "150px"}
+  / /row
   .row
     .col-lg-12.text-center.v-center{:style => "font-size:39pt;"}
       %a{:href => "#"}

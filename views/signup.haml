@@ -2,19 +2,20 @@
   .container
     .section-heading
       %h1 Bienvenido a Social Manager
+      %p#text
     .row
       .col-md-10.text-center
-        %form{:action=>"/signup", :method => "POST"}
-          .row{:style => "padding-top:20px"}
-            %label{:for => "name"} Nombre
-            %input{:name => "name", :type => "text"}
-          .row{:style => "padding-top:20px"}
-            %label{:for => "nickname"} Nickname
-            %input{:name => "nickname", :type => "text"}
-          .row{:style => "padding-top:20px"}
-            %label{:for => "mail"} Email
-            %input{:name => "mail", :type => "email"}
-          .row{:style => "padding-top:20px;padding-bottom:20px;"}
-            %label{:for => "password"} Password
-            %input{:name => "password", :type => "password"}
-          %button.btn.btn-primary.btn-md.center-block{:type => "submit"} Registrarse
+        .row{:style => "padding-top:20px"}
+          %label{:for => "name"} Nombre
+          %input#name{:name => "name", :type => "text"}
+        .row{:style => "padding-top:20px"}
+          %label{:for => "nickname"} Nickname
+          %input#nickname{:name => "nickname", :type => "text"}
+        .row{:style => "padding-top:20px"}
+          %label{:for => "mail"} Email
+          %input#mail{:name => "mail", :type => "email"}
+        .row{:style => "padding-top:20px;padding-bottom:20px;"}
+          %label{:for => "password"} Password
+          %input#password{:name => "password", :type => "password"}
+        %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
+%script{:src => "/js/signup.js"}
