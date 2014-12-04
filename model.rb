@@ -46,6 +46,7 @@ class Post
   property :nickname, String  #Se puede escoger otro campo para asociarlo
   property :text, String
   property :date, DateTime
+  property :public, Boolean, :default  => true
 
   belongs_to :User
 end
