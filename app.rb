@@ -33,7 +33,7 @@ use OmniAuth::Builder do
       }
     }
   provider :facebook, config['fidentifier'], config['fsecret'],
-    :scope => 'email, public_profile', :auth_type => 'reauthenticate'
+    :scope => 'email, public_profile'
 
 end
 
@@ -131,36 +131,33 @@ end
 
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
+   auth = request.env['omniauth.auth']
+#    puts "--> #{auth}"
+   user = User.first(:nickname => session[:nickname])
+   
    case params[:name] #nickname unico en nuestra app
-
+   
    when 'twitter'
-	  @auth = request.env['omniauth.auth']
-# 	  puts "---------------#{@auth}"
-	  user = User.first(:nickname => session[:nickname])
 	  tweet = TwitterData.new(:user => user)
-# 	  tweet.name = @auth['info'].name
-	  tweet.access_token = @auth.credentials.token
-	  tweet.access_token_secret = @auth.credentials.secret
+	  tweet.access_token = auth.credentials.token
+	  tweet.access_token_secret = auth.credentials.secret
 	  tweet.save
-# 	  property  :id, Serial
 	  redirect '/user/index'
-=begin
-   when 'google_oauth2'
-	  @auth = request.env['omniauth.auth']
-	  session[:name] = @auth['info'].name
-	  session[:email] = @auth['info'].email
-	  redirect "user/index"
 
     when 'facebook'
-      @auth = request.env['omniauth.auth']
-      session[:name] = @auth['info'].name
-#       puts "#{session[:name]}"
-      session[:nickname] = @auth['info'].nickname
-#       puts "#{session[:nickname]}"
-      redirect "/index"
-=end
+ 	  face = FacebookData.new(:user => user)
+ 	  face.token = auth.credentials.token
+ 	  face.save
+# 	  FacebookData.first_or_create(:token => auth.credentials.token, :user => user)
+      redirect '/user/index'
+
+   when 'google_oauth2'
+	  goo = GoogleData.new(:user => user)
+	  goo.token = auth.credentials.token
+	  goo.save
+	  redirect 'user/index'
     else
-      redirect "/auth/failure"
+      redirect '/auth/failure'
     end
 end
 
@@ -171,9 +168,9 @@ get '/user/:url' do
 		 when "index"
 			@user = session[:nickname]
 			user = User.first(:nickname => @user)
-			@F_on = FacebookData.first(:id => user.id) #Para marcar en la vista las casillas en las que el user esta logueado
-			@G_on = GoogleData.first(:id => user.id)
-			@T_on = TwitterData.first(:id => user.id)
+			@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
+			@G_on = GoogleData.first(:user => user)
+			@T_on = TwitterData.first(:user => user)
 			haml :index
 	  end
    else

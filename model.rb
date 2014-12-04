@@ -12,8 +12,7 @@ end
 class FacebookData
   include DataMapper::Resource
   property  :id, Serial
-#   property  :name, String
-  property  :token, String
+  property  :token, String, :length => 512
 
   belongs_to  :user
 end
