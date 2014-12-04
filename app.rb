@@ -197,14 +197,17 @@ get '/desvincular/:net' do
 	   user = User.first(:nickname => session[:nickname])
 	   cuentaT=TwitterData.first(:user =>user)
 	   cuentaT.destroy
+	   redirect '/user/index'
    when "facebook"
 	  user = User.first(:nickname => session[:nickname])
 	  cuentaT=FacebookData.first(:user =>user)
 	  cuentaT.destroy
+	  redirect '/user/index'
    when "google"
 	  user = User.first(:nickname => session[:nickname])
 	  cuentaT=GoogleData.first(:user =>user)
 	  cuentaT.destroy
+	  redirect '/user/index'
    end
 end
 
