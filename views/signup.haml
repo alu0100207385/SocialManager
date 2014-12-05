@@ -1,22 +1,36 @@
 .container-semi
   .section-heading
     %h1{:style => "color:white"} Bienvenido a Social Manager
-    %p#text
-  .row
+  .row{:style => "position:relative; top:-80px;"}
     .col-md-12.text-center
-      %h3.block-center{:style => "color:white"} Registro
+      %h3.block-center{:style => "color:white;text-decoration:underline;"} Registro
+      %p#text
       .row{:style => "padding-top:20px"}
-        %label{:for => "name"} Nombre:
-        %input#name{:name => "name", :type => "text", :required => ""}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "name"} * Nombre:
+          %input#name{:name => "name", :type => "text", :required => "required" ,:placeholder => "yourname",:style => "position:relative;right:-9px;"}
+        .col-md-3
       .row{:style => "padding-top:20px"}
-        %label{:for => "nickname"} Nickname:
-        %input#nickname{:name => "nickname", :type => "text", :required => ""}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "nickname"}* Nickname:
+          %input#nickname{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname"}
+        .col-md-3
       .row{:style => "padding-top:20px"}
-        %label{:for => "mail"} Email:
-        %input#mail{:name => "mail", :type => "email", :required => ""}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "mail"}* Email:
+          %input#mail{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;"}
+        .col-md-3
       .row{:style => "padding-top:20px;padding-bottom:20px;"}
-        %label{:for => "password"} Password:
-        %input#password{:name => "password", :type => "password", :required => ""}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "password"} * Password:
+          %input#password{:name => "password", :type => "password", :required => "required", :placeholder => "*****"}
+        .col-md-3
+      .row{:style => "padding-bottom:20px;"}
+        %p * Todos los campos son requeridos
       .row{:style => "padding-bottom:20px;"}
         %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
       .row

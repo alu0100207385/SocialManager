@@ -1,16 +1,16 @@
 .container-full
   .row
     .col-lg-12.text-center.v-center
-      %h1{:style => "color:white;position:relative; top:-50px;"} <u> Bienvenido a Social Manager
+      %h1{:style => "color:white;position:relative; top:-50px;"}  Bienvenido a Social Manager
       .col-md-4
         .row{:style => "padding-top:30px"}
           %p#text
           %h3{:style => "color:white;"} Login App
           %label{:for => "nickname"} Nickname:
-          %input#nickname{:name => "nickname", :type => "text",:style =>"color:black"}
+          %input#nickname{:name => "nickname", :type => "text",:style =>"color:black",:placeholder => "yournickname"}
         .row{:style => "padding-top:20px"}
           %label{:for => "password"} Password:
-          %input#password{:name => "password", :type => "password",:style =>"color:black"}
+          %input#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******"}
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
@@ -24,7 +24,7 @@
   / /row
   .row
     .col-lg-12.text-center.v-center
-      %h2{:style => "color:white;font-family: 'Brush Script MT', cursive;"} Tu página para gestionar todas las redes sociales
+      %h2{:style => "color:white;font-family: 'Brush Script MT', cursive;"} Tu página para gestionar todas tus redes sociales
 
   .row
     .col-lg-12.text-center.v-center{:style => "font-size:39pt;"}

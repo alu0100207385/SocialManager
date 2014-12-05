@@ -1,25 +1,58 @@
 $(document).ready(function(){
   $("#Registrarse").click(function(){
 
-    var data = {name: $('#name').val(), email: $('#email').val(), nickname: $('#nickname').val(), password: $('#password').val()}
+    var name = $('#name').val()
+    var email= $('#email').val()
+    var nickname= $('#nickname').val()
+    var password= $('#password').val()
+
+    if(name == '' || email == '' || nickname == '' || password == ''){
+
+      $("#text").hide();
+      $("#text").html('<p class = "text-danger"> <strong> Error, Falta un campo por rellenar');
+      $("#text").show(1000);
+
+
+
+    }else{
+
+    var data = {name: name, email: email, nickname: nickname , password: password}
+
+
 
 
     $.ajax({
 
       url:'/signup',
       type: 'post',
-      dataType: 'html',
+      dataType: 'json',
       data: data,
 
-      success: function(result){
+      success: function(data){
 
-        $("#text").hide();
-        $("#text").html(result);
-        $("#text").show(1000);
+        if(data.key1 == 'ok'){
+
+          $("#text").hide();
+          $("#text").html('<p class = "text-success"> <strong> Usuario creado con exito.');
+          $("#text").show(1000);
+
+          setTimeout(function(){window.location = "/user/index";}, 3000);
+
+
+        }
+        if(data.key1 == 'error'){
+
+          $("#text").hide();
+          $("#text").html('<p class = "text-danger"> <strong> Error, el nickname ya esta siendo utilizado.');
+          $("#text").show(1000);
+
+        }
 
       }
 
     });
+
+  }
 
 
   });

@@ -86,17 +86,23 @@ post '/signup' do
   user.password = params[:password]
   user.mail = params[:email]
 
+  content_type :json
+
   #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
-      erb <<-'HTML', :layout => false
-      <p class = "text-success"> <strong>Usuario Creado con exito </p>
-        HTML
+
+    session[:nickname] = params[:name]
+
+    { :key1 => 'ok' }.to_json
+
+
   else
-    erb <<-'HTML', :layout => false
-    <p class = "text-danger"> <strong>El usuario ya existe, por favor utiliza otro nickname. </p>
-    HTML
+
+    { :key1 => 'error' }.to_json
+
   end
+
 
 end
 
@@ -162,7 +168,7 @@ get '/auth/:name/callback' do
 	  puts "goo.token = #{goo.token}"
 	  puts "goo.token2 = #{goo.id_token}"
 	  goo.save
-	  redirect 'user/index'
+	  redirect '/user/index'
     else
       redirect '/auth/failure'
     end
