@@ -12,7 +12,7 @@ SocialManager es un gestor de redes sociales.
 
 ##Aplicación
 
-Podemos acceder a la aplicación subida a heroku desde [aqui](https://sytw6.herokuapp.com/).
+Podemos acceder a la aplicación subida a heroku desde [aqui](http://socialmanager.herokuapp.com/).
 
 
 ##Tests
@@ -59,6 +59,7 @@ rake tests        # Run tests (default)
 * [Omniauth](http://intridea.github.io/omniauth/)
 * [Lista de estrategias](https://github.com/intridea/omniauth/wiki/List-of-Strategies)
 * [Google API Console](https://code.google.com/apis/console)
+* [Google Activity](https://developers.google.com/+/api/moment-types?hl=es)
 * [Twitter Developers](https://dev.twitter.com/overview/documentation)
 * [Registrar app en Twitter](https://apps.twitter.com/app/new)
 * [Gema Twitter](http://sferik.github.io/twitter/)

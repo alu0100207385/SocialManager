@@ -192,11 +192,11 @@ post '/user/index' do
 #    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
    
-   if ( cad != "") and (cad.length < 40)
+   if ( cad != "")
 #  Twitter
 	  t = TwitterData.first(:id => user.id)
 	  client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
-	  client.update(cad)
+	  client.update(cad[0,140])
 	  redirect '/user/index'
    else
 	  puts "Error en el envio a twitter"
