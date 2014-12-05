@@ -1,0 +1,25 @@
+%h3 Modificar perfil
+%p Aqui el usuario podra cambiar su pass, correo, etc.
+%hr
+%h3 Asociar o desvincular una cuenta
+%p El usuario podra vincular o desvincular cuentas de sus redes sociales
+%span
+  - if @G_on != nil
+    %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
+  - else
+    %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
+  - if @T_on != nil
+    %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Desvincular Twitter
+  - else
+    %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
+  - if @F_on != nil
+    %a.btn.btn-primary{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
+  - else
+    %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+    %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} All
+%hr
+%h3 Darse de baja
+%p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
+%hr
+%div{:style=>"text-align:center"}
+  %a.btn.btn-info{:href=>"/user/index",:role=>"button"} Volver

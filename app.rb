@@ -159,10 +159,8 @@ get '/auth/:name/callback' do
 	  goo = GoogleData.new(:user => user)
 	  goo.token = auth.credentials.token
 	  goo.id_token = auth.extra.id_token
-	  puts "goo.token = #{goo.token}"
-	  puts "goo.token2 = #{goo.id_token}"
 	  goo.save
-	  redirect 'user/index'
+	  redirect '/user/index'
     else
       redirect '/auth/failure'
     end
@@ -179,6 +177,8 @@ get '/user/:url' do
 			@G_on = GoogleData.first(:user => user)
 			@T_on = TwitterData.first(:user => user)
 			haml :index
+		 when "settings"
+			redirect '/settings'
 	  end
    else
 	  redirect '/'
@@ -211,23 +211,43 @@ end
 
 #Desasociar una cuenta del usuario en la bbdd
 get '/desvincular/:net' do
+   user = User.first(:nickname => session[:nickname])
    case(params[:net])
    when "twitter"
-	   user = User.first(:nickname => session[:nickname])
-	   cuentaT=TwitterData.first(:user =>user)
-	   cuentaT.destroy
+	   cuenta = TwitterData.first(:user =>user)
+	   cuenta.destroy
 	   redirect '/user/index'
    when "facebook"
-	  user = User.first(:nickname => session[:nickname])
-	  cuentaT = FacebookData.first(:user =>user)
-	  cuentaT.destroy
+	  cuenta = FacebookData.first(:user =>user)
+	  cuenta.destroy
 	  redirect '/user/index'
    when "google"
-	  user = User.first(:nickname => session[:nickname])
-	  cuentaT = GoogleData.first(:user =>user)
-	  cuentaT.destroy
+	  cuenta = GoogleData.first(:user =>user)
+	  cuenta.destroy
 	  redirect '/user/index'
+   when "all"
+	  nets = [TwitterData, FacebookData, GoogleData]
+	  nets.each do |n|
+		 cuenta = n.first(:user =>user)
+		 if (cuenta != nil) #Por si el usuario ha pulsado el boton y no todas estan asociadas
+			cuenta.destroy
+		 end
+	  end
+	  redirect '/settings'
    end
+end
+
+#Opciones de configuracion del usuario
+get '/settings' do
+   #Modificar perfil
+   #Desvincular cuentas
+	@user = session[:nickname]
+	user = User.first(:nickname => @user)
+	@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
+	@G_on = GoogleData.first(:user => user)
+	@T_on = TwitterData.first(:user => user)
+   #Eliminar cuenta de nuestra app
+   haml :settings
 end
 
 #Pagina de ayuda

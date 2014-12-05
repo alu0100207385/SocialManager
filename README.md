@@ -6,13 +6,15 @@
   - Aarón Socas Gaspar (alu0100207385)
   - Aarón José Vera Cerdeña (alu0100537451)
 
+
 ##Descripción
 
 SocialManager es un gestor de redes sociales.
 
-##Aplicación
 
-Podemos acceder a la aplicación subida a heroku desde [aqui](http://socialmanager.herokuapp.com/).
+##Aplicación en Heroku
+
+Podemos acceder a la aplicación subida a heroku desde [AQUI](http://socialmanager.herokuapp.com/).
 
 
 ##Tests
