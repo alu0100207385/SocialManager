@@ -5,7 +5,7 @@
 #enter.panel-footer
   .input-group
     %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form"}
-      %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text"}/
+      %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black"}/
       %span.input-group-btn
         %button#bsend.btn.btn-default{:type=>"submit"} Enviar
 %form{:style=>"text-align:center"}
