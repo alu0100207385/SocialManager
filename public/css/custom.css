@@ -1,3 +1,64 @@
+html,body {
+  height:100%;
+}
+
+h1 {
+  font-family: Arial,sans-serif
+  font-size:80px;
+  color:#DDCCEE;
+}
+
+.lead {
+	color:#DDCCEE;
+}
+
+
+/* Custom container */
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+
+.container-semi{
+
+  margin: 0 auto;
+  width: 100%;
+  min-height: 80%;
+  max-height: 80%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+
+
+}
+
+textarea:focus, input:focus {
+  color: #000;
+}
+
+input, select, textarea{
+  color: #000;
+}
+
+.container-semi a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+
+.container-full a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+.v-center {
+  margin-top:7%;
+}
+
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 .video-container {
   position: relative;
@@ -34,7 +95,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-/*   color: white; */
+  /*   color: white; */
   color: black;
 }
 header .navbar-default {
@@ -549,6 +610,7 @@ form .form-control {
   -ms-border-radius: 5em;
   -o-border-radius: 5em;
   border-radius: 5em;
+  width: 200px;
   height: 40px;
   line-height: 40px;
   padding: 20px;
@@ -565,6 +627,9 @@ form textarea.form-control {
   height: auto;
   line-height: normal;
 }
+
+
+
 @media screen and (max-width: 640px) {
   .logo {
     width: 100px;

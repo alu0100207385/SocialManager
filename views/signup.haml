@@ -1,21 +1,38 @@
-%section#getApp
-  .container
-    .section-heading
-      %h1 Bienvenido a Social Manager
+.container-semi
+  .section-heading{:style => "position:relative; top:-30px;"}
+    %h1{:style => "color:white"} Bienvenido a Social Manager
+  .row{:style => "position:relative; top:-120px;"}
+    .col-md-12.text-center
+      %h3.block-center{:style => "color:white;text-decoration:underline;"} Registro
       %p#text
-    .row
-      .col-md-10.text-center
-        .row{:style => "padding-top:20px"}
-          %label{:for => "name"} Nombre:
-          %input#name{:name => "name", :type => "text", :required => ""}
-        .row{:style => "padding-top:20px"}
-          %label{:for => "nickname"} Nickname:
-          %input#nickname{:name => "nickname", :type => "text", :required => ""}
-        .row{:style => "padding-top:20px"}
-          %label{:for => "mail"} Email:
-          %input#mail{:name => "mail", :type => "email", :required => ""}
-        .row{:style => "padding-top:20px;padding-bottom:20px;"}
-          %label{:for => "password"} Password:
-          %input#password{:name => "password", :type => "password", :required => ""}
+      .row{:style => "padding-top:20px"}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "name"} * Nombre:
+          %input.form-control#name{:name => "name", :type => "text", :required => "required" ,:placeholder => "yourname",:style => "position:relative;right:-9px;width:30%; display:inline;"}
+        .col-md-3
+      .row{:style => "padding-top:20px"}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "nickname"}* Nickname:
+          %input.form-control#nickname{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
+        .col-md-3
+      .row{:style => "padding-top:20px"}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "mail"}* Email:
+          %input.form-control#mail{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
+        .col-md-3
+      .row{:style => "padding-top:20px;padding-bottom:20px;"}
+        .col-md-3
+        .col-md-6.text-center
+          %label{:for => "password"} * Password:
+          %input.form-control#password{:name => "password", :type => "password", :required => "required", :placeholder => "*****", :style => "width:30%; display:inline;"}
+        .col-md-3
+      .row{:style => "padding-bottom:20px;"}
+        %p * Todos los campos son requeridos
+      .row{:style => "padding-bottom:20px;"}
         %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
+      .row
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:220px;"} <b>Volver
 %script{:src => "/js/signup.js"}
