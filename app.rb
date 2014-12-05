@@ -63,6 +63,10 @@ DataMapper.auto_upgrade!
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
+#Para saber la cuenta actual vinculada
+# control[3]=[false,false,false]
+#          [face,google,twitter]
+
 #Pagina de registro
 get '/signup' do
   
@@ -154,6 +158,9 @@ get '/auth/:name/callback' do
    when 'google_oauth2'
 	  goo = GoogleData.new(:user => user)
 	  goo.token = auth.credentials.token
+	  goo.id_token = auth.extra.id_token
+	  puts "goo.token = #{goo.token}"
+	  puts "goo.token2 = #{goo.id_token}"
 	  goo.save
 	  redirect 'user/index'
     else
@@ -182,7 +189,7 @@ end
 post '/user/index' do
    config = YAML.load_file 'config/config.yml'
    cad = params[:text]
-   puts "---#{cad}"
+#    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
    
    if ( cad != "") and (cad.length < 40)
@@ -212,12 +219,12 @@ get '/desvincular/:net' do
 	   redirect '/user/index'
    when "facebook"
 	  user = User.first(:nickname => session[:nickname])
-	  cuentaT=FacebookData.first(:user =>user)
+	  cuentaT = FacebookData.first(:user =>user)
 	  cuentaT.destroy
 	  redirect '/user/index'
    when "google"
 	  user = User.first(:nickname => session[:nickname])
-	  cuentaT=GoogleData.first(:user =>user)
+	  cuentaT = GoogleData.first(:user =>user)
 	  cuentaT.destroy
 	  redirect '/user/index'
    end

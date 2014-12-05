@@ -34,7 +34,8 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: white;
+/*   color: white; */
+  color: black;
 }
 header .navbar-default {
   background: none;

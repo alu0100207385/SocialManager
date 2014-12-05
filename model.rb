@@ -31,7 +31,8 @@ class GoogleData
   include DataMapper::Resource
   property  :id, Serial
 #   property  :name, String
-  property  :token, String
+  property  :token, String, :length => 128
+  property  :id_token, String, :length => 1024
 
   belongs_to  :user
 end
