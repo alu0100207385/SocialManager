@@ -1,21 +1,24 @@
-%section#getApp
-  .container
-    .section-heading
-      %h1 Bienvenido a Social Manager
-      %p#text
-    .row
-      .col-md-10.text-center
-        .row{:style => "padding-top:20px"}
-          %label{:for => "name"} Nombre:
-          %input#name{:name => "name", :type => "text", :required => ""}
-        .row{:style => "padding-top:20px"}
-          %label{:for => "nickname"} Nickname:
-          %input#nickname{:name => "nickname", :type => "text", :required => ""}
-        .row{:style => "padding-top:20px"}
-          %label{:for => "mail"} Email:
-          %input#mail{:name => "mail", :type => "email", :required => ""}
-        .row{:style => "padding-top:20px;padding-bottom:20px;"}
-          %label{:for => "password"} Password:
-          %input#password{:name => "password", :type => "password", :required => ""}
+.container-semi
+  .section-heading
+    %h1{:style => "color:white"} Bienvenido a Social Manager
+    %p#text
+  .row
+    .col-md-12.text-center
+      %h3.block-center{:style => "color:white"} Registro
+      .row{:style => "padding-top:20px"}
+        %label{:for => "name"} Nombre:
+        %input#name{:name => "name", :type => "text", :required => ""}
+      .row{:style => "padding-top:20px"}
+        %label{:for => "nickname"} Nickname:
+        %input#nickname{:name => "nickname", :type => "text", :required => ""}
+      .row{:style => "padding-top:20px"}
+        %label{:for => "mail"} Email:
+        %input#mail{:name => "mail", :type => "email", :required => ""}
+      .row{:style => "padding-top:20px;padding-bottom:20px;"}
+        %label{:for => "password"} Password:
+        %input#password{:name => "password", :type => "password", :required => ""}
+      .row{:style => "padding-bottom:20px;"}
         %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
+      .row
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:220px;"} <b>Volver
 %script{:src => "/js/signup.js"}

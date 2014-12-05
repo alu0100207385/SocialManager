@@ -69,7 +69,7 @@ set :session_secret, '*&(^#234a)'
 
 #Pagina de registro
 get '/signup' do
-  
+
   haml :signup
 
 end
@@ -90,11 +90,11 @@ post '/signup' do
   if User.count(:nickname => user.nickname) == 0
       user.save
       erb <<-'HTML', :layout => false
-        <p class="bg-success">Usuario Creado con exito </p>
+      <p class = "text-success"> <strong>Usuario Creado con exito </p>
         HTML
   else
     erb <<-'HTML', :layout => false
-    <p class="bg-danger">El usuario ya existe, por favor utiliza otro nickname. </p>
+    <p class = "text-danger"> <strong>El usuario ya existe, por favor utiliza otro nickname. </p>
     HTML
   end
 
@@ -138,9 +138,9 @@ get '/auth/:name/callback' do
    auth = request.env['omniauth.auth']
 #    puts "--> #{auth}"
    user = User.first(:nickname => session[:nickname])
-   
+
    case params[:name] #nickname unico en nuestra app
-   
+
    when 'twitter'
 	  tweet = TwitterData.new(:user => user)
 	  tweet.access_token = auth.credentials.token
@@ -169,7 +169,7 @@ get '/auth/:name/callback' do
 end
 
 #Pagina principal del usuario
-get '/user/:url' do 
+get '/user/:url' do
    if (session[:nickname] != nil)
 	  case(params[:url])
 		 when "index"
@@ -191,7 +191,7 @@ post '/user/index' do
    cad = params[:text]
 #    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
-   
+
    if ( cad != "")
 #  Twitter
 	  t = TwitterData.first(:id => user.id)
