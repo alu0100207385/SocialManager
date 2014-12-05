@@ -610,6 +610,7 @@ form .form-control {
   -ms-border-radius: 5em;
   -o-border-radius: 5em;
   border-radius: 5em;
+  width: 200px;
   height: 40px;
   line-height: 40px;
   padding: 20px;
@@ -626,6 +627,9 @@ form textarea.form-control {
   height: auto;
   line-height: normal;
 }
+
+
+
 @media screen and (max-width: 640px) {
   .logo {
     width: 100px;

@@ -131,7 +131,6 @@ post '/login' do
    elsif (user_pass.is_a? NilClass) #la pass no coincide
      { :key1 => 'error2' }.to_json
    else
-
     session[:nickname] = nick
     { :key1 => 'ok' }.to_json
 
