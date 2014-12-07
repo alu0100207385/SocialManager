@@ -243,6 +243,29 @@ get '/desvincular/:net' do
    end
 end
 
+#Eliminar usuario y sus cuentas
+get '/killuser' do
+  user = User.first(:nickname => session[:nickname])
+  f=FacebookData.first(:user => user)
+  g=GoogleData.first(:user => user)
+  t=TwitterData.first(:user => user)
+    
+  if (f.is_a? FacebookData)
+    f.destroy
+  end
+  if (g.is_a? GoogleData)
+    g.destroy
+  end
+  
+  if (t.is_a? TwitterData)
+    t.destroy
+  end
+  
+  user.destroy
+  session.clear
+  redirect '/'
+end
+
 #Opciones de configuracion del usuario
 get '/settings' do
    #Modificar perfil
