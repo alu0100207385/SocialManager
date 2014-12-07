@@ -46,11 +46,9 @@
     - else
       %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
 %hr
-%a{:href => "https://plus.google.com/share?url={URL}", :onclick => "javascript:window.open(this.href,\r\n  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"}
-  %img{:alt => "Share on Google+", :src => "https://www.gstatic.com/images/icons/gplus-64.png"}/
-%button.g-interactivepost{"data-contenturl" => "https://plus.google.com/pages/","data-calltoactiondeeplinkid" => "/pages/create", "data-calltoactionlabel" => "CREATE", "data-calltoactionurl" => "http://plus.google.com/pages/create", "data-clientid" => "1059315270874-gjtv1aph7empima3g6t1t0ioco307pdv.apps.googleusercontent.com", "data-contentdeeplinkid" => "/pages", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Post en google+."}
-  Tell your friends
-%hr
+%button#myBtn{"data-calltoactionlabel" => "WRITE", "data-calltoactionurl" => "https://developers.google.com/+/web/share/interactive?invite=true", "data-clientid" => "1059315270874-gjtv1aph7empima3g6t1t0ioco307pdv.apps.googleusercontent.com", "data-contenturl" => "https://developers.google.com/+/web/share/interactive", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Posteando en google+!"}
+  %span.icon &nbsp;
+  %span.label{:style=>"color:black"} POST!
 %div{:style=>"text-align:center"}
   %a.btn.btn-default{:href=>"/logout",:role=>"button"} Sign Out
 / %button.g-interactivepost{"data-calltoactiondeeplinkid" => "/pages/create", "data-calltoactionlabel" => "CREATE", "data-calltoactionurl" => "http://plus.google.com/pages/create", "data-clientid" => "xxxxx.apps.googleusercontent.com", "data-contentdeeplinkid" => "/pages", "data-contenturl" => "https://plus.google.com/pages/", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Engage your users today, create a Google+ page for your business."}

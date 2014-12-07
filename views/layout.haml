@@ -11,6 +11,15 @@
     %script{:src => "/js/bootstrap.js"}
     %link{:href => "/css/custom.css", :rel => "stylesheet"}
     %link{:href => "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css", :rel => "stylesheet"}/
+:javascript
+(function() {
+var po = document.createElement('script');
+po.type = 'text/javascript';
+po.async = true;
+po.src = 'https://apis.google.com/js/client:plusone.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(po, s);
+})();
   %body
     =yield
   %footer
