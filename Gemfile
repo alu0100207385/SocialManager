@@ -14,6 +14,7 @@ gem 'twitter'
 gem 'bcrypt'
 gem 'rubocop'
 gem 'json'
+gem 'mail'
 
 group :development do
   gem 'sinatra-contrib'

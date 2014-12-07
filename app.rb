@@ -91,7 +91,8 @@ post '/signup' do
   #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
-
+      #sendmail(params[:email])
+      
     session[:nickname] = params[:name]
 
     { :key1 => 'ok' }.to_json
