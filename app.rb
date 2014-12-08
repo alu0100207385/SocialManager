@@ -92,7 +92,7 @@ post '/signup' do
   if User.count(:nickname => user.nickname) == 0
       user.save
 
-    sendmail(params[:mail], params[:name],params[:nickname],params[:password])
+    sendmail(params[:mail], params[:name],params[:nickname])
 
     session[:nickname] = params[:name]
 

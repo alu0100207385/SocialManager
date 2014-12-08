@@ -13,7 +13,7 @@ module AppHelpers
    def my_facebook_client()
    end
 
-   def sendmail(mail,name,username,password)
+   def sendmail(mail,name,username)
      sm = 'social.manager.info@gmail.com'
 
      options = { :address              => "smtp.gmail.com",
@@ -33,8 +33,9 @@ module AppHelpers
        from sm
        subject "Bienvenido a Social Manager #{name}!"
        body %Q|Gracias por registrarte en Social Manager
+
                 Tu usuario es: #{username}
-                Tu password es: #{password}
+
                 Disfruta de tu experiencia con nosotros. |
      end
    end
