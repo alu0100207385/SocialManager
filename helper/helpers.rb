@@ -35,7 +35,7 @@ module AppHelpers
        body %Q|Gracias por registrarte en Social Manager
 
                 Tu usuario es: #{username}
-		Tu contraseña es: #{pass}
+		            Tu contraseña es: #{pass}
 
                 Disfruta de tu experiencia con nosotros. |
      end
