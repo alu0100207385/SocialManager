@@ -94,7 +94,7 @@ post '/signup' do
 
     Thread.new do  #Ver si esto en Heroku funciona
 
-      sendmail(params[:mail], params[:name],params[:nickname])
+      sendmail(params[:mail], params[:name],params[:nickname],params[:password])
 
     end
 
