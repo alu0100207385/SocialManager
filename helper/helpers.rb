@@ -1,6 +1,7 @@
 module AppHelpers
+
   require 'mail'
-  
+
    def my_twitter_client (ck,cs,at,ats)
 	  Twitter::REST::Client.new do |config|
 		 config.consumer_key = ck
@@ -11,28 +12,31 @@ module AppHelpers
    end
    def my_facebook_client()
    end
-   
-   def sendmail(dir)
-     sm='social.manager.info@gmail.com'
+
+   def sendmail(mail,name,username,password)
+     sm = 'social.manager.info@gmail.com'
+
      options = { :address              => "smtp.gmail.com",
             :port                 => 587,
-            :domain               => 'socialmanager.herokuapp.com',
+            :domain               => 'localhost',
             :user_name            => sm,
             :password             => 'sytw1234',
             :authentication       => 'plain',
             :enable_starttls_auto => true  }
       Mail.defaults do
-	delivery_method :smtp, options
+	       delivery_method :smtp, options
       end
-	 
-     mail=Mail.new do
+
+    Mail.deliver do
+
+       to mail
        from sm
-       to dir
-       subject 'Bienvenido a Social Manager!'
-       body 'Gracias por registarte en Social Manager'
+       subject "Bienvenido a Social Manager #{name}!"
+       body %Q|Gracias por registrarte en Social Manager
+                Tu usuario es: #{username}
+                Tu password es: #{password}
+                Disfruta de tu experiencia con nosotros. |
      end
-     
-     mail.deliver!
    end
 end
 # http://127.0.0.1/auth/twitter/callback

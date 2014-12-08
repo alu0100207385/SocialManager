@@ -84,15 +84,16 @@ post '/signup' do
   user.name = params[:name]
   user.nickname = params[:nickname]
   user.password = params[:password]
-  user.mail = params[:email]
+  user.mail = params[:mail]
 
   content_type :json
 
   #Despues de recoger los datos comprobar que ese usuario no existe en la BBDD
   if User.count(:nickname => user.nickname) == 0
       user.save
-      #sendmail(params[:email])
-      
+
+    sendmail(params[:mail], params[:name],params[:nickname],params[:password])
+
     session[:nickname] = params[:name]
 
     { :key1 => 'ok' }.to_json
@@ -249,18 +250,18 @@ get '/killuser' do
   f=FacebookData.first(:user => user)
   g=GoogleData.first(:user => user)
   t=TwitterData.first(:user => user)
-    
+
   if (f.is_a? FacebookData)
     f.destroy
   end
   if (g.is_a? GoogleData)
     g.destroy
   end
-  
+
   if (t.is_a? TwitterData)
     t.destroy
   end
-  
+
   user.destroy
   session.clear
   redirect '/'
