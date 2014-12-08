@@ -36,5 +36,6 @@ group :test do
    gem 'test-unit'
    gem 'selenium-webdriver','2.43.0'
    gem 'rspec'
+   gem 'rspec-expectations'
    gem 'coveralls', require: false
 end
