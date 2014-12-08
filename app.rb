@@ -92,7 +92,11 @@ post '/signup' do
   if User.count(:nickname => user.nickname) == 0
       user.save
 
-    sendmail(params[:mail], params[:name],params[:nickname])
+    Thread.new do  #Ver si esto en Heroku funciona
+
+      sendmail(params[:mail], params[:name],params[:nickname])
+
+    end
 
     session[:nickname] = params[:name]
 
