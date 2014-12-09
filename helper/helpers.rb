@@ -1,6 +1,7 @@
 module AppHelpers
 
   require 'mail'
+  require 'bcrypt'
 
    def my_twitter_client (ck,cs,at,ats)
 	  Twitter::REST::Client.new do |config|
@@ -39,6 +40,11 @@ module AppHelpers
 
                 Disfruta de tu experiencia con nosotros. |
      end
+   end
+   
+   def createlink()
+      link="http://socialmanager.herokuapp.com/" + BCrypt::Password.create(rand(10000000000000)).to_s.slice(20,8)
+      return link
    end
 end
 # http://127.0.0.1/auth/twitter/callback
