@@ -18,7 +18,7 @@ module AppHelpers
 
      options = { :address              => "smtp.gmail.com",
             :port                 => 587,
-            :domain               => 'localhost',
+            :domain               => 'localhost', #Cambiar el dominio por socialmanager.herokuapp.com Cuando se suba a heroku
             :user_name            => sm,
             :password             => 'sytw1234',
             :authentication       => 'plain',
