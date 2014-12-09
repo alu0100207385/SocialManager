@@ -2,11 +2,11 @@ $(document).ready(function(){
   $("#Registrarse").click(function(){
 
     var name = $('#name').val()
-    var email= $('#email').val()
+    var mail= $('#mail').val()
     var nickname= $('#nickname').val()
     var password= $('#password').val()
 
-    if(name == '' || email == '' || nickname == '' || password == ''){
+    if(name == '' || mail == '' || nickname == '' || password == ''){
 
       $("#text").hide();
       $("#text").html('<p class = "text-danger"> <strong> Error, Falta un campo por rellenar');
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     }else{
 
-    var data = {name: name, email: email, nickname: nickname , password: password}
+    var data = {name: name, mail: mail, nickname: nickname , password: password}
 
 
 
