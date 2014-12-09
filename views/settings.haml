@@ -16,6 +16,10 @@
     %a.btn.btn-primary{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
   - else
     %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+  - if @L_on != nil
+    %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+  - else
+    %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Linkedin
     %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} All
 %hr
 %h3 Darse de baja

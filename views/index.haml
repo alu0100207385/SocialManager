@@ -29,6 +29,12 @@
     - else
       %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
         Facebook
+    - if @L_on != nil
+      %input{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
+        Linkedin
+    - else
+      %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
+        Linkedin
 %hr
 %div{:style=>"text-align:center"}
   %h4 Asociar o desvincular una cuenta
@@ -45,10 +51,14 @@
       %a.btn.btn-primary{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
     - else
       %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+    - if @L_on != nil
+      %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+    - else
+      %a.btn.btn-primary{:href=>"/auth/linkedin",:role=>"button"} Sign In Linkedin
 %hr
-%button#myBtn{"data-calltoactionlabel" => "WRITE", "data-calltoactionurl" => "https://developers.google.com/+/web/share/interactive?invite=true", "data-clientid" => "1059315270874-gjtv1aph7empima3g6t1t0ioco307pdv.apps.googleusercontent.com", "data-contenturl" => "https://developers.google.com/+/web/share/interactive", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Posteando en google+!"}
-  %span.icon &nbsp;
-  %span.label{:style=>"color:black"} POST!
+/ %button#myBtn{"data-calltoactionlabel" => "WRITE", "data-calltoactionurl" => "https://developers.google.com/+/web/share/interactive?invite=true", "data-clientid" => "1059315270874-gjtv1aph7empima3g6t1t0ioco307pdv.apps.googleusercontent.com", "data-contenturl" => "https://developers.google.com/+/web/share/interactive", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Posteando en google+!"}
+/   %span.icon &nbsp;
+/   %span.label{:style=>"color:black"} POST!
 %div{:style=>"text-align:center"}
   %a.btn.btn-default{:href=>"/logout",:role=>"button"} Sign Out
 / %button.g-interactivepost{"data-calltoactiondeeplinkid" => "/pages/create", "data-calltoactionlabel" => "CREATE", "data-calltoactionurl" => "http://plus.google.com/pages/create", "data-clientid" => "xxxxx.apps.googleusercontent.com", "data-contentdeeplinkid" => "/pages", "data-contenturl" => "https://plus.google.com/pages/", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Engage your users today, create a Google+ page for your business."}

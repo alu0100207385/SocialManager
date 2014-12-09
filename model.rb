@@ -37,6 +37,15 @@ class GoogleData
   belongs_to  :user
 end
 
+class LinkedinData
+  include DataMapper::Resource
+  property  :id, Serial
+  property  :token, String
+  property  :secret, String
+
+  belongs_to  :user
+end
+
 class Post
   include DataMapper::Resource
   property :id, Serial

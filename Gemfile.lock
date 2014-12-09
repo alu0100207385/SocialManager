@@ -89,6 +89,10 @@ GEM
     json (1.8.1)
     json_pure (1.8.1)
     jwt (1.2.0)
+    linkedin (1.0.0)
+      hashie (~> 3.0)
+      multi_json (~> 1.0)
+      oauth (~> 0.4)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     memoizable (0.4.2)
@@ -114,6 +118,8 @@ GEM
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-linkedin (0.2.0)
+      omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -225,10 +231,13 @@ DEPENDENCIES
   do_postgres
   haml
   json
+  linkedin
   mail
   minitest
+  omniauth
   omniauth-facebook
   omniauth-google-oauth2
+  omniauth-linkedin
   omniauth-oauth2
   omniauth-twitter
   pg

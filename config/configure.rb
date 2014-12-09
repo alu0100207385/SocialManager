@@ -6,3 +6,12 @@ def my_twitter_client
 	  config.access_token_secret = 'VzIJevkIsNL7aj6cvpM6NtJV1QuLNzA08bUgxSfIxLFWx'
    end
 end
+=begin
+def my_linkedin_client
+   LinkedIn::Client.new do |config|
+	  config.token = '775er6oe9qfbs0'
+	  config.secret = '8higEjN5CneS1VdH'
+# 	  config.default_profile_fields = ['educations', 'positions']
+   end
+end
+=end

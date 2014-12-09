@@ -9,6 +9,8 @@ require 'data_mapper'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
+require 'omniauth-linkedin'
+require 'linkedin'
 require 'json'
 require_relative 'helper/helpers.rb'
 
@@ -26,14 +28,17 @@ use OmniAuth::Builder do
         :force_login => 'false'
       }
     }
-	provider :twitter, config['tidentifier'], config['tsecret'],
+   provider :twitter, config['tidentifier'], config['tsecret'],
   {
      :authorize_params => {
         :force_login => 'false'
       }
     }
   provider :facebook, config['fidentifier'], config['fsecret'],
+   {
     :scope => 'email, public_profile'
+   }
+  provider :linkedin, config['lidentifier'], config['lsecret']
 
 end
 
@@ -56,8 +61,8 @@ require_relative 'model'
 
 DataMapper.finalize
 
-DataMapper.auto_migrate!
-#DataMapper.auto_upgrade!
+# DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
 
 enable :sessions
@@ -142,7 +147,7 @@ end
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
    auth = request.env['omniauth.auth']
-#    puts "--> #{auth}"
+   puts "--> #{auth}"
    user = User.first(:nickname => session[:nickname])
 
    case params[:name] #nickname unico en nuestra app
@@ -154,7 +159,7 @@ get '/auth/:name/callback' do
 	  tweet.save
 	  redirect '/user/index'
 
-    when 'facebook'
+   when 'facebook'
  	  face = FacebookData.new(:user => user)
  	  face.token = auth.credentials.token
  	  face.save
@@ -167,6 +172,14 @@ get '/auth/:name/callback' do
 	  goo.id_token = auth.extra.id_token
 	  goo.save
 	  redirect '/user/index'
+	  
+   when 'linkedin'
+	  lin = LinkedinData.new(:user => user)
+	  lin.token = auth.credentials.token
+	  lin.secret = auth.credentials.secret
+	  lin.save
+	  redirect '/user/index'
+
     else
       redirect '/auth/failure'
     end
@@ -182,6 +195,7 @@ get '/user/:url' do
 			@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
 			@G_on = GoogleData.first(:user => user)
 			@T_on = TwitterData.first(:user => user)
+			@L_on = LinkedinData.first(:user => user)
 			haml :index
 		 when "settings"
 			redirect '/settings'
@@ -231,8 +245,12 @@ get '/desvincular/:net' do
 	  cuenta = GoogleData.first(:user =>user)
 	  cuenta.destroy
 	  redirect '/user/index'
+   when "linkedin"
+	  cuenta = LinkedinData.first(:user =>user)
+	  cuenta.destroy
+	  redirect '/user/index'
    when "all"
-	  nets = [TwitterData, FacebookData, GoogleData]
+	  nets = [TwitterData, FacebookData, GoogleData, LinkedinData]
 	  nets.each do |n|
 		 cuenta = n.first(:user =>user)
 		 if (cuenta != nil) #Por si el usuario ha pulsado el boton y no todas estan asociadas
@@ -252,6 +270,7 @@ get '/settings' do
 	@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
 	@G_on = GoogleData.first(:user => user)
 	@T_on = TwitterData.first(:user => user)
+	@L_on = LinkedinData.first(:user => user)
    #Eliminar cuenta de nuestra app
    haml :settings
 end
