@@ -39,5 +39,9 @@ describe "Managing users accounts" do
 end
 
 describe " " do
+  it "prueba" do
+    bool=true
+    expect(bool).to be true
+  end
   
 end
