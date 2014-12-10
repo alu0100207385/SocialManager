@@ -13,8 +13,8 @@ module AppHelpers
    end
    def my_facebook_client()
    end
-
-   def sendmail(mail,name,username,pass)
+   
+   def loadparams()
      sm = 'social.manager.info@gmail.com'
 
      options = { :address              => "smtp.gmail.com",
@@ -27,6 +27,11 @@ module AppHelpers
       Mail.defaults do
 	       delivery_method :smtp, options
       end
+      return sm
+   end
+
+   def sendmail(mail,name,username,pass)
+    sm=loadparams()
 
     Mail.deliver do
 
@@ -40,6 +45,23 @@ module AppHelpers
 
                 Disfruta de tu experiencia con nosotros. |
      end
+   end
+   
+   def sendrecoverymail(mail,name,username,link)
+     sm=loadparams()
+     
+     Mail.deliver do
+       to mail
+       from sm
+       subject "Social Manager: Recuperacion de contraseña #{name}!"
+       body %Q|Has perdido o olvidado tu contraseña...
+	       No hay problema! Clickea en link que te ofrecemos a continuacion y podras volvera a cambiar tu contraseña.
+
+                Tu usuario es: #{username}
+		Link re recuperacion: #{link}
+
+                Disfruta de tu experiencia con nosotros. |
+     end    
    end
    
    def createlink()
