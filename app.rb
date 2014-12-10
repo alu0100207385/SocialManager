@@ -177,7 +177,7 @@ get '/auth/:name/callback' do
 	  goo.id_token = auth.extra.id_token
 	  goo.save
 	  redirect '/user/index'
-	  
+
    when 'linkedin'
 	  lin = LinkedinData.new(:user => user)
 	  lin.token = auth.credentials.token
