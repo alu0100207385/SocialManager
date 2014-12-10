@@ -68,10 +68,6 @@ DataMapper.auto_upgrade!
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
-#Para saber la cuenta actual vinculada
-# control[3]=[false,false,false]
-#          [face,google,twitter]
-
 #Pagina de registro
 get '/signup' do
 
@@ -152,7 +148,7 @@ end
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
    auth = request.env['omniauth.auth']
-   puts "--> #{auth}"
+#    puts "--> #{auth}"
    user = User.first(:nickname => session[:nickname])
 
    case params[:name] #nickname unico en nuestra app
@@ -180,8 +176,14 @@ get '/auth/:name/callback' do
 	  
    when 'linkedin'
 	  lin = LinkedinData.new(:user => user)
-	  lin.token = auth.credentials.token
-	  lin.secret = auth.credentials.secret
+# 	  token = auth.credentials.token
+# 	  secret = auth.credentials.secret
+	client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+	request_token = client.request_token({}, :scope => "rw_nus")
+	rtoken = request_token.token
+	rsecret = request_token.secret
+	pin = params[:oauth_verifier]
+	lin.atoken, lin.asecret = client.authorize_from_request(rtoken, rsecret, pin)
 	  lin.save
 	  redirect '/user/index'
 
@@ -216,21 +218,38 @@ post '/user/index' do
    cad = params[:text]
 #    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
+   @enviado = false
 
    if ( cad != "")
+
 #  Twitter
-	  t = TwitterData.first(:id => user.id)
-	  client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
-	  client.update(cad[0,140])
-	  redirect '/user/index'
-   else
-	  puts "Error en el envio a twitter"
-	  redirect '/user/index'
-   end
+	  if (TwitterData.first(:user =>user) != nil)
+		 t = TwitterData.first(:user =>user)
+		 client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
+		 client.update(cad[0,140])
+		 @enviado = true
+	  end
+
+# Linkedin
+	  if (LinkedinData.first(:user =>user) != nil)
+		 l = LinkedinData.first(:user =>user)
+		 client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+# 		 request_token = client.request_token({}, :scope => "rw_nus")
+# 		 rtoken = request_token.token
+# 		 rsecret = request_token.secret
+# 		 pin = params[:oauth_verifier]
+# 		 puts "PIN = #{pin}"
+# 		 atoken, asecret = client.authorize_from_request(rtoken, rsecret, pin)
+		 client.authorize_from_access(l.atoken, l.asecret)
+		 client.add_share(:comment => cad)
+		 @enviado = true
+	  end
 
 # Facebook
 
 # Google+
+	  redirect '/user/index'
+   end
 
 end
 
@@ -293,12 +312,25 @@ end
 get '/settings' do
    #Modificar perfil
    #Desvincular cuentas
-	@user = session[:nickname]
-	user = User.first(:nickname => @user)
-	@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
-	@G_on = GoogleData.first(:user => user)
-	@T_on = TwitterData.first(:user => user)
-	@L_on = LinkedinData.first(:user => user)
+   @user = session[:nickname]
+   @user = User.first(:nickname => @user)
+   @asociadas = []
+   @F_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
+   if @F_on != nil
+	  @asociadas << "Facebook"
+   end
+   @G_on = GoogleData.first(:user => @user)
+   if @G_on != nil
+	  @asociadas << "Google"
+   end
+   @T_on = TwitterData.first(:user => @user)
+   if @T_on != nil
+	  @asociadas << "Twitter"
+   end
+   @L_on = LinkedinData.first(:user => @user)
+   if @L_on != nil
+	  @asociadas << "Linkedin"
+   end
    #Eliminar cuenta de nuestra app
    haml :settings
 end
@@ -320,5 +352,5 @@ end
 #Cualquier error de ruta debe ser redireccionada aqui
 get '/auth/failure' do
   flash[:notice] =
-    %Q{<h3>Se ha producido un error en la autenticacion</h3> &#60; <a href="/">Volver</a> }
+    %Q{<h3>Se ha producido un error en la autenticacion</h3> &#60; <a href="/user/index">Volver</a> }
 end

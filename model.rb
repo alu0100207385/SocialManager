@@ -3,7 +3,6 @@ class User
 
   property :id, Serial
   property :name, Text
-  property :opcional, Text
   property :mail, Text
   property :password, BCryptHash
   property :nickname, Text
@@ -40,8 +39,8 @@ end
 class LinkedinData
   include DataMapper::Resource
   property  :id, Serial
-  property  :token, String
-  property  :secret, String
+  property  :atoken, String, :length => 128
+  property  :asecret, String, :length => 128
 
   belongs_to  :user
 end

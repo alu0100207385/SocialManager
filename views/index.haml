@@ -35,6 +35,8 @@
     - else
       %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
         Linkedin
+  -if @enviado == true
+    %p{:style =>"color:green"} Mensaje enviado con éxito
 %hr
 %div{:style=>"text-align:center"}
   %h4 Asociar o desvincular una cuenta

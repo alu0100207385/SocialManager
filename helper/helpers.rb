@@ -11,6 +11,7 @@ module AppHelpers
 		 config.access_token_secret = ats
 	  end
    end
+   
    def my_facebook_client()
    end
 
