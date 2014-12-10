@@ -56,6 +56,15 @@ class Post
   belongs_to :User
 end
 
+class LinkR
+  include
+  include DataMapper::Resource
+  property :id, Serial
+  property :link, String
+  
+  belongs_to :User
+end
+
 
 #En este modelo un Usuario tendria cuentas asociadas de facebook, twitter y google en una relacion 1:1
 #Si se quisiera crear una relacion N:M deberia crearse una tabla intermedia y asociar la ID de usuario a las distintas ID de cuentas

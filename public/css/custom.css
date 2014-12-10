@@ -23,6 +23,7 @@ h1 {
   overflow:hidden;
 }
 
+
 .container-semi{
 
   margin: 0 auto;
@@ -98,6 +99,15 @@ h6,
   /*   color: white; */
   color: black;
 }
+
+.container-full h1,h2,h3,h4,h5,h6,p{
+
+
+  color:white;
+
+
+}
+
 header .navbar-default {
   background: none;
   border: none;
@@ -1080,4 +1090,76 @@ form .form-control:focus {
 }
 .pre-loader {
   background: #336799;
+}
+
+.input-custom{
+
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+
+  width: 100%;
+  height: 80%;
+  line-height: 40px;
+  padding: 20px;
+  color: #cfcfcf;
+  border: 2px solid #cccccc;
+  font-weight: 300;
+
+
+}
+
+.div-custom{
+
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+
+  width: 100%;
+  height: 200px;
+  line-height: 40px;
+  padding: 20px;
+  color: #cfcfcf;
+  border: 2px solid #cccccc;
+  font-weight: 300;
+
+  max-height:200px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255,255,255,0.4);
 }
