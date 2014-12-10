@@ -231,7 +231,6 @@ post '/user/index' do
 # Facebook
 
 # Google+
-
 end
 
 #Desasociar una cuenta del usuario en la bbdd
@@ -265,6 +264,14 @@ get '/desvincular/:net' do
 	  redirect '/settings'
    end
 end
+
+#Crea el link recuperacion de contraseña que sera enviado al email
+post '/recuperar' do
+  user = User.first(:nickname => session[:nickname])
+  l=LinkR.new(:link =>createlink(), :user =>user)
+  l.save 
+end
+
 
 #Eliminar usuario y sus cuentas
 get '/killuser' do
