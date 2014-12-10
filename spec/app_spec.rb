@@ -14,10 +14,19 @@ require 'rspec/expectations'
 include Rack::Test::Methods
 
 describe "Managing users accounts" do
+  def app
+    Sinatra::Application
+  end
+  
    before :all do
 	  @user="usu0100"
 	  @email="social.manager.info@gmail.com"
 	  @pass="1234"
+   end
+   
+   it "acceso index" do
+    get '/' 
+    expect(last_response).to be_ok
    end
    
    it "Register user" do
