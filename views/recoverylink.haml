@@ -1,5 +1,6 @@
-%h1 #{@user}
-%form{:action=>"/recovery", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
-  %label{:for => "password"}* Introduce tu nueva contraseña
-  %input.form-control#password{:name => "password", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
-  %button.btn.btn-primary.btn-md.center-block Enviar
+.container-full
+  %h1 #{@user}
+  %form{:action=>"/recovery", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+    %label{:for => "password"}* Introduce tu nueva contraseña
+    %input.form-control#password{:name => "password", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
+    %button.btn.btn-primary.btn-md.center-block Enviar
