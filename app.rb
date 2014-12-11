@@ -292,6 +292,18 @@ post '/recuperar' do
   l.save 
 end
 
+#accedes a un link de recuperacion y lo buscas en la bd, si esta activo cargas la plantilla
+# get '/recovery/:net' do
+#   l=LinkR.first(:link=>params[:net])
+#   if (l!=nil)
+#    haml :recoverylink
+#   else
+#    haml :recoveryfail
+# end
+# 
+get '/recuperar' do
+  haml :recovery
+end
 
 #Eliminar usuario y sus cuentas
 get '/killuser' do
