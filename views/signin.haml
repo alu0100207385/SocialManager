@@ -11,6 +11,7 @@
         .row{:style => "padding-top:20px"}
           %label{:for => "password"} Password:
           %input.form-control#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******",:style => "width:50%; display:inline;"}
+        %a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
@@ -20,11 +21,9 @@
         .row{:style => "padding-top:60px"}
           %h4{:style => "color:white;"} Si no tiene cuenta, empiece aqui
           %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro
-
-  / /row
   .row
     .col-lg-12.text-center.v-center
-      %h2{:style => "color:white;font-family: 'Brush Script MT', cursive;"} Tu página para gestionar todas tus redes sociales
+      %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;"} Tu página para gestionar todas tus redes sociales
 
   .row
     .col-lg-12.text-center.v-center{:style => "font-size:39pt;"}

@@ -23,6 +23,18 @@ h1 {
   overflow:hidden;
 }
 
+.container-full-index {
+  margin: 0 auto;
+  padding:2%;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+
+
+
 .container-semi{
 
   margin: 0 auto;
@@ -98,6 +110,23 @@ h6,
   /*   color: white; */
   color: black;
 }
+
+.container-full h1,h2,h3,h4,h5,h6,p{
+
+
+  color:white;
+
+
+}
+
+.container-full-index h1,h2,h3,h4,h5,h6,p{
+
+
+  color:white;
+
+
+}
+
 header .navbar-default {
   background: none;
   border: none;
@@ -1080,4 +1109,125 @@ form .form-control:focus {
 }
 .pre-loader {
   background: #336799;
+}
+
+.input-custom{
+
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  padding: 20px;
+  color: #cfcfcf;
+  border: 2px solid #cccccc;
+  font-weight: 300;
+
+
+}
+
+.div-custom{
+
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+
+  width: 100%;
+  height: 250px;
+  line-height: 40px;
+  padding: 20px;
+  color: #cfcfcf;
+  border: 2px solid #cccccc;
+  font-weight: 300;
+
+  max-height:250px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+
+
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255,255,255,0.4);
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+
+.btn.btn-facebook {
+  color: white;
+  border-color: #2c4b9f;
+  background: #2c4b9f;
+
+}
+.btn.btn-facebook:hover {
+  color: white;
+  background: #273e7e;
+  border-color: #273e7e;
+}
+
+
+
+.btn.btn-linkedin {
+  color: white;
+  border-color: #1459a7;
+  background: #1459a7;
+
+}
+.btn.btn-linkedin:hover {
+  color: white;
+  background: #114e94;
+  border-color: #114e94;
+}
+
+.btn.btn-squaredanger {	  
+	border-radius:0px;
+}
+
+
+
+.btn.btn-settings {
+  color: white;
+  border-color: #636363;
+  background: #636363;
+
+}
+.btn.btn-settings:hover {
+  color: white;
+  background: #4d4d4d;
+  border-color: #4d4d4d;
 }

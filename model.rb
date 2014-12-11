@@ -3,7 +3,6 @@ class User
 
   property :id, Serial
   property :name, Text
-  property :opcional, Text
   property :mail, Text
   property :password, BCryptHash
   property :nickname, Text
@@ -20,7 +19,6 @@ end
 class TwitterData
   include DataMapper::Resource
   property  :id, Serial
-#   property  :name, String
   property  :access_token, String
   property  :access_token_secret, String
 
@@ -30,7 +28,6 @@ end
 class GoogleData
   include DataMapper::Resource
   property  :id, Serial
-#   property  :name, String
   property  :token, String, :length => 128
   property  :id_token, String, :length => 1024
 
@@ -40,8 +37,10 @@ end
 class LinkedinData
   include DataMapper::Resource
   property  :id, Serial
-  property  :token, String
-  property  :secret, String
+  property  :rtoken, String
+  property  :rsecret, String
+  property  :atoken, String
+  property  :asecret, String
 
   belongs_to  :user
 end
@@ -54,7 +53,16 @@ class Post
   property :date, DateTime
   property :public, Boolean, :default  => true
 
-  belongs_to :User
+  belongs_to :user
+end
+
+class LinkR
+  include
+  include DataMapper::Resource
+  property :id, Serial
+  property :link, String
+  
+  belongs_to :user
 end
 
 

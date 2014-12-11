@@ -1,63 +1,91 @@
-.head{:style=>"text-align:right"}
-  %a{:href=>"/settings"}
-    %img{:src=>"/img/setting.png",:alt=>"Settings"}
-%h1 Bienvenido #{@user}
-#enter.panel-footer
-  .input-group
-    %div{:style=>"text-align:center"}
-    %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form"}
-      %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black"}/
-      %button#bsend.btn.btn-default{:type=>"submit"} Enviar
-%form{:style=>"text-align:center"}
-  %strong Postear en:
-  %span
-    - if @G_on != nil
-      %input{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
-        Google+
-    - else
-      %input{:name => "networkG", :type => "checkbox", :value => "google"}
-        Google+
-    - if @T_on != nil
-      %input{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
-        Twitter
-    - else
-      %input{:name => "networkT", :type => "checkbox", :value => "twitter"}
-        Twitter
-    - if @F_on != nil
-      %input{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
-        Facebook
-    - else
-      %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
-        Facebook
-    - if @L_on != nil
-      %input{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
-        Linkedin
-    - else
-      %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
-        Linkedin
-%hr
-%div{:style=>"text-align:center"}
-  %h4 Asociar o desvincular una cuenta
-  %span
-    - if @G_on != nil
-      %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
-    - else
-      %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
-    - if @T_on != nil
-      %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Desvincular Twitter
-    - else
-      %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
-    - if @F_on != nil
-      %a.btn.btn-primary{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
-    - else
-      %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
-    - if @L_on != nil
-      %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
-    - else
-      %a.btn.btn-primary{:href=>"/auth/linkedin",:role=>"button"} Sign In Linkedin
-%hr
-/ %button#myBtn{"data-calltoactionlabel" => "WRITE", "data-calltoactionurl" => "https://developers.google.com/+/web/share/interactive?invite=true", "data-clientid" => "1059315270874-gjtv1aph7empima3g6t1t0ioco307pdv.apps.googleusercontent.com", "data-contenturl" => "https://developers.google.com/+/web/share/interactive", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Posteando en google+!"}
-/   %span.icon &nbsp;
-/   %span.label{:style=>"color:black"} POST!
-%div{:style=>"text-align:center"}
-/ %button.g-interactivepost{"data-calltoactiondeeplinkid" => "/pages/create", "data-calltoactionlabel" => "CREATE", "data-calltoactionurl" => "http://plus.google.com/pages/create", "data-clientid" => "xxxxx.apps.googleusercontent.com", "data-contentdeeplinkid" => "/pages", "data-contenturl" => "https://plus.google.com/pages/", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Engage your users today, create a Google+ page for your business."}
+.container-full-index
+  .row
+    .col-md-6
+      .row
+        .col-md-3
+          %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
+        .col-md-9
+          %h1 Bienvenido #{@user}
+    .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
+      %a.btn.btn-settings.pull-right{:href=>"/settings",:role=>"button"} Settings
+      %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
+  %hr{:style => "border-width:4px; border-color:white;"}
+  .row#enter
+    .col-md-3
+    .col-md-6
+      %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+        .row
+          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
+        .row{:style => "padding-top:20px;padding-bottom:20px;"}
+          %button#bsend.btn.btn-success{:type=>"submit"} Enviar
+    .col-md-3
+  %form{:style=>"text-align:center"}
+    %strong Postear en:
+    %span
+      - if @G_on != nil
+        %input{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
+          Google+
+      - else
+        %input{:name => "networkG", :type => "checkbox", :value => "google"}
+          Google+
+      - if @T_on != nil
+        %input{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
+          Twitter
+      - else
+        %input{:name => "networkT", :type => "checkbox", :value => "twitter"}
+          Twitter
+      - if @F_on != nil
+        %input{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
+          Facebook
+      - else
+        %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
+          Facebook
+      - if @L_on != nil
+        %input{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
+          Linkedin
+      - else
+        %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
+          Linkedin
+  %div{:style=>"text-align:center"}
+    %h4 Asociar o desvincular una cuenta
+    %span
+      - if @G_on != nil
+        %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
+      - else
+        %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
+      - if @T_on != nil
+        %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Desvincular Twitter
+      - else
+        %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
+      - if @F_on != nil
+        %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
+      - else
+        %a.btn.btn-facebook{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+      - if @L_on != nil
+        %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+      - else
+        %a.btn.btn-linkedin{:href=>"/linkedin",:role=>"button"} Sign In Linkedin
+  <br>
+  %hr{:style => "border-width:2px;"}
+  .row
+    .col-md-6
+      .div-custom#div1
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+
+        %p 123
+    .col-md-6
+      .div-custom#div2
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+        %p 123
+
+        %p 123
+%script{:src => "/js/index.js"}

@@ -1,4 +1,4 @@
-task :default => :tests
+task :default => :server
 
 desc "Run the chat server"
 task :server do
@@ -20,7 +20,7 @@ task :heroku do
    sh "heroku open"
 end
 
-desc "Run tests (default)"
+desc "Run tests"
 task :tests do
    sh "ruby test/test.rb"
 end
@@ -32,7 +32,7 @@ end
 
 desc "Open repository"
 task :repo do
-  sh "gnome-open https://github.com/TEC-INFO-GROUP/SocialManager"
+  sh "gnome-open https://github.com/alu0100207385/SocialManager"
 end
 
 desc "Run coveralls"

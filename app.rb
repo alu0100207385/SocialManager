@@ -38,9 +38,10 @@ use OmniAuth::Builder do
    {
     :scope => 'email, public_profile'
    }
-  provider :linkedin, config['lidentifier'], config['lsecret']
+   provider :linkedin, config['lidentifier'], config['lsecret']
 
 end
+
 
 #Configuracion DB
 
@@ -67,10 +68,6 @@ DataMapper.auto_upgrade!
 
 enable :sessions
 set :session_secret, '*&(^#234a)'
-
-#Para saber la cuenta actual vinculada
-# control[3]=[false,false,false]
-#          [face,google,twitter]
 
 #Pagina de registro
 get '/signup' do
@@ -114,8 +111,8 @@ post '/signup' do
 
   end
 
-
 end
+
 
 #Pagina bienvenida
 get '/' do
@@ -149,10 +146,23 @@ post '/login' do
 end
 
 
+get "/linkedin" do
+   config = YAML.load_file 'config/config.yml'
+   client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+   user = User.first(:nickname => session[:nickname])
+   lin = LinkedinData.new(:user => user)
+   request_token = client.request_token(:oauth_callback => "http://#{request.host}:#{request.port}/auth/linkedin/callback")
+   lin.rtoken = request_token.token
+   lin.rsecret = request_token.secret
+   puts "333"
+   lin.save
+   redirect client.request_token.authorize_url
+end
+
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
    auth = request.env['omniauth.auth']
-   puts "--> #{auth}"
+#    puts "--> #{auth}"
    user = User.first(:nickname => session[:nickname])
 
    case params[:name] #nickname unico en nuestra app
@@ -177,18 +187,26 @@ get '/auth/:name/callback' do
 	  goo.id_token = auth.extra.id_token
 	  goo.save
 	  redirect '/user/index'
-	  
-   when 'linkedin'
-	  lin = LinkedinData.new(:user => user)
-	  lin.token = auth.credentials.token
-	  lin.secret = auth.credentials.secret
-	  lin.save
-	  redirect '/user/index'
 
-    else
+   when 'linkedin'
+	  puts "444"
+	  client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+	  lin = LinkedinData.first(:user => user)
+	  if lin.atoken.nil?
+		 puts "555"
+		 pin = params[:oauth_verifier]
+		 atoken, asecret = client.authorize_from_request(lin.rtoken, lin.rsecret, pin)
+		 puts "666"
+		 lin.atoken = atoken
+		 lin.asecret = asecret
+		 lin.save
+	  end
+	  redirect '/user/index'
+   else
       redirect '/auth/failure'
     end
 end
+
 
 #Pagina principal del usuario
 get '/user/:url' do
@@ -210,29 +228,40 @@ get '/user/:url' do
    end
 end
 
+
 #Enviar un post desde la app a las redes sociales asociadas
 post '/user/index' do
    config = YAML.load_file 'config/config.yml'
    cad = params[:text]
-#    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
 
    if ( cad != "")
+
 #  Twitter
-	  t = TwitterData.first(:id => user.id)
-	  client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
-	  client.update(cad[0,140])
-	  redirect '/user/index'
-   else
-	  puts "Error en el envio a twitter"
-	  redirect '/user/index'
-   end
+	  if (TwitterData.first(:user =>user) != nil)
+		 t = TwitterData.first(:user =>user)
+		 client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
+		 client.update(cad[0,140])
+	  end
+
+# Linkedin
+	  if (LinkedinData.first(:user =>user) != nil)
+		 lin = LinkedinData.first(:user =>user)
+		 if !lin.atoken.nil?
+			client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+			client.authorize_from_access(lin.atoken, lin.asecret)
+			client.add_share(:comment => cad)
+		 end
+	  end
 
 # Facebook
 
 # Google+
+	  redirect '/user/index'
+   end
 
 end
+
 
 #Desasociar una cuenta del usuario en la bbdd
 get '/desvincular/:net' do
@@ -266,6 +295,67 @@ get '/desvincular/:net' do
    end
 end
 
+
+#Crea el link recuperacion de contraseña que sera enviado al email
+post '/recuperarn' do
+  user = User.first(:nickname => params[:nickname])
+  
+  if user!=nil
+    generatedlink=createlink()
+    l=LinkR.new(:link =>generatedlink, :user =>user)
+    l.save
+    Thread.new do
+      sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+    end
+  end
+  redirect '/'
+end
+
+post '/recuperarm' do
+  user = User.first(:mail => params[:mail])
+  if user!=nil
+    generatedlink=createlink()
+    l=LinkR.new(:link =>generatedlink, :user =>user)
+    l.save
+    Thread.new do
+      sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+    end
+  end
+  redirect '/'
+end
+
+#accedes a un link de recuperacion y lo buscas en la bd, si esta activo cargas la plantilla
+get '/recovery/:net' do
+  l=LinkR.first(:link=>params[:net])
+ 
+  if (l!=nil)
+    @user=l.user.nickname
+    session[:usu]=@user
+   haml :recoverylink
+  else
+   haml :recoveryfail
+  end
+end
+
+post '/recovery' do
+  user=User.first(:nickname=>session[:usu])
+  user.password=params[:password]
+  l=LinkR.first(:user=>user)
+  user.save
+  
+  Thread.new do
+    sendpasschange(user.mail,user.name,user.nickname,params[:password])
+  end
+  l.destroy
+ 
+  redirect '/'  
+end
+  
+
+get '/recuperar' do
+  haml :recovery
+end
+
 #Eliminar usuario y sus cuentas
 get '/killuser' do
   user = User.first(:nickname => session[:nickname])
@@ -289,36 +379,55 @@ get '/killuser' do
   redirect '/'
 end
 
+
 #Opciones de configuracion del usuario
 get '/settings' do
    #Modificar perfil
    #Desvincular cuentas
-	@user = session[:nickname]
-	user = User.first(:nickname => @user)
-	@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
-	@G_on = GoogleData.first(:user => user)
-	@T_on = TwitterData.first(:user => user)
-	@L_on = LinkedinData.first(:user => user)
+   @user = session[:nickname]
+   @user = User.first(:nickname => @user)
+   @asociadas = []
+   @F_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
+   if @F_on != nil
+	  @asociadas << "Facebook"
+   end
+   @G_on = GoogleData.first(:user => @user)
+   if @G_on != nil
+	  @asociadas << "Google"
+   end
+   @T_on = TwitterData.first(:user => @user)
+   if @T_on != nil
+	  @asociadas << "Twitter"
+   end
+   @L_on = LinkedinData.first(:user => @user)
+   if @L_on != nil
+	  @asociadas << "Linkedin"
+   end
    #Eliminar cuenta de nuestra app
    haml :settings
 end
+
 
 #Pagina de ayuda
 get '/help' do
    haml :help
 end
 
+
 get '/support' do
    haml :support
 end
+
+
 #Salir de la app
 get '/logout' do
    session.clear
    redirect '/'
 end
 
+
 #Cualquier error de ruta debe ser redireccionada aqui
 get '/auth/failure' do
   flash[:notice] =
-    %Q{<h3>Se ha producido un error en la autenticacion</h3> &#60; <a href="/">Volver</a> }
+    %Q{<h3>Se ha producido un error en la autenticacion</h3> &#60; <a href="/user/index">Volver</a> }
 end
