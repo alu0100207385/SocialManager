@@ -286,21 +286,40 @@ get '/desvincular/:net' do
 end
 
 #Crea el link recuperacion de contraseña que sera enviado al email
-post '/recuperar' do
+post '/recuperarn' do
   user = User.first(:nickname => session[:nickname])
-  l=LinkR.new(:link =>createlink(), :user =>user)
-  l.save 
+  generatedlink=createlink()
+  l=LinkR.new(:link =>generatedlink, :user =>user)
+  l.save
+  Thread.new do
+    sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+  end
+end
+
+post '/recuperarm' do
+  user = User.first(:mail => session[:mail])
+  generatedlink=createlink()
+  l=LinkR.new(:link =>generatedlink, :user =>user)
+  l.save
+  Thread.new do
+    sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+  end
 end
 
 #accedes a un link de recuperacion y lo buscas en la bd, si esta activo cargas la plantilla
-# get '/recovery/:net' do
-#   l=LinkR.first(:link=>params[:net])
-#   if (l!=nil)
-#    haml :recoverylink
-#   else
-#    haml :recoveryfail
-# end
-# 
+get '/recovery/:net' do
+  l=LinkR.first(:link=>params[:net])
+  if (l!=nil)
+   haml :recoverylink
+  else
+   haml :recoveryfail
+  end
+end
+
+post '/recovery/:net' do
+end
+  
+
 get '/recuperar' do
   haml :recovery
 end

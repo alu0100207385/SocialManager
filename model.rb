@@ -53,7 +53,7 @@ class Post
   property :date, DateTime
   property :public, Boolean, :default  => true
 
-  belongs_to :User
+  belongs_to :user
 end
 
 class LinkR
@@ -62,7 +62,7 @@ class LinkR
   property :id, Serial
   property :link, String
   
-  belongs_to :User
+  belongs_to :user
 end
 
 
