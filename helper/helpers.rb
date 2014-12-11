@@ -59,7 +59,22 @@ module AppHelpers
 	       No hay problema! Clickea en link que te ofrecemos a continuacion y podras volvera a cambiar tu contraseña.
 
                 Tu usuario es: #{username}
-		Link re recuperacion: /recovery/#{link}
+		Link re recuperacion: http://socialmanager.herokuapp.com/recovery/#{link}
+
+                Disfruta de tu experiencia con nosotros. |
+     end    
+   end
+   
+   def sendpasschange(mail,name,username,pass)
+      sm=loadparams()
+      
+       Mail.deliver do
+       to mail
+       from sm
+       subject "Social Manager: Cambio de contraseña #{name}!"
+       body %Q|
+                Tu usuario es: #{username}
+		Y tu nueva contraseña es : #{pass}
 
                 Disfruta de tu experiencia con nosotros. |
      end    
