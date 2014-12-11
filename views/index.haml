@@ -13,7 +13,7 @@
     .col-md-6
       %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
         .row
-          %input#text.input-custom{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black"}/
+          %textarea#text.input-custom{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
         .row{:style => "padding-top:20px;padding-bottom:20px;"}
           %button#bsend.btn.btn-success{:type=>"submit"} Enviar
     .col-md-3
@@ -87,4 +87,3 @@
         %p 123
 
         %p 123
-
