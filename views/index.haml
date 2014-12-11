@@ -1,12 +1,13 @@
 .container-full
   .row
     .col-md-6
-      %h1 Bienvenido #{@user}
+      %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "15%", :height => "15%"}
+      %a.text-primary{:style =>"font-size: 40px;"} Bienvenido #{@user}
     .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
       %a.btn.btn-warning.pull-right{:href=>"/settings",:role=>"button"} Settings
       %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
 
-  %hr{:style => "border-width:2px;"}
+  %hr{:style => "border-width:4px; border-color:#1b75bb;"}
   .row#enter
     .col-md-3
     .col-md-6
@@ -43,7 +44,7 @@
       - else
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
-  %hr{:style => "border-width:4px;"}
+  %hr{:style => "border-width:2px;"}
   %div{:style=>"text-align:center"}
     %h4 Asociar o desvincular una cuenta
     %span
