@@ -14,7 +14,7 @@ module AppHelpers
    
    def my_facebook_client()
    end
-   
+
    def loadparams()
      sm = 'social.manager.info@gmail.com'
 

@@ -5,7 +5,7 @@
     .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
       %a.btn.btn-warning.pull-right{:href=>"/settings",:role=>"button"} Settings
       %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
-
+    %p.pull-right PARA TODO LO DEMAS MASTERCARD
   %hr{:style => "border-width:2px;"}
   .row#enter
     .col-md-3
@@ -62,7 +62,7 @@
       - if @L_on != nil
         %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
       - else
-        %a.btn.btn-primary{:href=>"/auth/linkedin",:role=>"button"} Sign In Linkedin
+        %a.btn.btn-primary{:href=>"/linkedin",:role=>"button"} Sign In Linkedin
   <br>
   %hr{:style => "border-width:4px;"}
   .row

@@ -1,6 +1,6 @@
 %h3 Perfil #{@user.nickname}
 %ul
-  %li Name: #{@user.name}
+  %li Nombre: #{@user.name}
   %li Correo: #{@user.mail}
   - if @asociadas.length != 0
     %li Redes asociadas: #{@asociadas}
@@ -27,7 +27,7 @@
     %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
   - else
     %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Linkedin
-%a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} All
+%a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Desvincular todo
 %hr
 %h3 Darse de baja
 %p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
