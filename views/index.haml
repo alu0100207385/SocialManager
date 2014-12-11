@@ -4,10 +4,10 @@
 %h1 Bienvenido #{@user}
 #enter.panel-footer
   .input-group
+    %div{:style=>"text-align:center"}
     %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form"}
       %input#text.form-control.input-md{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black"}/
-      %span.input-group-btn
-        %button#bsend.btn.btn-default{:type=>"submit"} Enviar
+      %button#bsend.btn.btn-default{:type=>"submit"} Enviar
 %form{:style=>"text-align:center"}
   %strong Postear en:
   %span
@@ -60,5 +60,4 @@
 /   %span.icon &nbsp;
 /   %span.label{:style=>"color:black"} POST!
 %div{:style=>"text-align:center"}
-  %a.btn.btn-default{:href=>"/logout",:role=>"button"} Sign Out
 / %button.g-interactivepost{"data-calltoactiondeeplinkid" => "/pages/create", "data-calltoactionlabel" => "CREATE", "data-calltoactionurl" => "http://plus.google.com/pages/create", "data-clientid" => "xxxxx.apps.googleusercontent.com", "data-contentdeeplinkid" => "/pages", "data-contenturl" => "https://plus.google.com/pages/", "data-cookiepolicy" => "single_host_origin", "data-prefilltext" => "Engage your users today, create a Google+ page for your business."}
