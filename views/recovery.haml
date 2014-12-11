@@ -1,0 +1,9 @@
+%h1 #{@user}
+%form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+  %label{:for => "nickname"}* Introduce tu nick y te enviaremos un email de recuperacion:
+  %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
+  %button.btn.btn-primary.btn-md.center-block Enviar
+%form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+  %label{:for => "mail"}* Si no te acuerda de tu nick, introduce el email desde donde te registrastes:
+  %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
+  %button.btn.btn-primary.btn-md.center-block Enviar

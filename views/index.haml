@@ -1,18 +1,21 @@
-.container-full
+.container-full-index
   .row
     .col-md-6
-      %h1 Bienvenido #{@user}
+      .row
+        .col-md-3
+          %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
+        .col-md-9
+          %h1 Bienvenido #{@user}
     .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
-      %a.btn.btn-warning.pull-right{:href=>"/settings",:role=>"button"} Settings
+      %a.btn.btn-settings.pull-right{:href=>"/settings",:role=>"button"} Settings
       %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
-    %p.pull-right PARA TODO LO DEMAS MASTERCARD
-  %hr{:style => "border-width:2px;"}
+  %hr{:style => "border-width:4px; border-color:white;"}
   .row#enter
     .col-md-3
     .col-md-6
       %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
         .row
-          %input#text.input-custom{:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black"}/
+          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
         .row{:style => "padding-top:20px;padding-bottom:20px;"}
           %button#bsend.btn.btn-success{:type=>"submit"} Enviar
     .col-md-3
@@ -43,7 +46,6 @@
       - else
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
-  %hr{:style => "border-width:4px;"}
   %div{:style=>"text-align:center"}
     %h4 Asociar o desvincular una cuenta
     %span
@@ -56,18 +58,18 @@
       - else
         %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
       - if @F_on != nil
-        %a.btn.btn-primary{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
+        %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
       - else
-        %a.btn.btn-primary{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
+        %a.btn.btn-facebook{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
       - if @L_on != nil
-        %a.btn.btn-primary{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+        %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
       - else
-        %a.btn.btn-primary{:href=>"/linkedin",:role=>"button"} Sign In Linkedin
+        %a.btn.btn-linkedin{:href=>"/linkedin",:role=>"button"} Sign In Linkedin
   <br>
-  %hr{:style => "border-width:4px;"}
+  %hr{:style => "border-width:2px;"}
   .row
     .col-md-6
-      .div-custom
+      .div-custom#div1
         %p 123
         %p 123
         %p 123
@@ -77,7 +79,7 @@
 
         %p 123
     .col-md-6
-      .div-custom
+      .div-custom#div2
         %p 123
         %p 123
         %p 123
@@ -86,4 +88,4 @@
         %p 123
 
         %p 123
-
+%script{:src => "/js/index.js"}

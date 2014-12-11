@@ -297,12 +297,64 @@ end
 
 
 #Crea el link recuperacion de contraseña que sera enviado al email
-post '/recuperar' do
-  user = User.first(:nickname => session[:nickname])
-  l=LinkR.new(:link =>createlink(), :user =>user)
-  l.save 
+post '/recuperarn' do
+  user = User.first(:nickname => params[:nickname])
+  
+  if user!=nil
+    generatedlink=createlink()
+    l=LinkR.new(:link =>generatedlink, :user =>user)
+    l.save
+    Thread.new do
+      sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+    end
+  end
+  redirect '/'
 end
 
+post '/recuperarm' do
+  user = User.first(:mail => params[:mail])
+  if user!=nil
+    generatedlink=createlink()
+    l=LinkR.new(:link =>generatedlink, :user =>user)
+    l.save
+    Thread.new do
+      sendrecoverymail(user.mail,user.name,user.nickname,generatedlink)
+    end
+  end
+  redirect '/'
+end
+
+#accedes a un link de recuperacion y lo buscas en la bd, si esta activo cargas la plantilla
+get '/recovery/:net' do
+  l=LinkR.first(:link=>params[:net])
+ 
+  if (l!=nil)
+    @user=l.user.nickname
+    session[:usu]=@user
+   haml :recoverylink
+  else
+   haml :recoveryfail
+  end
+end
+
+post '/recovery' do
+  user=User.first(:nickname=>session[:usu])
+  user.password=params[:password]
+  l=LinkR.first(:user=>user)
+  user.save
+  
+  Thread.new do
+    sendpasschange(user.mail,user.name,user.nickname,params[:password])
+  end
+  l.destroy
+ 
+  redirect '/'  
+end
+  
+
+get '/recuperar' do
+  haml :recovery
+end
 
 #Eliminar usuario y sus cuentas
 get '/killuser' do

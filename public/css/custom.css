@@ -23,6 +23,17 @@ h1 {
   overflow:hidden;
 }
 
+.container-full-index {
+  margin: 0 auto;
+  padding:2%;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+
+
 
 .container-semi{
 
@@ -101,6 +112,14 @@ h6,
 }
 
 .container-full h1,h2,h3,h4,h5,h6,p{
+
+
+  color:white;
+
+
+}
+
+.container-full-index h1,h2,h3,h4,h5,h6,p{
 
 
   color:white;
@@ -1105,7 +1124,7 @@ form .form-control:focus {
   border-radius: 1em;
 
   width: 100%;
-  height: 80%;
+  height: 100%;
   line-height: 40px;
   padding: 20px;
   color: #cfcfcf;
@@ -1128,14 +1147,14 @@ form .form-control:focus {
   border-radius: 1em;
 
   width: 100%;
-  height: 200px;
+  height: 250px;
   line-height: 40px;
   padding: 20px;
   color: #cfcfcf;
   border: 2px solid #cccccc;
   font-weight: 300;
 
-  max-height:200px;
+  max-height:250px;
   overflow-y:scroll;
   overflow-x:hidden;
 
@@ -1162,4 +1181,53 @@ form .form-control:focus {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255,255,255,0.4);
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+
+.btn.btn-facebook {
+  color: white;
+  border-color: #2c4b9f;
+  background: #2c4b9f;
+
+}
+.btn.btn-facebook:hover {
+  color: white;
+  background: #273e7e;
+  border-color: #273e7e;
+}
+
+
+
+.btn.btn-linkedin {
+  color: white;
+  border-color: #1459a7;
+  background: #1459a7;
+
+}
+.btn.btn-linkedin:hover {
+  color: white;
+  background: #114e94;
+  border-color: #114e94;
+}
+
+.btn.btn-squaredanger {	  
+	border-radius:0px;
+}
+
+
+
+.btn.btn-settings {
+  color: white;
+  border-color: #636363;
+  background: #636363;
+
+}
+.btn.btn-settings:hover {
+  color: white;
+  background: #4d4d4d;
+  border-color: #4d4d4d;
 }
