@@ -19,7 +19,6 @@ end
 class TwitterData
   include DataMapper::Resource
   property  :id, Serial
-#   property  :name, String
   property  :access_token, String
   property  :access_token_secret, String
 
@@ -29,7 +28,6 @@ end
 class GoogleData
   include DataMapper::Resource
   property  :id, Serial
-#   property  :name, String
   property  :token, String, :length => 128
   property  :id_token, String, :length => 1024
 
@@ -39,8 +37,10 @@ end
 class LinkedinData
   include DataMapper::Resource
   property  :id, Serial
-  property  :atoken, String, :length => 128
-  property  :asecret, String, :length => 128
+  property  :rtoken, String
+  property  :rsecret, String
+  property  :atoken, String
+  property  :asecret, String
 
   belongs_to  :user
 end

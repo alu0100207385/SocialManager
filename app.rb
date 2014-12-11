@@ -38,9 +38,10 @@ use OmniAuth::Builder do
    {
     :scope => 'email, public_profile'
    }
-  provider :linkedin, config['lidentifier'], config['lsecret']
+   provider :linkedin, config['lidentifier'], config['lsecret']
 
 end
+
 
 #Configuracion DB
 
@@ -110,8 +111,8 @@ post '/signup' do
 
   end
 
-
 end
+
 
 #Pagina bienvenida
 get '/' do
@@ -145,6 +146,19 @@ post '/login' do
 end
 
 
+get "/linkedin" do
+   config = YAML.load_file 'config/config.yml'
+   client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+   user = User.first(:nickname => session[:nickname])
+   lin = LinkedinData.new(:user => user)
+   request_token = client.request_token(:oauth_callback => "http://#{request.host}:#{request.port}/auth/linkedin/callback")
+   lin.rtoken = request_token.token
+   lin.rsecret = request_token.secret
+   puts "333"
+   lin.save
+   redirect client.request_token.authorize_url
+end
+
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
    auth = request.env['omniauth.auth']
@@ -175,22 +189,24 @@ get '/auth/:name/callback' do
 	  redirect '/user/index'
 
    when 'linkedin'
-	  lin = LinkedinData.new(:user => user)
-# 	  token = auth.credentials.token
-# 	  secret = auth.credentials.secret
-	client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
-	request_token = client.request_token({}, :scope => "rw_nus")
-	rtoken = request_token.token
-	rsecret = request_token.secret
-	pin = params[:oauth_verifier]
-	lin.atoken, lin.asecret = client.authorize_from_request(rtoken, rsecret, pin)
-	  lin.save
+	  puts "444"
+	  client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+	  lin = LinkedinData.first(:user => user)
+	  if lin.atoken.nil?
+		 puts "555"
+		 pin = params[:oauth_verifier]
+		 atoken, asecret = client.authorize_from_request(lin.rtoken, lin.rsecret, pin)
+		 puts "666"
+		 lin.atoken = atoken
+		 lin.asecret = asecret
+		 lin.save
+	  end
 	  redirect '/user/index'
-
-    else
+   else
       redirect '/auth/failure'
     end
 end
+
 
 #Pagina principal del usuario
 get '/user/:url' do
@@ -212,13 +228,12 @@ get '/user/:url' do
    end
 end
 
+
 #Enviar un post desde la app a las redes sociales asociadas
 post '/user/index' do
    config = YAML.load_file 'config/config.yml'
    cad = params[:text]
-#    puts "---#{cad}"
    user = User.first(:nickname => session[:nickname])
-   @enviado = false
 
    if ( cad != "")
 
@@ -227,22 +242,16 @@ post '/user/index' do
 		 t = TwitterData.first(:user =>user)
 		 client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
 		 client.update(cad[0,140])
-		 @enviado = true
 	  end
 
 # Linkedin
 	  if (LinkedinData.first(:user =>user) != nil)
-		 l = LinkedinData.first(:user =>user)
-		 client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
-# 		 request_token = client.request_token({}, :scope => "rw_nus")
-# 		 rtoken = request_token.token
-# 		 rsecret = request_token.secret
-# 		 pin = params[:oauth_verifier]
-# 		 puts "PIN = #{pin}"
-# 		 atoken, asecret = client.authorize_from_request(rtoken, rsecret, pin)
-		 client.authorize_from_access(l.atoken, l.asecret)
-		 client.add_share(:comment => cad)
-		 @enviado = true
+		 lin = LinkedinData.first(:user =>user)
+		 if !lin.atoken.nil?
+			client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+			client.authorize_from_access(lin.atoken, lin.asecret)
+			client.add_share(:comment => cad)
+		 end
 	  end
 
 # Facebook
@@ -252,6 +261,7 @@ post '/user/index' do
    end
 
 end
+
 
 #Desasociar una cuenta del usuario en la bbdd
 get '/desvincular/:net' do
@@ -284,6 +294,7 @@ get '/desvincular/:net' do
 	  redirect '/settings'
    end
 end
+
 
 #Crea el link recuperacion de contraseña que sera enviado al email
 post '/recuperarn' do
@@ -368,6 +379,7 @@ get '/killuser' do
   redirect '/'
 end
 
+
 #Opciones de configuracion del usuario
 get '/settings' do
    #Modificar perfil
@@ -395,19 +407,24 @@ get '/settings' do
    haml :settings
 end
 
+
 #Pagina de ayuda
 get '/help' do
    haml :help
 end
 
+
 get '/support' do
    haml :support
 end
+
+
 #Salir de la app
 get '/logout' do
    session.clear
    redirect '/'
 end
+
 
 #Cualquier error de ruta debe ser redireccionada aqui
 get '/auth/failure' do

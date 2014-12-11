@@ -1,4 +1,6 @@
 .container-full-index
+  %h1 Settings
+  %hr{:style => "border-width:4px;"}
   %h3 Perfil #{@user.nickname}
   %ul
     %li Name: #{@user.name}
@@ -28,11 +30,10 @@
       %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
     - else
       %a.btn.btn-linkedin{:href=>"/auth/facebook",:role=>"button"} Sign In Linkedin
-  %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} All
+  %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Desvincular todo
   %hr
   %h3 Darse de baja
   %p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
   %a.btn.btn-danger.btn-squaredanger{:href=>"/killuser",:role=>"button"} Eliminar usuario
-  %hr
   %div{:style=>"text-align:center"}
     %a.btn.btn-primary{:href=>"/user/index",:role=>"button"} Volver

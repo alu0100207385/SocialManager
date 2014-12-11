@@ -9,7 +9,8 @@
 
 ##Descripción
 
-SocialManager es un gestor de redes sociales.
+SocialManager es una aplicación web para gestionar redes sociales. A través de ésta se podrá postear 
+directamente a las redes sociales asociadas a la aplicación.
 
 
 ##Aplicación en Heroku
@@ -49,7 +50,7 @@ rake rubocop      # Run Rubocop static code analyzer
 rake server       # Run the chat server
 rake sinatra      # Run the server via Sinatra
 rake spec         # Run tests with rspec
-rake tests        # Run tests (default)
+rake tests        # Run tests
 
 ```
 
