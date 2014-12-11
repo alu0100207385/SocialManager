@@ -1214,6 +1214,11 @@ textarea:focus, input:focus{
   border-color: #114e94;
 }
 
+.btn.btn-squaredanger {	  
+	border-radius:0px;
+}
+
+
 
 .btn.btn-settings {
   color: white;
