@@ -12,13 +12,11 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'omniauth'
-gem 'omniauth-linkedin'
 gem 'linkedin'
 gem 'bcrypt'
 gem 'rubocop'
 gem 'json'
 gem 'mail'
-gem 'bcrypt'
 
 group :development do
   gem 'sinatra-contrib'
