@@ -9,7 +9,6 @@ require 'data_mapper'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
-require 'omniauth-linkedin'
 require 'linkedin'
 require 'json'
 require_relative 'helper/helpers.rb'
@@ -38,7 +37,6 @@ use OmniAuth::Builder do
    {
     :scope => 'email, public_profile'
    }
-   provider :linkedin, config['lidentifier'], config['lsecret']
 
 end
 
@@ -154,7 +152,6 @@ get "/linkedin" do
    request_token = client.request_token(:oauth_callback => "http://#{request.host}:#{request.port}/auth/linkedin/callback")
    lin.rtoken = request_token.token
    lin.rsecret = request_token.secret
-   puts "333"
    lin.save
    redirect client.request_token.authorize_url
 end
@@ -189,14 +186,11 @@ get '/auth/:name/callback' do
 	  redirect '/user/index'
 
    when 'linkedin'
-	  puts "444"
 	  client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
 	  lin = LinkedinData.first(:user => user)
 	  if lin.atoken.nil?
-		 puts "555"
 		 pin = params[:oauth_verifier]
 		 atoken, asecret = client.authorize_from_request(lin.rtoken, lin.rsecret, pin)
-		 puts "666"
 		 lin.atoken = atoken
 		 lin.asecret = asecret
 		 lin.save
