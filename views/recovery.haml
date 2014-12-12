@@ -1,5 +1,4 @@
 .container-full
-  %h1 #{@user}
   %form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
     %label{:for => "nickname"}* Introduce tu nick y te enviaremos un email de recuperacion:
     %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}

@@ -11,7 +11,9 @@
         .row{:style => "padding-top:20px"}
           %label{:for => "password"} Password:
           %input.form-control#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******",:style => "width:50%; display:inline;"}
-        %a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
+        //%a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
+        .row.text-center{:style => "padding-top:20px;"}
+        %a.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} ¿Olvidastes tu contraseña?
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
