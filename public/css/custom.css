@@ -1146,17 +1146,16 @@ form .form-control:focus {
   -o-border-radius: 1em;
   border-radius: 1em;
 
+  background-color:white;
   width: 100%;
-  height: 250px;
+  height: 50%;
   line-height: 40px;
   padding: 20px;
-  color: #cfcfcf;
+  color: black;
   border: 2px solid #cccccc;
   font-weight: 300;
 
   max-height:250px;
-  overflow-y:scroll;
-  overflow-x:hidden;
 
 
 }
@@ -1214,7 +1213,7 @@ textarea:focus, input:focus{
   border-color: #114e94;
 }
 
-.btn.btn-squaredanger {	  
+.btn.btn-squaredanger {
 	border-radius:0px;
 }
 
@@ -1230,4 +1229,11 @@ textarea:focus, input:focus{
   color: white;
   background: #4d4d4d;
   border-color: #4d4d4d;
+}
+
+.div-custom p,h1,h2,h3,h4,h5,h6{
+
+  color: black;
+
+
 }
