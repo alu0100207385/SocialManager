@@ -5,52 +5,39 @@ Coveralls.wear!
 require_relative '../app.rb'
 ENV['RACK_ENV'] = 'test'
 require 'rack/test'
-require 'test/unit'
-require 'minitest/autorun'
 require 'rubygems'
 require 'rspec'
-require 'rspec/expectations'
 
 include Rack::Test::Methods
 
-describe "Managing users accounts" do
+describe "Test App: Get Methods" do
+
   def app
     Sinatra::Application
   end
-  
-   before :all do
-	  @user="usu0100"
-	  @email="social.manager.info@gmail.com"
-	  @pass="1234"
-   end
-   
-   it "acceso index" do
-    get '/' 
-    expect(last_response).to be_ok
-   end
-   
-   it "Register user" do
-    u = User.new    
-    u.name = @user
-    u.nickname = @user
-    u.password = @pass
-    u.mail = @email
-    
-    expect(u.save).to be true
- 
-   end
-   
-   it "Delete user" do
-     u=User.first(:nickname => @user)
-     expect(u.destroy).to be true
-   end
-  
-end
 
-describe " " do
-  it "prueba" do
-    bool=true
-    expect(bool).to be true
-  end
-  
+   it "Access to root" do
+	  get '/' 
+	  expect(last_response).to be_ok
+   end
+
+   it "Access to signup page" do
+	  get '/signup'
+	  expect(last_response).to be_ok
+   end
+   
+   it "Access to recovery page" do
+	  get '/recuperar'
+	  expect(last_response).to be_ok
+   end
+   
+   it "Access to help page" do
+	  get '/help'
+	  expect(last_response).to be_ok
+   end
+   
+   it "Access to failure page" do
+	  get '/auth/failure'
+	  expect(last_response).to be_ok
+   end  
 end
