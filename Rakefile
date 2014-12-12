@@ -1,4 +1,4 @@
-task :default => :server
+task :default => :tests
 
 desc "Run the chat server"
 task :server do
@@ -21,7 +21,7 @@ task :heroku do
 end
 
 desc "Run tests"
-task :tests do
+task :tests => :spec do
    sh "ruby test/test.rb"
 end
 
