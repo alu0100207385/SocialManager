@@ -33,7 +33,7 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 
    it "##2. I can see index page" do
 	  element = @browser.find_element(:tag_name,"h1").text
-	  assert_equal("Bienvenido a Social Manager", element)
+	  assert_equal("Welcome to Social Manager", element)
    end
 
    it "##3. I can access Jazer's page" do
