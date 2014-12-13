@@ -59,11 +59,11 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal("https://github.com/alu0100537451", @browser.current_url)
    end
-   
+
    it "##7. I can access Repository page" do
 	  @browser.find_element(:id,"repo").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("https://github.com/TEC-INFO-GROUP/SocialManager", @browser.current_url)
+	  assert_equal("https://github.com/alu0100207385/SocialManager", @browser.current_url)
    end
    
    it "##8. I can access Help page" do
@@ -71,5 +71,4 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"help", @browser.current_url)
    end
-
 end

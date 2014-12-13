@@ -25,7 +25,6 @@ group :development do
 end
 
 group :production do
-
   gem "do_postgres"
   gem "pg"
   gem "dm-postgres-adapter"
@@ -38,5 +37,6 @@ group :test do
    gem 'test-unit'
    gem 'selenium-webdriver','2.43.0'
    gem 'rspec'
+   gem 'rspec-expectations'
    gem 'coveralls', require: false
 end

@@ -193,7 +193,7 @@ GEM
     stringex (1.5.1)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
-    test-unit (3.0.7)
+    test-unit (3.0.8)
       power_assert
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -242,6 +242,7 @@ DEPENDENCIES
   rack-test
   rake
   rspec
+  rspec-expectations
   rubocop
   selenium-webdriver (= 2.43.0)
   sinatra
