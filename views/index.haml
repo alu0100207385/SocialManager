@@ -47,7 +47,7 @@
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
   %div{:style=>"text-align:center"}
-    %h4 Asociar o desvincular una cuenta
+    %h4{:style=>"color:white;"} Asociar o desvincular una cuenta
     %span
       - if @G_on != nil
         %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
@@ -78,8 +78,9 @@
               %h3 Social Manager
           .row
             .col-md-3
-            .col-md-9
-              %p Recuerda hacer un uso responsable de nuestra aplicación
+              %p= Time.now.asctime
+            .col-md-9.message
+              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
 
     .col-md-6
       #div2

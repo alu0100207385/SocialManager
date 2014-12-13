@@ -630,23 +630,7 @@ section::after {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-form .form-control {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: 5em;
-  -moz-border-radius: 5em;
-  -ms-border-radius: 5em;
-  -o-border-radius: 5em;
-  border-radius: 5em;
-  width: 200px;
-  height: 40px;
-  line-height: 40px;
-  padding: 20px;
-  color: #cfcfcf;
-  border: 2px solid #cccccc;
-  font-weight: 300;
-}
+
 form textarea.form-control {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -1155,7 +1139,6 @@ form .form-control:focus {
   border: 2px solid #cccccc;
   font-weight: 300;
 
-  max-height:250px;
 
 
 }
@@ -1231,9 +1214,36 @@ textarea:focus, input:focus{
   border-color: #4d4d4d;
 }
 
+
+
 .div-custom p,h1,h2,h3,h4,h5,h6{
 
   color: black;
+
+
+}
+
+.message{
+
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+
+  background-color:lightblue;
+  width: 70%;
+  height: 100%;
+  line-height: 40px;
+  padding: 20px;
+  color: black;
+  border: 2px solid #cccccc;
+  font-weight: 300;
+
 
 
 }

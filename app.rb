@@ -231,7 +231,7 @@ post '/user/index' do
    cad = params[:text]
    user = User.first(:nickname => session[:nickname])
 
-   $message = {:name => session[:nickname], :message => cad}
+   $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime}
 
    if ( cad != "")
 

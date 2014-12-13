@@ -21,8 +21,9 @@ $(document).ready(function(){
                       </div>\
                       <div class ='row'>\
                         <div class = 'col-md-3'>\
+                        <p> "+ obj.time + "\
                         </div>\
-                        <div class = 'col-md-9'>\
+                        <div class = 'col-md-9 message'>\
                         <p> " + obj.message + "\
                         </div>\
                       </div>\
