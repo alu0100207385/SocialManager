@@ -15,9 +15,9 @@
     .col-md-6
       %p#infotext
         .row
-          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
+          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Write your message", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
         .row.text-center{:style => "padding-top:20px;padding-bottom:20px;"}
-          %button#bsend.btn.btn-success{:type=>"submit"} Enviar
+          %button#bsend.btn.btn-success{:type=>"submit"} Send
           %input#public{:name => "public", :type => "checkbox", :value => "public"}
           Public
 
@@ -91,7 +91,7 @@
             .col-md-3
               %p= Time.now.asctime
             .col-md-9.message
-              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
+              %p The development team reminds make responsible use of the Application. Enjoy your stay.
 
     .col-md-6
       #div2
