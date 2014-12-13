@@ -1,15 +1,22 @@
-%h1 #{@user}
-.row 
-  .col-md-12
-    %form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
-      %label{:for => "nickname"} * Introduce tu nick y te enviaremos un email de recuperacion:
-      %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;margin-left:120px;"}
-      %button.btn.btn-primary.btn-md Enviar
-      %br
-      %br
-.row 
-  .col-md-12
-    %form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
-      %label{:for => "mail"} * Si no te acuerda de tu nick, introduce el email desde donde te registrastes:
-      %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
-      %button.btn.btn-primary.btn-md{:style =>"margin-left:17px;"} Enviar
+.container-full
+  .row
+    .col-lg-12.text-center.v-center
+      .row
+        %h1 Recuperación de cuenta
+      .row{:style=>"padding-top:20px;"}
+        %form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+          .row
+            %label{:for => "nickname"}* Introduce tu nick y te enviaremos un email de recuperación:
+            %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
+          .row{:style=>"padding-top:20px;"}
+            %button.btn.btn-primary.btn-md.center-block Enviar
+      .row{:style=>"padding-top:20px;"}
+        %form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+          .row
+            %label{:for => "mail"}* Si no te acuerdas de tu nick, introduce el email de tu cuenta:
+            %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
+          .row{:style=>"padding-top:20px;"}
+            %button.btn.btn-primary.btn-md.center-block Enviar
+      .row{:style=>"padding-top:20px;"}
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:10%;"} Volver
+

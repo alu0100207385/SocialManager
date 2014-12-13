@@ -47,7 +47,7 @@
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
   %div{:style=>"text-align:center"}
-    %h4 Asociar o desvincular una cuenta
+    %h4{:style=>"color:white;"} Asociar o desvincular una cuenta
     %span
       - if @G_on != nil
         %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
@@ -69,23 +69,19 @@
   %hr{:style => "border-width:2px;"}
   .row
     .col-md-6
-      .div-custom#div1
-        %p 123
-        %p 123
-        %p 123
-        %p 123
-        %p 123
-        %p 123
+      #div1
+        .div-custom#Bienvenida
+          .row
+            .col-md-3
+              %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
+            .col-md-9
+              %h3 Social Manager
+          .row
+            .col-md-3
+              %p= Time.now.asctime
+            .col-md-9.message
+              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
 
-        %p 123
     .col-md-6
-      .div-custom#div2
-        %p 123
-        %p 123
-        %p 123
-        %p 123
-        %p 123
-        %p 123
-
-        %p 123
+      #div2
 %script{:src => "/js/index.js"}

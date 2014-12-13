@@ -1,7 +1,7 @@
 .container-full-index
   %h1 Settings
   %hr{:style => "border-width:4px;"}
-  %h3 Perfil #{@user.nickname}
+  %h3{:style=>"color:white;"} Perfil #{@user.nickname}
   %ul
     %li Name: #{@user.name}
     %li Correo: #{@user.mail}
@@ -9,10 +9,10 @@
       %li Redes asociadas: #{@asociadas}
     - else
       %li Redes asociadas: ninguna
-  %h3 Modificar perfil
+  %h3{:style=>"color:white;"} Modificar perfil
   %p Aqui el usuario podra cambiar su pass, correo, etc.
   %hr
-  %h3 Asociar o desvincular una cuenta
+  %h3{:style=>"color:white;"} Asociar o desvincular una cuenta
   %span
     - if @G_on != nil
       %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
@@ -32,7 +32,7 @@
       %a.btn.btn-linkedin{:href=>"/auth/facebook",:role=>"button"} Sign In Linkedin
   %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Desvincular todo
   %hr
-  %h3 Darse de baja
+  %h3{:style=>"color:white;"} Darse de baja
   %p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
   %a.btn.btn-danger.btn-squaredanger{:href=>"/killuser",:role=>"button"} Eliminar usuario
   %div{:style=>"text-align:center"}

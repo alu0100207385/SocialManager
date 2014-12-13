@@ -11,7 +11,9 @@
         .row{:style => "padding-top:20px"}
           %label{:for => "password"} Password:
           %input.form-control#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******",:style => "width:50%; display:inline;"}
-        %a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
+        //%a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
+        .row.text-center{:style => "padding-top:20px;"}
+        %a.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} ¿Olvidastes tu contraseña?
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
@@ -23,10 +25,10 @@
           %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro
   .row
     .col-lg-12.text-center.v-center
-      %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;"} Tu página para gestionar todas tus redes sociales
+      %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;position:relative;top:-20px;"} Tu página para gestionar todas tus redes sociales
 
-  .row
-    .col-lg-12.text-center.v-center{:style => "font-size:39pt;"}
+  .row{:style => "padding-bottom:0px;margin-bottom:0px;"}
+    .col-lg-12.text-center.v-center{:style => "font-size:39pt;position:relative;top:-50px"}
       %a{:href => "https://plus.google.com"}
         %i.icon-google-plus
       %a{:href => "https://www.facebook.com"}
