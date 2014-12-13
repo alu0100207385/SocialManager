@@ -15,6 +15,8 @@ require_relative 'helper/helpers.rb'
 
 helpers AppHelpers
 
+$message = {}
+
 set :environment, :development
 
 set :protection , :except => :session_hijacking
@@ -252,6 +254,8 @@ post '/user/index' do
    cad = params[:text]
    user = User.first(:nickname => session[:nickname])
 
+   $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime}
+
    if ( cad != "")
 
 #  Twitter
@@ -268,6 +272,7 @@ post '/user/index' do
 			client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
 			client.authorize_from_access(lin.atoken, lin.asecret)
 			client.add_share(:comment => cad)
+
 		 end
 	  end
 
@@ -316,7 +321,7 @@ end
 #Crea el link recuperacion de contraseña que sera enviado al email
 post '/recuperarn' do
   user = User.first(:nickname => params[:nickname])
-  
+
   if user!=nil
     generatedlink=createlink()
     l=LinkR.new(:link =>generatedlink, :user =>user)
@@ -344,7 +349,7 @@ end
 #accedes a un link de recuperacion y lo buscas en la bd, si esta activo cargas la plantilla
 get '/recovery/:net' do
   l=LinkR.first(:link=>params[:net])
- 
+
   if (l!=nil)
     @user=l.user.nickname
     session[:usu]=@user
@@ -359,15 +364,15 @@ post '/recovery' do
   user.password=params[:password]
   l=LinkR.first(:user=>user)
   user.save
-  
+
   Thread.new do
     sendpasschange(user.mail,user.name,user.nickname,params[:password])
   end
   l.destroy
- 
-  redirect '/'  
+
+  redirect '/'
 end
-  
+
 
 get '/recuperar' do
   haml :recovery
@@ -422,6 +427,21 @@ get '/settings' do
    end
    #Eliminar cuenta de nuestra app
    haml :settings
+end
+
+get '/event' do
+
+  content_type "text/event-stream"
+  stream(:keep_open) do |out|
+
+
+    trace_var(:$message) {|value| out << "data: #{value.to_json} \n\n"}
+
+
+  end
+
+
+
 end
 
 

@@ -1,9 +1,21 @@
 .container-full
-  %form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
-    %label{:for => "nickname"}* Enter your nickname and we'll email recovery:
-    %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
-    %button.btn.btn-primary.btn-md.center-block Send
-  %form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
-    %label{:for => "mail"}* If you do not remember your nickname, enter your email where you signed up:
-    %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
-    %button.btn.btn-primary.btn-md.center-block Send
+  .row
+    .col-lg-12.text-center.v-center
+      .row
+        %h1 Account recovery
+      .row{:style=>"padding-top:20px;"}
+        %form{:action=>"/recuperarn", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+          .row
+            %label{:for => "nickname"}* Enter your nickname and we'll email recovery:
+            %input.form-control{:name => "nickname", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
+          .row{:style=>"padding-top:20px;"}
+            %button.btn.btn-primary.btn-md.center-block Send
+      .row{:style=>"padding-top:20px;"}
+        %form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+          .row
+            %label{:for => "mail"}* If you do not remember your nickname, enter your email where you signed up:
+            %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;right:-14px;width:30%; display:inline;"}
+          .row{:style=>"padding-top:20px;"}
+            %button.btn.btn-primary.btn-md.center-block Send
+      .row{:style=>"padding-top:20px;"}
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:10%;"} Back

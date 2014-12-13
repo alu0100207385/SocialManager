@@ -47,6 +47,7 @@
           Linkedin
   %div{:style=>"text-align:center"}
     %h4 Link or unlink an account
+    %h4{:style=>"color:white;"} Link or unlink an account
     %span
       - if @G_on != false
         %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Unlink Google+
@@ -69,6 +70,18 @@
   .row
     .col-md-6
       #div1
+        .div-custom#Bienvenida
+          .row
+            .col-md-3
+              %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
+            .col-md-9
+              %h3 Social Manager
+          .row
+            .col-md-3
+              %p= Time.now.asctime
+            .col-md-9.message
+              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
+
     .col-md-6
       #div2
 %script{:src => "/js/index.js"}
