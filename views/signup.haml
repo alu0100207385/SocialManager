@@ -1,14 +1,14 @@
 .container-full
   .section-heading{:style => "position:relative; top:-30px;"}
-    %h1{:style => "color:white"} Bienvenido a Social Manager
+    %h1{:style => "color:white"} Welcome to Social Manager
   .row{:style => "position:relative; top:-120px;"}
     .col-md-12.text-center
-      %h3.block-center{:style => "color:white;text-decoration:underline;"} Registro
+      %h3.block-center{:style => "color:white;text-decoration:underline;"} Registration
       %p#text
       .row{:style => "padding-top:20px"}
         .col-md-3
         .col-md-6.text-center
-          %label{:for => "name"} * Nombre:
+          %label{:for => "name"} * Name:
           %input.form-control#name{:name => "name", :type => "text", :required => "required" ,:placeholder => "yourname",:style => "position:relative;right:-9px;width:30%; display:inline;"}
         .col-md-3
       .row{:style => "padding-top:20px"}
@@ -30,9 +30,9 @@
           %input.form-control#password{:name => "password", :type => "password", :required => "required", :placeholder => "*****", :style => "width:30%; display:inline;"}
         .col-md-3
       .row{:style => "padding-bottom:20px;"}
-        %p * Todos los campos son requeridos
+        %p * All fields are required
       .row{:style => "padding-bottom:20px;"}
-        %button.btn.btn-primary.btn-md.center-block#Registrarse Registrarse
+        %button.btn.btn-primary.btn-md.center-block#Registrarse Sign in
       .row
-        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:220px;"} <b>Volver
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:220px;"} <b>Back
 %script{:src => "/js/signup.js"}

@@ -209,10 +209,33 @@ get '/user/:url' do
 		 when "index"
 			@user = session[:nickname]
 			user = User.first(:nickname => @user)
-			@F_on = FacebookData.first(:user => user) #Para marcar en la vista las casillas en las que el user esta logueado
-			@G_on = GoogleData.first(:user => user)
-			@T_on = TwitterData.first(:user => user)
-			@L_on = LinkedinData.first(:user => user)
+			cuenta = FacebookData.first(:user => user)
+			if (!cuenta.is_a? NilClass)
+			   @F_on = true
+			else
+			   @F_on = false
+			end
+			cuenta = GoogleData.first(:user => user)
+			if (!cuenta.is_a? NilClass)
+			   @G_on = true
+			else
+			   @G_on = false
+			end
+			cuenta = TwitterData.first(:user => user)
+			if (!cuenta.is_a? NilClass)
+			   @T_on = true
+			else
+			   @T_on = false
+			end
+			cuenta = LinkedinData.first(:user => user)
+			if (!cuenta.is_a? NilClass) and (!cuenta.atoken.is_a? NilClass)
+			   @L_on = true 
+			else
+			   @L_on = false #No esta logueado o cancelo el proceso de vinculacion
+			   if (!cuenta.is_a? NilClass)
+				  cuenta.destroy #Borramos el registro incompleto (atoken y asecret estan vacios)
+			   end
+			end
 			haml :index
 		 when "settings"
 			redirect '/settings'
@@ -381,20 +404,20 @@ get '/settings' do
    @user = session[:nickname]
    @user = User.first(:nickname => @user)
    @asociadas = []
-   @F_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
-   if @F_on != nil
+   f_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
+   if (!f_on.is_a? NilClass)
 	  @asociadas << "Facebook"
    end
-   @G_on = GoogleData.first(:user => @user)
-   if @G_on != nil
+   g_on = GoogleData.first(:user => @user)
+   if (!g_on.is_a? NilClass)
 	  @asociadas << "Google"
    end
-   @T_on = TwitterData.first(:user => @user)
-   if @T_on != nil
+   t_on = TwitterData.first(:user => @user)
+   if (!t_on.is_a? NilClass)
 	  @asociadas << "Twitter"
    end
-   @L_on = LinkedinData.first(:user => @user)
-   if @L_on != nil
+   l_on = LinkedinData.first(:user => @user)
+   if (!l_on.is_a? NilClass) and (!l_on.atoken.is_a? NilClass)
 	  @asociadas << "Linkedin"
    end
    #Eliminar cuenta de nuestra app
