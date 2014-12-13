@@ -5,7 +5,7 @@
         .col-md-3
           %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
         .col-md-9
-          %h1 Bienvenido #{@user}
+          %h1 Welcome #{@user}
     .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
       %a.btn.btn-settings.pull-right{:href=>"/settings",:role=>"button"} Settings
       %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
@@ -15,54 +15,54 @@
     .col-md-6
       %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
         .row
-          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Escriba su mensaje", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
+          %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Write your message", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
         .row{:style => "padding-top:20px;padding-bottom:20px;"}
-          %button#bsend.btn.btn-success{:type=>"submit"} Enviar
+          %button#bsend.btn.btn-success{:type=>"submit"} Send
     .col-md-3
   %form{:style=>"text-align:center"}
-    %strong Postear en:
     %span
-      - if @G_on != nil
+      - if @G_on != false
         %input{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
           Google+
       - else
         %input{:name => "networkG", :type => "checkbox", :value => "google"}
           Google+
-      - if @T_on != nil
+      - if @T_on != false
         %input{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
           Twitter
       - else
         %input{:name => "networkT", :type => "checkbox", :value => "twitter"}
           Twitter
-      - if @F_on != nil
+      - if @F_on != false
         %input{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
           Facebook
       - else
         %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
           Facebook
-      - if @L_on != nil
+      - if @L_on != false
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
           Linkedin
       - else
         %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
   %div{:style=>"text-align:center"}
-    %h4{:style=>"color:white;"} Asociar o desvincular una cuenta
+    %h4 Link or unlink an account
+    %h4{:style=>"color:white;"} Link or unlink an account
     %span
-      - if @G_on != nil
-        %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
+      - if @G_on != false
+        %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Unlink Google+
       - else
         %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
-      - if @T_on != nil
-        %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Desvincular Twitter
+      - if @T_on != false
+        %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Unlink Twitter
       - else
         %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
-      - if @F_on != nil
-        %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
+      - if @F_on != false
+        %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Unlink Facebook
       - else
         %a.btn.btn-facebook{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
-      - if @L_on != nil
-        %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+      - if @L_on != false
+        %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Unlink Linkedin
       - else
         %a.btn.btn-linkedin{:href=>"/linkedin",:role=>"button"} Sign In Linkedin
   <br>

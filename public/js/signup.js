@@ -9,7 +9,7 @@ $(document).ready(function(){
     if(name == '' || mail == '' || nickname == '' || password == ''){
 
       $("#text").hide();
-      $("#text").html('<p class = "text-danger"> <strong> Error, Falta un campo por rellenar');
+      $("#text").html('<p class = "text-danger"> <strong> Error, missing a field filled.');
       $("#text").show(1000);
 
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
         if(data.key1 == 'ok'){
 
           $("#text").hide();
-          $("#text").html('<p class = "text-success"> <strong> Usuario creado con exito.');
+          $("#text").html('<p class = "text-success"> <strong> User created successfully.');
           $("#text").show(1000);
 
           setTimeout(function(){window.location = "/user/index";}, 3000);
@@ -41,7 +41,7 @@ $(document).ready(function(){
         if(data.key1 == 'error'){
 
           $("#text").hide();
-          $("#text").html('<p class = "text-danger"> <strong> Error, el nickname ya esta siendo utilizado.');
+          $("#text").html('<p class = "text-danger"> <strong> Error, this nickname already exists.');
           $("#text").show(1000);
 
         }
@@ -81,7 +81,7 @@ $(document).ready(function(){
     if(name == '' || mail == '' || nickname == '' || password == ''){
 
       $("#text").hide();
-      $("#text").html('<p class = "text-danger"> <strong> Error, Falta un campo por rellenar');
+      $("#text").html('<p class = "text-danger"> <strong> Error, missing a field filled.');
       $("#text").show(1000);
 
 
@@ -105,7 +105,7 @@ $(document).ready(function(){
           if(data.key1 == 'ok'){
 
             $("#text").hide();
-            $("#text").html('<p class = "text-success"> <strong> Usuario creado con exito.');
+            $("#text").html('<p class = "text-success"> <strong> User created successfully.');
             $("#text").show(1000);
 
             setTimeout(function(){window.location = "/user/index";}, 3000);
@@ -115,7 +115,7 @@ $(document).ready(function(){
           if(data.key1 == 'error'){
 
             $("#text").hide();
-            $("#text").html('<p class = "text-danger"> <strong> Error, el nickname ya esta siendo utilizado.');
+            $("#text").html('<p class = "text-danger"> <strong> Error, this nickname already exists.');
             $("#text").show(1000);
 
           }

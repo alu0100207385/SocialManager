@@ -242,6 +242,7 @@ DEPENDENCIES
   rack-test
   rake
   rspec
+  rspec-expectations
   rubocop
   selenium-webdriver (= 2.43.0)
   sinatra

@@ -4,36 +4,36 @@
   %h3{:style=>"color:white;"} Perfil #{@user.nickname}
   %ul
     %li Name: #{@user.name}
-    %li Correo: #{@user.mail}
+    %li Email: #{@user.mail}
     - if @asociadas.length != 0
-      %li Redes asociadas: #{@asociadas}
+      %li Linked networks: #{@asociadas}
     - else
-      %li Redes asociadas: ninguna
-  %h3{:style=>"color:white;"} Modificar perfil
+      %li Linked networks: no
+  %h3{:style=>"color:white;"} Modify profile
   %p Aqui el usuario podra cambiar su pass, correo, etc.
   %hr
-  %h3{:style=>"color:white;"} Asociar o desvincular una cuenta
+  %h3{:style=>"color:white;"} Link or unlink an account
   %span
-    - if @G_on != nil
-      %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Desvincular Google+
+    - if @asociadas.include? ("Google")
+      %a.btn.btn-danger{:href=>"/desvincular/google",:role=>"button"} Unlink Google+
     - else
       %a.btn.btn-danger{:href=>"/auth/google_oauth2",:role=>"button"} Sign In Google+
-    - if @T_on != nil
-      %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Desvincular Twitter
+    - if @asociadas.include? ("Twitter")
+      %a.btn.btn-info{:href=>"/desvincular/twitter",:role=>"button"} Unlink Twitter
     - else
       %a.btn.btn-info{:href=>"/auth/twitter",:role=>"button"} Sign In Twitter
-    - if @F_on != nil
-      %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Desvincular Facebook
+    - if @asociadas.include? ("Facebook")
+      %a.btn.btn-facebook{:href=>"/desvincular/facebook",:role=>"button"} Unlink Facebook
     - else
       %a.btn.btn-facebook{:href=>"/auth/facebook",:role=>"button"} Sign In Facebook
-    - if @L_on != nil
-      %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Desvincular Linkedin
+    - if @asociadas.include? ("Linkedin")
+      %a.btn.btn-linkedin{:href=>"/desvincular/linkedin",:role=>"button"} Unlink Linkedin
     - else
       %a.btn.btn-linkedin{:href=>"/auth/facebook",:role=>"button"} Sign In Linkedin
-  %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Desvincular todo
+  %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Unlink all
   %hr
-  %h3{:style=>"color:white;"} Darse de baja
+  %h3{:style=>"color:white;"} Unsubscribe my account
   %p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
-  %a.btn.btn-danger.btn-squaredanger{:href=>"/killuser",:role=>"button"} Eliminar usuario
+  %a.btn.btn-danger.btn-squaredanger{:href=>"/killuser",:role=>"button"} Delete user
   %div{:style=>"text-align:center"}
-    %a.btn.btn-primary{:href=>"/user/index",:role=>"button"} Volver
+    %a.btn.btn-primary{:href=>"/user/index",:role=>"button"} Back

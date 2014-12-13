@@ -1,7 +1,7 @@
 .container-full
   .row
     .col-lg-12.text-center.v-center
-      %h1{:style => "color:white;position:relative; top:-50px;"}  Bienvenido a Social Manager
+      %h1{:style => "color:white;position:relative; top:-50px;"}  Welcome to Social Manager
       .col-md-4
         .row{:style => "padding-top:30px"}
           %p#text
@@ -11,9 +11,8 @@
         .row{:style => "padding-top:20px"}
           %label{:for => "password"} Password:
           %input.form-control#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******",:style => "width:50%; display:inline;"}
-        //%a{:href => "/recuperar", :style => "width:220px;"} <b>No me acuerdo...
         .row.text-center{:style => "padding-top:20px;"}
-        %a.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} ¿Olvidastes tu contraseña?
+        %a.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} Forgot password?
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
@@ -21,11 +20,11 @@
 
       .col-md-4
         .row{:style => "padding-top:60px"}
-          %h4{:style => "color:white;"} Si no tiene cuenta, empiece aqui
-          %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registro
+          %h4{:style => "color:white;"} If you have not account, start here...
+          %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registration
   .row
     .col-lg-12.text-center.v-center
-      %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;position:relative;top:-20px;"} Tu página para gestionar todas tus redes sociales
+      %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;position:relative;top:-20px;"} Your page to manage all your social networks
 
   .row{:style => "padding-bottom:0px;margin-bottom:0px;"}
     .col-lg-12.text-center.v-center{:style => "font-size:39pt;position:relative;top:-50px"}

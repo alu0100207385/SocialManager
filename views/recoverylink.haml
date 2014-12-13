@@ -5,10 +5,10 @@
         %h1 #{@user}
       %form{:action=>"/recovery", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
         .row{:style=>"padding-top:20px;"}
-          %label{:for => "password"}* Introduce tu nueva contraseña:
+          %label{:for => "password"}* Enter your new password
           %input.form-control#password{:name => "password", :type => "text", :required => "required",:placeholder => "yournickname", :style => "width:30%; display:inline;"}
         .row{:style=>"padding-top:20px;"}
-          %button.btn.btn-primary.btn-md.center-block Enviar
+          %button.btn.btn-primary.btn-md.center-block Send
       .row{:style=>"padding-top:20px;"}
-        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:10%;"} Volver
-    
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:10%;"} Back
+ 
