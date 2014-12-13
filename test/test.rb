@@ -27,6 +27,7 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.quit
    end
 
+=begin
    it "##1. I can access index page" do
 	  assert_equal(@site, @browser.current_url)
    end
@@ -70,6 +71,30 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.find_element(:id,"help").click
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"help", @browser.current_url)
+   end
+=end
+   it "##9. I can access Icon Google Plus" do
+	  @browser.find_element(:id,"gplus").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://plus.google.com/106968097086260015454/posts", @browser.current_url)
+   end
+
+   it "##10. I can access Icon Facebook" do
+	  @browser.find_element(:id,"fb").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://www.facebook.com/", @browser.current_url)
+   end
+
+   it "##11. I can access Icon Twitter" do
+	  @browser.find_element(:id,"tw1").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://twitter.com/", @browser.current_url)
+   end
+
+   it "##12. I can access Icon Github" do
+	  @browser.find_element(:id,"gh1").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://github.com/alu0100207385/SocialManager", @browser.current_url)
    end
 
 end
