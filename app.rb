@@ -280,37 +280,47 @@ end
 
 #Enviar un post desde la app a las redes sociales asociadas
 post '/user/index' do
+
+  content_type :json
    config = YAML.load_file 'config/config.yml'
    cad = params[:text]
    user = User.first(:nickname => session[:nickname])
 
-   $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime}
+   publico = params[:publico]
 
-   if ( cad != "")
+   if(publico == 'true') then $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime} end
+
 
 #  Twitter
+    if(params[:twitter] == 'true')
+      puts 'twitter'
 	  if (TwitterData.first(:user =>user) != nil)
+      Thread.new do
 		 t = TwitterData.first(:user =>user)
 		 client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
 		 client.update(cad[0,140])
+      end
 	  end
-
+  end
 # Linkedin
+  if(params[:linkedin] == 'true')
+    puts "linkedin"
 	  if (LinkedinData.first(:user =>user) != nil)
 		 lin = LinkedinData.first(:user =>user)
 		 if !lin.atoken.nil?
+      Thread.new do
 			client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
 			client.authorize_from_access(lin.atoken, lin.asecret)
 			client.add_share(:comment => cad)
+      end
 
 		 end
 	  end
+  end
 
-# Facebook
 
-# Google+
-	  redirect '/user/index'
-   end
+    { :key1 => 'ok' }.to_json
+
 
 end
 
