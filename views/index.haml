@@ -80,8 +80,20 @@
             .col-md-3
               %p= Time.now.asctime
             .col-md-9.message
-              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
+              %p The development team remember you that you must responsibly use the application. Enjoy.
 
     .col-md-6
       #div2
+        .div-custom#Bienvenida
+          .row
+            - @message.each do |src,alt,pic,who,text|
+              - if text != nil
+                .col-md-3
+                  %img{:src => "#{src}", :alt => "#{alt}"}
+                .col-md-9
+                  %p
+                    %img{:src => "#{pic}", :alt => "#{who}", :align=>"left",:style=>"width:40px;height:40px"}
+                    %h3 #{who}
+                    #{text}
+            %hr
 %script{:src => "/js/index.js"}
