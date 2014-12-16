@@ -487,6 +487,25 @@ end
 
 #Editar perfil
 post '/edit_profile' do
+   puts "name --- #{params[:new_name].class}"
+   puts "name --- #{params[:new_email].class}"
+   puts "name --- #{params[:cur_pass].class}"
+   puts "name --- #{params[:new_pass].class}"
+   user = User.first(:nickname => session[:nickname])
+   if params[:new_name]!= ""
+	  user.name = params[:new_name]
+   end
+   if params[:new_email]!= ""
+	  user.mail = params[:new_email]
+   end
+    if ((params[:new_pass]!= "") and (params[:act_pass] == params[:new_pass]))
+	   user.password = params[:new_pass]
+	   @warn = 0
+	else
+	   @warn = 1
+	end
+   user.save
+   redirect '/settings'
 end
 
 
