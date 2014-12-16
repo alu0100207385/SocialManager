@@ -52,7 +52,7 @@ class Post
   property :text, String
   property :date, DateTime
   property :public, Boolean, :default  => true
-
+  property :share, Integer #Numero de veces que un post ha sido compartido
   belongs_to :user
 end
 
