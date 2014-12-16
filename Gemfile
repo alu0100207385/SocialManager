@@ -17,6 +17,8 @@ gem 'bcrypt'
 gem 'rubocop'
 gem 'json'
 gem 'mail'
+gem 'koala'
+#gem 'google-api'
 
 group :development do
   gem 'sinatra-contrib'
