@@ -233,7 +233,7 @@ get '/user/:url' do
 			if (!cuenta.is_a? NilClass)
 			   @T_on = true
 			   client = my_twitter_client(config['tidentifier'], config['tsecret'],cuenta.access_token,cuenta.access_token_secret)
-			   persona = client.user_timeline(client.user.screen_name)
+			   persona = client.user.screen_name
 			   comentario = client.user_timeline(client.user.screen_name).first.text
 			   img = client.user("AaronSocas").profile_image_url
 #  			   @message << ["https://c3.datawrapper.de/T99EM/1/twitter-logo-50px.png","[Tweet]",img,"Aaron",comentario]
