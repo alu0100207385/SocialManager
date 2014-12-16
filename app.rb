@@ -215,7 +215,7 @@ get '/user/:url' do
 		 when "index"
 			@user = session[:nickname]
 			@message = []
-			ruta = "https://github.com/alu0100207385/SocialManager/tree/master/public/img/"
+			ruta = "https://github.com/alu0100207385/SocialManager/blob/master/public/img/"
 			user = User.first(:nickname => @user)
 			cuenta = FacebookData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
@@ -235,7 +235,7 @@ get '/user/:url' do
 			if (!cuenta.is_a? NilClass)
 			   @T_on = true
 			   client = my_twitter_client(config['tidentifier'], config['tsecret'],cuenta.access_token,cuenta.access_token_secret)
-			   persona = client.user_timeline(client.user.screen_name)
+			   persona = client.user.screen_name
 			   comentario = client.user_timeline(client.user.screen_name).first.text
 			   img = client.user("AaronSocas").profile_image_url
 #  			   @message << ["https://c3.datawrapper.de/T99EM/1/twitter-logo-50px.png","[Tweet]",img,"Aaron",comentario]
@@ -484,6 +484,30 @@ get '/event' do
 
 
 
+end
+
+
+#Editar perfil
+post '/edit_profile' do
+   puts "name --- #{params[:new_name].class}"
+   puts "name --- #{params[:new_email].class}"
+   puts "name --- #{params[:cur_pass].class}"
+   puts "name --- #{params[:new_pass].class}"
+   user = User.first(:nickname => session[:nickname])
+   if params[:new_name]!= ""
+	  user.name = params[:new_name]
+   end
+   if params[:new_email]!= ""
+	  user.mail = params[:new_email]
+   end
+    if ((params[:new_pass]!= "") and (params[:act_pass] == params[:new_pass]))
+	   user.password = params[:new_pass]
+	   @warn = 0
+	else
+	   @warn = 1
+	end
+   user.save
+   redirect '/settings'
 end
 
 

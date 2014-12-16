@@ -9,8 +9,29 @@
       %li Linked networks: #{@asociadas}
     - else
       %li Linked networks: no
-  %h3{:style=>"color:white;"} Modify profile
-  %p Aqui el usuario podra cambiar su pass, correo, etc.
+  %h3{:style=>"color:white;"} Modify your profile
+  %p Fill only the fields you want to modify:
+  %form{:action=>"/edit_profile",:method=>"POST",:name=>"input",:role=>"form"}
+    .row
+      .col-md-6.text-center
+        %label{:for => "new_name"} Write the new name: 
+        %input.form-control#new_name{:name => "new_name", :type => "text",:style =>"color:black",:placeholder => "your new name",:style => "width:50%; display:inline;"}
+    .row{:style => "padding-top:10px;"}
+      .col-md-6.text-center
+        %label{:for => "new_email"} Write the new email: 
+        %input.form-control#new_email{:name => "new_email", :type => "email",:style =>"color:black",:placeholder => "your new email",:style => "width:50%; display:inline;"}
+    .row{:style => "padding-top:10px;"}
+      .col-md-6.text-center
+        %label{:for => "cur_pass"} Write current password: 
+        %input.form-control#act_pass{:name => "cur_pass", :type => "text",:style =>"color:black",:placeholder => "current password",:style => "width:50%; display:inline;"}
+      .col-md-6.text-center
+        %label{:for => "new_pass"} Write the new password: 
+        %input.form-control#new_pass{:name => "new_pass", :type => "text",:style =>"color:black",:placeholder => "new password",:style => "width:50%; display:inline;"}
+      .row
+        -if @warn == 1
+          %p Passwords do not match
+    .row{:style => "padding-top:20px;"}
+      %button.btn.btn-primary.btn-md.center-block#cambiar{:href => "/edit_profile"} Change
   %hr
   %h3{:style=>"color:white;"} Link or unlink an account
   %span

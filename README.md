@@ -27,9 +27,13 @@ Para ejecutar `$ rake local_tests` o arranque el servidor y ejecute `$ rake test
 
 ##Coveralls
 
-IMG
-$Comando
-
+[![Coverage Status](https://coveralls.io/repos/alu0100207385/SocialManager/badge.png?branch=testing)](https://coveralls.io/r/alu0100207385/SocialManager?branch=testing)
+```
+Para ejecutar tiene varias opciones:
+$ rake coveralls (pruebas spec + tests)
+$ coveralls report (pruebas spec + tests)
+$ rake rspec (pruebas spec)
+```
 
 ##Instalación
 
