@@ -12,6 +12,8 @@ require 'omniauth-facebook'
 require 'linkedin'
 require 'json'
 require_relative 'helper/helpers.rb'
+require 'koala'
+#require 'google/api'
 
 helpers AppHelpers
 
