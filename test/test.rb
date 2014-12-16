@@ -71,11 +71,17 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"help", @browser.current_url)
    end
-
+   
    it "##9. I can access Icon Google Plus" do
 	  @browser.find_element(:id,"gplus").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal("https://plus.google.com/106968097086260015454/posts", @browser.current_url)
+	  element = @browser.find_element(:id,"link-signup").text
+	  if(element.include?("Crear una cuenta")==true) or (element.include?("Create an account") ==true)
+	  	 control= true
+	  else
+	  	control = false
+	  end
+	  assert_equal(true,control)
    end
 
    it "##10. I can access Icon Facebook" do
@@ -95,5 +101,4 @@ describe "Test Chat App: Comprobacion de paginas y enlaces" do
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal("https://github.com/alu0100207385/SocialManager", @browser.current_url)
    end
-
 end
