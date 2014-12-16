@@ -213,7 +213,7 @@ get '/user/:url' do
 		 when "index"
 			@user = session[:nickname]
 			@message = []
-			ruta = "https://github.com/alu0100207385/SocialManager/tree/master/public/img/"
+			ruta = "https://github.com/alu0100207385/SocialManager/blob/master/public/img/"
 			user = User.first(:nickname => @user)
 			cuenta = FacebookData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
