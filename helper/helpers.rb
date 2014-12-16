@@ -89,13 +89,13 @@ module AppHelpers
        from 'social.manager.info@gmail.com'
        subject "Consulta: #{name}!"
        body %Q|
-                Email: #{name}
-		Usuario: #{mail}
+                Usuario: #{name}
+		Email: #{mail}
 		
 		Consulta:
 		#{text}
 
-                Paciencia. |
+         Paciencia. |
      end 
    end
    

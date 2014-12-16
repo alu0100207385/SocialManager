@@ -522,9 +522,9 @@ get '/support' do
 end
 
 post '/support' do
-  puts "---------------#{session[:name]}"
+  puts "---------------#{params[:name]}"
   Thread.new do
-    trashmail(session[:name],session[:mail],session[:text])
+    trashmail(params[:name],params[:mail],params[:text])
   end
   
   redirect '/'
