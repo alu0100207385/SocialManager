@@ -78,8 +78,19 @@ describe "Test Chat App: Check pages and links" do
 	  assert_equal(@site+"recuperar", @browser.current_url)
    end
    
-#    it "##10. I can access Registration page" do
-#    it "##11. I can access Registration page and come back" do
+   it "##10. I can access Registration page" do
+	  @browser.find_element(:id,"reg").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal(@site+"recuperar", @browser.current_url)
+   end
+   
+   it "##11. I can access Registration page and come back" do
+	  @browser.find_element(:id,"reg").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  @browser.find_element(:id,"return").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal(@site, @browser.current_url)
+   end
    
 end
 
@@ -128,6 +139,6 @@ end
 end
 
 # describe "Test Chat App: User's actions" do
-#    Postear, entrar a opciones, leer
+#    Postear, entrar a opciones, leer, eliminar, sincronizar
 # end
 =end   
