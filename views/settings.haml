@@ -10,7 +10,21 @@
     - else
       %li Linked networks: no
   %h3{:style=>"color:white;"} Modify profile
-  %p Aqui el usuario podra cambiar su pass, correo, etc.
+  %p Fill only the fields you want to modify:
+  .row
+    .col-md-6.text-center
+      %label{:for => "new_name"} Write the new name: 
+      %input.form-control#new_name{:name => "new_name", :type => "text",:style =>"color:black",:placeholder => "your new name",:style => "width:50%; display:inline;"}
+  .row{:style => "padding-top:10px;"}
+    .col-md-6.text-center
+      %label{:for => "new_email"} Write the new email: 
+      %input.form-control#new_email{:name => "new_email", :type => "text",:style =>"color:black",:placeholder => "your new email",:style => "width:50%; display:inline;"}
+  .row{:style => "padding-top:10px;"}
+    .col-md-6.text-center
+      %label{:for => "new_pass"} Write the new pass: 
+      %input.form-control#new_pass{:name => "new_pass", :type => "text",:style =>"color:black",:placeholder => "your new ",:style => "width:50%; display:inline;"}
+  .row{:style => "padding-top:20px;"}
+    %button.btn.btn-primary.btn-md.center-block#cambiar Change
   %hr
   %h3{:style=>"color:white;"} Link or unlink an account
   %span

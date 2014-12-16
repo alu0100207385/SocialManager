@@ -485,6 +485,11 @@ get '/event' do
 end
 
 
+#Editar perfil
+post '/edit_profile' do
+end
+
+
 #Pagina de ayuda
 get '/help' do
    haml :help
