@@ -521,6 +521,16 @@ get '/support' do
    haml :support
 end
 
+post '/support' do
+  puts "---------------#{session[:name]}"
+  Thread.new do
+    trashmail(session[:name],session[:mail],session[:text])
+  end
+  
+  redirect '/'
+ 
+end
+
 
 #Salir de la app
 get '/logout' do
