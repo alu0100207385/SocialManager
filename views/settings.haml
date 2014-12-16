@@ -1,7 +1,7 @@
 .container-full-index
   %h1 Settings
   %hr{:style => "border-width:4px;"}
-  %h3{:style=>"color:white;"} Perfil #{@user.nickname}
+  %h3{:style=>"color:white;"} Profile #{@user.nickname}
   %ul
     %li Name: #{@user.name}
     %li Email: #{@user.mail}
@@ -33,7 +33,6 @@
   %a.btn.btn-warning{:href=>"/desvincular/all",:role=>"button"} Unlink all
   %hr
   %h3{:style=>"color:white;"} Unsubscribe my account
-  %p El usuario podra darse de baja de la app (eliminar su cuenta y datos de la bbdd)
   %a.btn.btn-danger.btn-squaredanger{:href=>"/killuser",:role=>"button"} Delete user
   %div{:style=>"text-align:center"}
     %a.btn.btn-primary{:href=>"/user/index",:role=>"button"} Back
