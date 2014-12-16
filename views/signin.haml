@@ -12,7 +12,7 @@
           %label{:for => "password"} Password:
           %input.form-control#password{:name => "password", :type => "password",:style =>"color:black",:placeholder => "******",:style => "width:50%; display:inline;"}
         .row.text-center{:style => "padding-top:20px;"}
-        %a.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} Forgot password?
+        %a#recovery.btn.btn-primary.btn-md.center-block{:style=>"width:60%; height:50%;",:href=>"/recuperar"} Forgot password?
         .row.text-center{:style => "padding-top:20px;"}
           %button.btn.btn-primary.btn-md.center-block#login Login
       .col-md-4
@@ -20,8 +20,8 @@
 
       .col-md-4
         .row{:style => "padding-top:60px"}
-          %h4{:style => "color:white;"} If you don't have an account, start here...
-          %a.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registration
+          %h4{:style => "color:white;"} If you have not account, start here...
+          %a#reg.btn.btn-primary.btn-md.center-block{:href=>"/signup",:role=>"button",:style=>"width:226px"} Registration
   .row
     .col-lg-12.text-center.v-center
       %h2{:style => "color:white;font-family: 'Merienda One', Helvetica, sans-serif;font-size:15pt;position:relative;top:-20px;"} Your page to manage all your social networks
