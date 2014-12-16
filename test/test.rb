@@ -81,7 +81,7 @@ describe "Test Chat App: Check pages and links" do
    it "##10. I can access Registration page" do
 	  @browser.find_element(:id,"reg").click
 	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal(@site+"recuperar", @browser.current_url)
+	  assert_equal(@site+"signup", @browser.current_url)
    end
    
    it "##11. I can access Registration page and come back" do
