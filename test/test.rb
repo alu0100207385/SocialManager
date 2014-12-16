@@ -107,11 +107,14 @@ describe "Test Chat App: Sign in page: Log&Reg" do
    end
 
    it "##2. Registation Fail" do
+	  @browser.find_element(:id,"reg").click
+	  @browser.manage.timeouts.implicit_wait = 5
 	  @browser.find_element(:id,"Registrarse").click
 	  @browser.manage.timeouts.implicit_wait = 5
 	  element = @browser.find_element(:id,"text").text
 	  assert_equal("Error, missing a field filled.",element)
    end
+end
 =begin
    it "##3. Registation Ok" do
    end
@@ -121,9 +124,10 @@ describe "Test Chat App: Sign in page: Log&Reg" do
    
    it "##5. Log in Ok" do
    end
-=end
+
 end
 
 # describe "Test Chat App: User's actions" do
 #    Postear, entrar a opciones, leer
 # end
+=end   
