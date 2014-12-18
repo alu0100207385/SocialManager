@@ -11,7 +11,7 @@ include Rack::Test::Methods
 def app
    Sinatra::Application
 end
-=begin
+
 describe "Test Chat App: Check pages and links" do
    
    before :all do
@@ -124,6 +124,7 @@ describe "Test Chat App: Check pages and links" do
 end
 =end
 
+
 describe "Test Chat App: Sign in page: Log&Reg" do
    
    before :all do
@@ -167,25 +168,63 @@ describe "Test Chat App: Sign in page: Log&Reg" do
       @browser.find_element(:id,"password").send_keys("12345")
       @browser.find_element(:id,"Registrarse").click
       @browser.manage.timeouts.implicit_wait = 5
-      #element = @browser.find_element(:id,"text").text
-	  #assert_equal("User created successfully.",element)   
+      element = @browser.find_element(:id,"text").text
+	  assert_equal("User created successfully.",element)   
    end
 
    it "##4. Log in Ok" do
  	  @browser.find_element(:id,"nickname").send_keys("usuario")
 	  @browser.find_element(:id,"password").send_keys("12345")
 	  @browser.find_element(:id,"login").click
+	  @browser.manage.timeouts.implicit_wait = 8
+	  assert_equal(@site+"user/index",@browser.current_url)
  	end
 
    it "##5. Log out" do
-       @browser.find_element(:id,"nickname").send_keys("usuario")
-	   @browser.find_element(:id,"password").send_keys("12345")
-	   @browser.find_element(:id,"login").click
-       @browser.find_element(:id,"logout").click
-       @browser.manage.timeouts.implicit_wait = 5
+      @browser.find_element(:id,"nickname").send_keys("usuario")
+	  @browser.find_element(:id,"password").send_keys("12345")
+	  @browser.find_element(:id,"login").click
+	  @browser.manage.timeouts.implicit_wait = 3
+      @browser.find_element(:id,"logout").click
+      @browser.manage.timeouts.implicit_wait = 3
+      assert_equal(@site,@browser.current_url)
    end
-end
+
+   it "##5. Log in + borrar" do
+      @browser.find_element(:id,"nickname").send_keys("usuario")
+	  @browser.find_element(:id,"password").send_keys("12345")
+	  @browser.find_element(:id,"login").click
+	  @browser.manage.timeouts.implicit_wait = 3
+      @browser.find_element(:id,"logout").click
+      @browser.manage.timeouts.implicit_wait = 3
+      assert_equal(@site,@browser.current_url)
+   end
+
+end 
+    #Postear, entrar a opciones, leer, eliminar, sincronizar 
+    describe "Test Chat App: User's actions" do 
+
+      before :all do
+	  @browser = Selenium::WebDriver.for :firefox
+	  @site = 'http://localhost:9292/'
+	  @browser.get(@site)
+	  @browser.manage().window().maximize()
+	  @browser.manage.timeouts.implicit_wait = 5
+   end
    
-# describe "Test Chat App: User's actions" do
-#    Postear, entrar a opciones, leer, eliminar, sincronizar
-# end   
+   after :all do
+	  @browser.quit
+   end
+
+    it "##1.Entrar al perfil" do
+      @browser.find_element(:id,"nickname").send_keys("usuario")
+	  @browser.find_element(:id,"password").send_keys("12345")
+	  @browser.find_element(:id,"login").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  @browser.find_element(:id,"settings").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal(@site+"settings",@browser.current_url)
+	end
+
+	
+end
