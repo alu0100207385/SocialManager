@@ -489,6 +489,9 @@ end
 
 #Editar perfil
 post '/edit_profile' do
+
+  content_type :json
+
    puts "name --- #{params[:new_name].class}"
    puts "name --- #{params[:new_email].class}"
    puts "name --- #{params[:cur_pass].class}"
@@ -507,7 +510,9 @@ post '/edit_profile' do
 	   @warn = 1
 	end
    user.save
-   redirect '/settings'
+   { :key1 => 'ok' }.to_json
+
+
 end
 
 
