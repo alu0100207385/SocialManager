@@ -533,7 +533,7 @@ get '/posts' do
     comentario = client.user_timeline(client.user.screen_name).first.text
     img = client.user(user.nickname).profile_image_url
 
-  x =   { :img => img ,:imgred => '/img/twitter_icon.png', :persona => persona , :comentario => comentario }.to_json
+  x =   { :img => img ,:imgred => 'http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/twitter_icon_zpsafcd97b7.png', :persona => persona , :comentario => comentario }.to_json
   end
 
   end
@@ -554,7 +554,7 @@ get '/posts' do
           persona << " "+l.all[n].update_comments.all[0].person.last_name
           img =  l.all[n].update_comments.all[0].person.picture_url
           n = total
-          x =   { :img => img ,:imgred => '/img/linkedin_icon.png', :persona => persona , :comentario => comentario }.to_json
+          x =   { :img => img ,:imgred => 'http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/linkedin_icon_zps2690a64f.png', :persona => persona , :comentario => comentario }.to_json
 
         end
       end

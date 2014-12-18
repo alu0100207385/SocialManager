@@ -125,7 +125,7 @@ $(document).ready(function(){
         <img src = '"+ data.img +"' width = '100px' height = '90px'> \
         </div>\
         <div class = 'col-md-1'>\
-        <img src = '"+ data.imgred +"' width = '20px' height = '20px'> \
+        <img src = '"+ data.imgred +"' width = '20px' height = '20px' style = 'position:relative; top:13px;'> \
         </div>\
         <div class = 'col-md-8'>\
         <h3>" + data.persona + "</h3>\
