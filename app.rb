@@ -220,14 +220,12 @@ get '/user/:url' do
 			cuenta = FacebookData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
 			   @F_on = true
-# 			   @message << [ruta+"facebook_icon.png","[Facebook]",img,persona,comentario]
 			else
 			   @F_on = false
 			end
 			cuenta = GoogleData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
 			   @G_on = true
-# 			   @message << [ruta+"google_icon.png","[Google+]",img,persona,comentario]
 			else
 			   @G_on = false
 			end

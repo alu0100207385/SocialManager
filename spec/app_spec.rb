@@ -95,45 +95,29 @@ describe "Test App: Get Methods" do
 	  assert_equal(Mail::Message,sendpasschange("usu0100@gmail.com","usuario","de prueba","1234").class)
    end
    
+   it "Check trashmail" do
+	  assert_equal(Mail::Message,trashmail("usuario","usu0100@gmail.com","pruebas").class)
+   end
+   
    it "Check create link" do
 	  link = createlink
 	  assert_equal(String,link.class)
    end
+
+   it "Check post from signup" do
+	  post '/signup', :nickname => "nuevo", :password => "1234"
+	  expect(last_response).to be_ok
+   end
    
    it "Check login fail" do
 	  post '/login'
-	  expect(last_response.body).to eq("{\"key1\":\"error1\"}")
+	  expect(last_response).to be_ok
    end
    
-#    it "Check linkedin access" do
-# 	  get '/linkedin'
-# 	  expect(last_response.body).to eq("Not an ajax request")
+#       it "Podemos enviar: post" do
+# 	  post '/login' , :nick => "Usuario"
 # 	  expect(last_response).to be_ok
 #    end
+# 	  expect(last_response.body).to eq("{\"key1\":\"error1\"}")
+# 	  expect(last_response.body).to eq("Not an ajax request")
 end
-
-=begin
-describe "Test Chat App: Check pages and links" do
-   
-   before :all do
-	  @browser = Selenium::WebDriver.for :firefox
-	  @site = 'http://localhost:9292/'
-	  @browser.get(@site)
-	  @browser.manage().window().maximize()
-	  @browser.manage.timeouts.implicit_wait = 5
-   end
-
-   after :all do
-	  @browser.quit
-   end
-
-   it "##1. I can access index page" do
-	  expect(@site).to eq(@browser.current_url)
-   end
-
-   it "##2. I can see index page" do
-	  element = @browser.find_element(:tag_name,"h1").text
-	  expect("Welcome to Social Manager").to eq(element)
-   end
-end
-=end

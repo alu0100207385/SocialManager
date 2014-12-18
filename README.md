@@ -12,6 +12,10 @@
 SocialManager es una aplicación web para gestionar redes sociales. A través de ésta se podrá postear 
 directamente a las redes sociales asociadas a la aplicación.
 
+##Versión
+
+Actualmente se encuentra en desarrollo. Se presenta la versión beta.
+
 
 ##Aplicación en Heroku
 
@@ -37,6 +41,7 @@ $ rake rspec (pruebas spec)
 
 ##Instalación
 
+Ejecute `$bundle install`. Luego una de las opciones de rake. También puede acceder directamente a la aplicación en heroku.
 
 
 ##Ejecución

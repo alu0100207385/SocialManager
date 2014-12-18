@@ -90,6 +90,7 @@ module AppHelpers
        to 'social.manager.info@gmail.com'
        from 'social.manager.info@gmail.com'
        subject "Consulta: #{name}!"
+	   content_type 'text/html; charset=UTF-8'
        body %Q|
                 Usuario: #{name}
 		Email: #{mail}
@@ -98,6 +99,7 @@ module AppHelpers
 		#{text}
 
          Paciencia. |
+		 charset="UTF-8"
      end 
    end
    
