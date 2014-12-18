@@ -188,6 +188,7 @@ get '/auth/:name/callback' do
 	  goo = GoogleData.new(:user => user)
 	  goo.token = auth.credentials.token
 	  goo.id_token = auth.extra.id_token
+	  goo.gid=auth.uid
 	  goo.save
 	  redirect '/user/index'
 
@@ -273,11 +274,18 @@ get '/user/:url' do
 			end
 			cuenta = GoogleData.first(:user => user)
 			if (!cuenta.is_a? NilClass) and (!cuenta.token.is_a? NilClass)
-			  person = GooglePlus::Person.get(112742581738459754147, :access_token => cuenta.token)
+			  GooglePlus.api_key=config['gidentifier']
+			  person = GooglePlus::Person.get(cuenta.gid, :access_token => cuenta.token)
 			  puts "----------------------------------#{person.display_name}"
 			  
-			  cursor = person.list_activities(:max_results => 3)
-			 #puts "--------------------------#{cursor.items[1]}"
+			  activities = person.list_activities.items
+			  puts activities.class
+			  #cursor.each do |item|
+			   #   puts item
+			  #end
+			  
+			 #puts "--------------------------#{cursor.items[0]}"
+			  
 			 
 			end
 			

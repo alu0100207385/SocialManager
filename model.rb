@@ -30,6 +30,7 @@ class GoogleData
   property  :id, Serial
   property  :token, String, :length => 128
   property  :id_token, String, :length => 1024
+  property  :gid,String, :length => 512
 
   belongs_to  :user
 end
