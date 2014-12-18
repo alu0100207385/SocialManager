@@ -113,10 +113,29 @@ $(document).ready(function(){
 
   function posts(){
 
+    $.ajax({
 
-      //$('#div2').append('hola');
+      url:'/posts',
+      type: 'get',
+      dataType: 'json',
+      data: data,
+
+      success: function(data){
+
+        if(data.key1 == 'ok'){
+
+          $("#infotext").hide();
+          $("#infotext").html('<p class = "text-success"> <strong> Account Modified.');
+          $("#infotext").show(1000);
+
+          setTimeout(function(){$("#infotext").hide(1000)}, 3000);
 
 
+        }
+
+      }
+
+    });
 
   }
 
