@@ -158,6 +158,7 @@ get "/linkedin" do
    redirect client.request_token.authorize_url
 end
 
+
 get '/auth/:name/callback' do
    config = YAML.load_file 'config/config.yml'
    auth = request.env['omniauth.auth']
@@ -207,31 +208,60 @@ end
 #Pagina principal del usuario
 get '/user/:url' do
    if (session[:nickname] != nil)
+	  config = YAML.load_file 'config/config.yml'
 	  case(params[:url])
 		 when "index"
 			@user = session[:nickname]
+			@message = []
+			ruta = "https://github.com/alu0100207385/SocialManager/tree/master/public/img/"
 			user = User.first(:nickname => @user)
 			cuenta = FacebookData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
 			   @F_on = true
+# 			   @message << [ruta+"facebook_icon.png","[Facebook]",img,persona,comentario]
 			else
 			   @F_on = false
 			end
 			cuenta = GoogleData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
 			   @G_on = true
+# 			   @message << [ruta+"google_icon.png","[Google+]",img,persona,comentario]
 			else
 			   @G_on = false
 			end
 			cuenta = TwitterData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
 			   @T_on = true
+			   client = my_twitter_client(config['tidentifier'], config['tsecret'],cuenta.access_token,cuenta.access_token_secret)
+			   persona = client.user_timeline(client.user.screen_name)
+			   comentario = client.user_timeline(client.user.screen_name).first.text
+			   img = client.user("AaronSocas").profile_image_url
+#  			   @message << ["https://c3.datawrapper.de/T99EM/1/twitter-logo-50px.png","[Tweet]",img,"Aaron",comentario]
+			   @message << [ruta+"twitter_icon.png","[Twitter]",img,persona,comentario]
 			else
 			   @T_on = false
 			end
 			cuenta = LinkedinData.first(:user => user)
 			if (!cuenta.is_a? NilClass) and (!cuenta.atoken.is_a? NilClass)
-			   @L_on = true 
+			   @L_on = true
+			   client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
+			   client.authorize_from_access(cuenta.atoken, cuenta.asecret)
+			   l = client.network_updates
+			   total = l.all.size
+			   for n in 0...total
+				  if l.all[n].is_commentable?
+					 if l.all[n].update_comments.total > 0
+						comentario = l.all[n].update_comments.all[0].comment
+						persona = l.all[n].update_comments.all[0].person.first_name
+						persona << " "+l.all[n].update_comments.all[0].person.last_name
+						img =  l.all[n].update_comments.all[0].person.picture_url
+						n = total
+					 end
+				  end
+			   end
+			   comentario = nil if self.is_a? NilClass
+# 			   @message << ["https://pbs.twimg.com/profile_images/2945466711/12e018532d913494d841f79da5dd70bf_normal.png","[linkedin]",img,persona,comentario]
+			   @message << [ruta+"linkedin_icon.png","[Linkedin]",img,persona,comentario]
 			else
 			   @L_on = false #No esta logueado o cancelo el proceso de vinculacion
 			   if (!cuenta.is_a? NilClass)
@@ -250,37 +280,47 @@ end
 
 #Enviar un post desde la app a las redes sociales asociadas
 post '/user/index' do
+
+  content_type :json
    config = YAML.load_file 'config/config.yml'
    cad = params[:text]
    user = User.first(:nickname => session[:nickname])
 
-   $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime}
+   publico = params[:publico]
 
-   if ( cad != "")
+   if(publico == 'true') then $message = {:name => session[:nickname], :message => cad , :time => Time.now.asctime} end
+
 
 #  Twitter
+    if(params[:twitter] == 'true')
+      puts 'twitter'
 	  if (TwitterData.first(:user =>user) != nil)
+      Thread.new do
 		 t = TwitterData.first(:user =>user)
 		 client = my_twitter_client(config['tidentifier'], config['tsecret'],t.access_token,t.access_token_secret)
 		 client.update(cad[0,140])
+      end
 	  end
-
+  end
 # Linkedin
+  if(params[:linkedin] == 'true')
+    puts "linkedin"
 	  if (LinkedinData.first(:user =>user) != nil)
 		 lin = LinkedinData.first(:user =>user)
 		 if !lin.atoken.nil?
+      Thread.new do
 			client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
 			client.authorize_from_access(lin.atoken, lin.asecret)
 			client.add_share(:comment => cad)
+      end
 
 		 end
 	  end
+  end
 
-# Facebook
 
-# Google+
-	  redirect '/user/index'
-   end
+    { :key1 => 'ok' }.to_json
+
 
 end
 

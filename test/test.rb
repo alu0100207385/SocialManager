@@ -12,7 +12,6 @@ def app
    Sinatra::Application
 end
 
-
 describe "Test Chat App: Check pages and links" do
    
    before :all do
@@ -30,7 +29,7 @@ describe "Test Chat App: Check pages and links" do
    it "##1. I can access index page" do
 	  assert_equal(@site, @browser.current_url)
    end
-=begin
+
    it "##2. I can see index page" do
 	  element = @browser.find_element(:tag_name,"h1").text
 	  assert_equal("Welcome to Social Manager", element)
@@ -71,20 +70,50 @@ describe "Test Chat App: Check pages and links" do
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"help", @browser.current_url)
    end
-   
-   it "##9. I can access Recovery page" do
+
+   it "##9. I can access Icon Google Plus" do
+	  @browser.find_element(:id,"gplus").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  element = @browser.find_element(:id,"link-signup").text
+	  if(element.include?("Crear una cuenta")==true) or (element.include?("Create an account") ==true)
+	  	 control= true
+	  else
+	  	control = false
+	  end
+	  assert_equal(true,control)
+   end
+
+   it "##10. I can access Icon Facebook" do
+	  @browser.find_element(:id,"fb").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://www.facebook.com/", @browser.current_url)
+   end
+
+   it "##11. I can access Icon Twitter" do
+	  @browser.find_element(:id,"tw1").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://twitter.com/", @browser.current_url)
+   end
+
+   it "##12. I can access Icon Github" do
+	  @browser.find_element(:id,"gh1").click
+	  @browser.manage.timeouts.implicit_wait = 3
+	  assert_equal("https://github.com/alu0100207385/SocialManager", @browser.current_url)
+   end
+
+   it "##13. I can access Recovery page" do
 	  @browser.find_element(:id,"recovery").click
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"recuperar", @browser.current_url)
    end
    
-   it "##10. I can access Registration page" do
+   it "##14. I can access Registration page" do
 	  @browser.find_element(:id,"reg").click
 	  @browser.manage.timeouts.implicit_wait = 3
 	  assert_equal(@site+"signup", @browser.current_url)
    end
    
-   it "##11. I can access Registration page and come back" do
+   it "##15. I can access Registration page and come back" do
 	  @browser.find_element(:id,"reg").click
 	  @browser.manage.timeouts.implicit_wait = 3
 	  @browser.find_element(:id,"return").click
@@ -93,6 +122,7 @@ describe "Test Chat App: Check pages and links" do
    end
    
 end
+
 
 describe "Test Chat App: Sign in page: Log&Reg" do
    
@@ -103,18 +133,19 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.manage().window().maximize()
 	  @browser.manage.timeouts.implicit_wait = 5
    end
-
+   
    after :all do
 	  @browser.quit
    end
-   
+ 
    it "##1. User not exist" do
 	  @browser.find_element(:id,"nickname").send_keys("someone")
 	  @browser.find_element(:id,"password").send_keys("1234")
 	  @browser.find_element(:id,"login").click
 	  @browser.manage.timeouts.implicit_wait = 5
-	  element = @browser.find_element(:id,"text").text
-	  assert_equal("The user does not exist in the database.",element)
+	  element = @browser.find_element(:id,"text").displayed?
+	  #assert_equal("The user does not exist in the database.",element)
+	  assert_equal(true,element)
    end
 
    it "##2. Registation Fail" do
@@ -122,24 +153,40 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.manage.timeouts.implicit_wait = 5
 	  @browser.find_element(:id,"Registrarse").click
 	  @browser.manage.timeouts.implicit_wait = 5
-	  element = @browser.find_element(:id,"text").text
-	  assert_equal("Error, missing a field filled.",element)
+	  element = @browser.find_element(:id,"text").displayed?
+	  #assert_equal("Error, missing a field filled.",element.text)
+	  assert_equal(true,element)
    end
-end
-=begin
+
    it "##3. Registation Ok" do
-   end
-   
-   it "##4. Log out" do
-   end
-   
-   it "##5. Log in Ok" do
+      @browser.find_element(:id,"reg").click
+      @browser.find_element(:id,"name").send_keys("Pepe")
+      @browser.find_element(:id,"nickname").send_keys("usuario")
+      @browser.find_element(:id,"mail").send_keys("pepe@mail.com")
+      @browser.find_element(:id,"password").send_keys("12345")
+      @browser.find_element(:id,"Registrarse").click
+      @browser.manage.timeouts.implicit_wait = 5
+      element = @browser.find_element(:id,"text").text
+	  assert_equal("User created successfully.",element)   
    end
 
+   it "##4. Log in Ok" do
+ 	  @browser.find_element(:id,"nickname").send_keys("usuario")
+	  @browser.find_element(:id,"password").send_keys("12345")
+	  @browser.find_element(:id,"login").click
+	  @browser.manage.timeouts.implicit_wait = 5
+	  assert_equal(@site+"user/index", @browser.current_url)
+ 	end
+
+   it "##5. Log out" do
+       @browser.find_element(:id,"nickname").send_keys("usuario")
+	   @browser.find_element(:id,"password").send_keys("12345")
+	   @browser.find_element(:id,"login").click
+       @browser.find_element(:id,"logout").click
+       @browser.manage.timeouts.implicit_wait = 5
+   end
 end
-
+   
 # describe "Test Chat App: User's actions" do
 #    Postear, entrar a opciones, leer, eliminar, sincronizar
-# end
-=end
-end
+

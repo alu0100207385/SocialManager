@@ -7,46 +7,56 @@
         .col-md-9
           %h1 Welcome #{@user}
     .col-md-6{:style => "padding-right:20px;padding-top:20px;"}
-      %a.btn.btn-settings.pull-right{:href=>"/settings",:role=>"button"} Settings
-      %a.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
+      %a#settings.btn.btn-settings.pull-right{:href=>"/settings",:role=>"button"} Settings
+      %a#logout.btn.btn-danger.pull-right{:href=>"/logout",:role=>"button"} Sign Out
   %hr{:style => "border-width:4px; border-color:white;"}
   .row#enter
     .col-md-3
     .col-md-6
-      %form{:action=>"/user/index", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center"}
+      %p#infotext
         .row
           %textarea#text.input-custom{:autofocus => "autofocus",:placeholder => "Write your message", :type => "text", :name=>"text",:style=>"color:black;margin:0px;line-height:1em;resize:none;"}
-        .row{:style => "padding-top:20px;padding-bottom:20px;"}
+        .row.text-center{:style => "padding-top:20px;padding-bottom:20px;"}
           %button#bsend.btn.btn-success{:type=>"submit"} Send
+          %input#public{:name => "public", :type => "checkbox", :value => "public"}
+          Public
+
     .col-md-3
   %form{:style=>"text-align:center"}
     %span
+
       - if @G_on != false
-        %input{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
+        %input#google{:name => "networkG", :type => "checkbox", :value => "google", :checked => ""}
+
           Google+
       - else
-        %input{:name => "networkG", :type => "checkbox", :value => "google"}
+        %input#google{:name => "networkG", :type => "checkbox", :value => "google"}
           Google+
+
       - if @T_on != false
-        %input{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
+        %input#twitter{:name => "networkT", :type => "checkbox", :value => "twitter", :checked => ""}
+
           Twitter
       - else
-        %input{:name => "networkT", :type => "checkbox", :value => "twitter"}
+        %input#twitter{:name => "networkT", :type => "checkbox", :value => "twitter"}
           Twitter
+
       - if @F_on != false
-        %input{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
+        %input#facebook{:name => "networkF", :type => "checkbox", :value => "facebook", :checked => ""}
+
           Facebook
       - else
-        %input{:name => "networkF", :type => "checkbox", :value => "facebook"}
+        %input#facebook{:name => "networkF", :type => "checkbox", :value => "facebook"}
           Facebook
+
       - if @L_on != false
-        %input{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
+        %input#linkedin{:name => "networkL", :type => "checkbox", :value => "linkedin", :checked => ""}
+
           Linkedin
       - else
-        %input{:name => "networkL", :type => "checkbox", :value => "linkedin"}
+        %input#linkedin{:name => "networkL", :type => "checkbox", :value => "linkedin"}
           Linkedin
   %div{:style=>"text-align:center"}
-    %h4 Link or unlink an account
     %h4{:style=>"color:white;"} Link or unlink an account
     %span
       - if @G_on != false
@@ -80,8 +90,19 @@
             .col-md-3
               %p= Time.now.asctime
             .col-md-9.message
-              %p El equipo de desarrollo recuerda hacer un uso responsable de la aplicación. Disfruten de su estancia.
-
+              %p The development team reminds make responsible use of the Application. Enjoy your stay.
     .col-md-6
       #div2
+        .div-custom#Bienvenida
+          .row
+            - @message.each do |src,alt,pic,who,text|
+              - if text != nil
+                .col-md-3
+                  %img{:src => "#{src}", :alt => "#{alt}"}
+                .col-md-9
+                  %p
+                    %img{:src => "#{pic}", :alt => "#{who}", :align=>"left",:style=>"width:40px;height:40px"}
+                    %h3 #{who}
+                    #{text}
+            %hr
 %script{:src => "/js/index.js"}
