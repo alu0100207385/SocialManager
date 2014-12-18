@@ -30,6 +30,7 @@ class GoogleData
   property  :id, Serial
   property  :token, String, :length => 128
   property  :id_token, String, :length => 1024
+  property  :gid,String, :length => 512
 
   belongs_to  :user
 end
@@ -52,7 +53,7 @@ class Post
   property :text, String
   property :date, DateTime
   property :public, Boolean, :default  => true
-
+  property :share, Integer #Numero de veces que un post ha sido compartido
   belongs_to :user
 end
 

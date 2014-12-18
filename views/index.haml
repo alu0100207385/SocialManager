@@ -86,26 +86,11 @@
               %img{:src => "http://i1377.photobucket.com/albums/ah55/Jazer_Abreu/socialmanagerlogo_zps08a79177.png", :width => "100px", :height => "90px"}
             .col-md-9
               %h3 Social Manager
-              %button#bshare.btn.btn-group{:style => "float:right"} share
           .row
             .col-md-3
               %p= Time.now.asctime
             .col-md-9.message
-              %p The development team reminds make responsible use of the Application. Enjoy your stay.
+              %p#tn The development team reminds make responsible use of the Application. Enjoy your stay.
     .col-md-6
       #div2
-        .div-custom#Bienvenida
-          - @message.each do |src,alt,pic,who,text|
-            - if text != nil
-              .row
-                .col-md-3
-                  %img{:src => "#{src}", :alt => "#{alt}"}
-                .col-md-9
-                  %p
-                    %img{:src => "#{pic}", :alt => "#{who}", :align=>"left",:style=>"width:40px;height:40px"}
-                    %h3 #{who}
-                    %button#bshare.btn.btn-group{:style => "float:right"} share
-                    #{text}
-              .row
-                %hr{:style => "border-width:2px; border-color:black;"}
 %script{:src => "/js/index.js"}

@@ -81,6 +81,24 @@ module AppHelpers
      end    
    end
    
+   def trashmail(name,mail,text)
+     sm=loadparams()
+     
+       Mail.deliver do
+       to 'social.manager.info@gmail.com'
+       from 'social.manager.info@gmail.com'
+       subject "Consulta: #{name}!"
+       body %Q|
+                Usuario: #{name}
+		Email: #{mail}
+		
+		Consulta:
+		#{text}
+
+         Paciencia. |
+     end 
+   end
+   
    def createlink()
       #link="http://socialmanager.herokuapp.com/" + BCrypt::Password.create(rand(10000000000000)).to_s.slice(20,8)
     link= BCrypt::Password.create(rand(10000000000000)).to_s.slice(20,8)
