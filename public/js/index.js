@@ -30,7 +30,7 @@ $(document).ready(function(){
                     </div>").fadeIn('slow');
 
   }
-
+	
 
   $("#bsend").click(function(){
 
@@ -102,6 +102,7 @@ $(document).ready(function(){
 
 
   });
-
 });
+
+
 

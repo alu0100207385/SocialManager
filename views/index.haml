@@ -91,7 +91,7 @@
             .col-md-3
               %p= Time.now.asctime
             .col-md-9.message
-              %p The development team reminds make responsible use of the Application. Enjoy your stay.
+              %p#tn The development team reminds make responsible use of the Application. Enjoy your stay.
     .col-md-6
       #div2
         .div-custom#Bienvenida
@@ -105,7 +105,7 @@
                     %img{:src => "#{pic}", :alt => "#{who}", :align=>"left",:style=>"width:40px;height:40px"}
                     %h3 #{who}
                     %button#bshare.btn.btn-group{:style => "float:right"} share
-                    #{text}
+                    %p#tn #{text}
             %hr
 %script{:src => "/js/index.js"}
 %script{:scr=>"/js/indexshare.js"}
