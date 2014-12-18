@@ -114,6 +114,16 @@ describe "Test App: Get Methods" do
 	  expect(last_response).to be_ok
    end
    
+   it "Check access return class linkedin oauth" do
+	  resul = get '/linkedin'
+	  assert_equal(Rack::MockResponse, resul.class)
+   end
+   
+   it "Check access return class twitter oauth" do
+	  resul = get '/auth/twitter/callback'
+	  assert_equal(Rack::MockResponse, resul.class)
+   end
+   
 #       it "Podemos enviar: post" do
 # 	  post '/login' , :nick => "Usuario"
 # 	  expect(last_response).to be_ok

@@ -195,5 +195,4 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.find_element(:id,"killer").click
 	  assert_equal(@site,@browser.current_url)
    end
- end   
 end
