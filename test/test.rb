@@ -123,8 +123,6 @@ describe "Test Chat App: Check pages and links" do
    
 end
 
-=end
-
 
 describe "Test Chat App: Sign in page: Log&Reg" do
    
@@ -145,7 +143,6 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.find_element(:id,"password").send_keys("1234")
 	  @browser.find_element(:id,"login").click
 	  @browser.manage.timeouts.implicit_wait = 5
-	  #@browser.find_element(:id,"text").displayed?
 	  element = @browser.find_element(:id,"text").displayed?
 	  #assert_equal("The user does not exist in the database.",element)
 	  assert_equal(true,element)
@@ -198,29 +195,4 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.find_element(:id,"killer").click
 	  assert_equal(@site,@browser.current_url)
    end
- end
-
-    describe "Test Chat App: User's actions" do 
-
-      before :all do
-	  @browser = Selenium::WebDriver.for :firefox
-	  @site = 'http://localhost:9292/'
-	  @browser.get(@site)
-	  @browser.manage().window().maximize()
-	  @browser.manage.timeouts.implicit_wait = 5
-   end
-   
-   after :all do
-	  @browser.quit
-   end
-
-    it "##1.Entrar al perfil" do
-      @browser.find_element(:id,"nickname").send_keys("usuario")
-	  @browser.find_element(:id,"password").send_keys("12345")
-	  @browser.find_element(:id,"login").click
-	  @browser.manage.timeouts.implicit_wait = 3
-	  @browser.find_element(:id,"settings").click
-	  @browser.manage.timeouts.implicit_wait = 3
-	  assert_equal(@site+"settings",@browser.current_url)
-	end
  end

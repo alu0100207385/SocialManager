@@ -444,29 +444,31 @@ end
 
 #Opciones de configuracion del usuario
 get '/settings' do
-   #Modificar perfil
-   #Desvincular cuentas
-   @user = session[:nickname]
-   @user = User.first(:nickname => @user)
-   @asociadas = []
-   f_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
-   if (!f_on.is_a? NilClass)
-	  @asociadas << "Facebook"
+   if (session[:nickname] != nil)
+	  @user = session[:nickname]
+	  @user = User.first(:nickname => @user)
+	  @asociadas = []
+	  f_on = FacebookData.first(:user => @user) #Para marcar en la vista las casillas en las que el user esta logueado
+	  if (!f_on.is_a? NilClass)
+		 @asociadas << "Facebook"
+	  end
+	  g_on = GoogleData.first(:user => @user)
+	  if (!g_on.is_a? NilClass)
+		 @asociadas << "Google"
+	  end
+	  t_on = TwitterData.first(:user => @user)
+	  if (!t_on.is_a? NilClass)
+		 @asociadas << "Twitter"
+	  end
+	  l_on = LinkedinData.first(:user => @user)
+	  if (!l_on.is_a? NilClass) and (!l_on.atoken.is_a? NilClass)
+		 @asociadas << "Linkedin"
+	  end
+	  #Eliminar cuenta de nuestra app
+	  haml :settings
+   else
+	  redirect '/'
    end
-   g_on = GoogleData.first(:user => @user)
-   if (!g_on.is_a? NilClass)
-	  @asociadas << "Google"
-   end
-   t_on = TwitterData.first(:user => @user)
-   if (!t_on.is_a? NilClass)
-	  @asociadas << "Twitter"
-   end
-   l_on = LinkedinData.first(:user => @user)
-   if (!l_on.is_a? NilClass) and (!l_on.atoken.is_a? NilClass)
-	  @asociadas << "Linkedin"
-   end
-   #Eliminar cuenta de nuestra app
-   haml :settings
 end
 
 get '/event' do
