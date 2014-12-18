@@ -111,5 +111,18 @@ $(document).ready(function(){
     $("#text").val($('#tn').text());
   });
 
+  function posts(){
+
+
+      //$('#div2').append('hola');
+
+
+
+  }
+
+  posts();
+
+  setInterval(posts,3000);
+
 
 });
