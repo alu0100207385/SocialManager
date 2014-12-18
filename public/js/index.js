@@ -118,20 +118,31 @@ $(document).ready(function(){
       url:'/posts',
       type: 'get',
       dataType: 'json',
-      data: data,
+
 
       success: function(data){
 
-        if(data.key1 == 'ok'){
-
-          $("#infotext").hide();
-          $("#infotext").html('<p class = "text-success"> <strong> Account Modified.');
-          $("#infotext").show(1000);
-
-          setTimeout(function(){$("#infotext").hide(1000)}, 3000);
-
-
-        }
+        $('#div2').hide().html("<div class = 'div-custom'>\
+        <div class = 'row'>\
+        <div class = 'col-md-3'> \
+        <img src = '"+ data.img +"' width = '100px' height = '90px'> \
+        </div>\
+        <div class = 'col-md-6'>\
+        <h3>" + data.persona + "</h3>\
+        </div>\
+        <div class = 'col-md-3'>\
+        <button id = 'bshare' class = 'btn btn-info'> Share </button>\
+        </div>\
+        </div>\
+        <div class ='row'>\
+        <div class = 'col-md-3'>\
+        <p>\
+        </div>\
+        <div class = 'col-md-9 message'>\
+        <p id = 'tn'> " + data.comentario + "\
+        </div>\
+        </div>\
+        </div>").fadeIn('slow');
 
       }
 
@@ -141,7 +152,7 @@ $(document).ready(function(){
 
   posts();
 
-  setInterval(posts,3000);
+  setInterval(posts,30000);
 
 
 });
