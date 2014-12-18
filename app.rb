@@ -278,15 +278,13 @@ get '/user/:url' do
 			  person = GooglePlus::Person.get(cuenta.gid, :access_token => cuenta.token)
 			  puts "----------------------------------#{person.display_name}"
 			  
-			  activities = person.list_activities.items
-			  puts activities.class
+			  #activities = person.list_activities.items
+			  #puts activities.class
 			  #cursor.each do |item|
 			   #   puts item
 			  #end
 			  
-			 #puts "--------------------------#{cursor.items[0]}"
-			  
-			 
+			 #puts "--------------------------#{cursor.items[0]}" 
 			end
 			
 			haml :index
