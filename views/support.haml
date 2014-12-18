@@ -1,21 +1,21 @@
 %section#support.doublediagonal
-  .container
+  .container-full
     .section-heading
       %h1 Support
       .divider
     .row
-      .col-md-12
+      .col-md-12.text-center
         .row
-          .col-md-8.col-sm-8
+          .col-md-8.col-sm-8.text-center
             %form{:role => "form", :method=>"post"}
-              .form-group
+              .form-group.text-center
                 %input.form-control{:name=>"name",:placeholder => "Your name", :type => "text"}
-              .form-group
+              .form-group.text-center
                 %input.form-control{:name=>"mail",:placeholder => "Your email", :type => "email"}
-              .form-group
+              .form-group.text-center
                 %textarea.form-control{:name=>"text",:cols => "30", :placeholder => "Your message", :rows => "10"}
               %button.btn.btn-primary.btn-lg{:hre=> "/support", :type => "submit"} Submit
-          .col-md-4.col-sm-4.contact-details.scrollpoint.sp-effect2
+          .col-md-4.col-sm-4.contact-details.scrollpoint.sp-effect2.text-center
             .media
               %a.pull-left{:href => "#"}
                 %i.fa.fa-map-marker.fa-2x
