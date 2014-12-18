@@ -27,9 +27,6 @@
       .col-md-6.text-center
         %label{:for => "new_pass"} Write the new password: 
         %input.form-control#new_pass{:name => "new_pass", :type => "text",:style =>"color:black",:placeholder => "new password",:style => "width:50%; display:inline;"}
-      .row
-        -if @warn == 1
-          %p Passwords do not match
     .row{:style => "padding-top:20px;"}
       %button.btn.btn-primary.btn-md.center-block#cambiar{:href => "/edit_profile"} Change
   %hr

@@ -215,7 +215,7 @@ get '/user/:url' do
 		 when "index"
 			@user = session[:nickname]
 			@message = []
-			ruta = "https://github.com/alu0100207385/SocialManager/blob/master/public/img/"
+			ruta = "https://raw.githubusercontent.com/alu0100207385/SocialManager/master/public/img/"
 			user = User.first(:nickname => @user)
 			cuenta = FacebookData.first(:user => user)
 			if (!cuenta.is_a? NilClass)
@@ -502,9 +502,6 @@ post '/edit_profile' do
    end
     if ((params[:new_pass]!= "") and (params[:act_pass] == params[:new_pass]))
 	   user.password = params[:new_pass]
-	   @warn = 0
-	else
-	   @warn = 1
 	end
    user.save
    redirect '/settings'
