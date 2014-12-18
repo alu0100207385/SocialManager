@@ -15,7 +15,7 @@ $(document).ready(function(){
     if(name == '' && email == '' && actpass == '' && newpass == ''){
 
       $("#infotext").hide();
-      $("#infotext").html('<p class = "text-danger"> <strong> Error, los campo de texto no pueden estar vacios.');
+      $("#infotext").html('<p class = "text-danger"> <strong> Error, all inputs cant be empty.');
       $("#infotext").show(1000);
 
       setTimeout(function(){$("#infotext").hide(1000)},3000);
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
       $("#infotext").hide();
-      $("#infotext").html('<p class = "text-danger"> <strong> Error, las contraseñas no coinciden.');
+      $("#infotext").html('<p class = "text-danger"> <strong> Error, passwords not match.');
       $("#infotext").show(1000);
 
       setTimeout(function(){$("#infotext").hide(1000)},3000);
@@ -49,7 +49,7 @@ $(document).ready(function(){
           if(data.key1 == 'ok'){
 
             $("#infotext").hide();
-            $("#infotext").html('<p class = "text-success"> <strong> Cuenta modificada.');
+            $("#infotext").html('<p class = "text-success"> <strong> Account Modified.');
             $("#infotext").show(1000);
 
             setTimeout(function(){$("#infotext").hide(1000)}, 3000);
