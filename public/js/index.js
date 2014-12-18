@@ -124,7 +124,10 @@ $(document).ready(function(){
         <div class = 'col-md-3'> \
         <img src = '"+ data.img +"' width = '100px' height = '90px'> \
         </div>\
-        <div class = 'col-md-9'>\
+        <div class = 'col-md-1'>\
+        <img src = '"+ data.imgred +"' width = '20px' height = '20px'> \
+        </div>\
+        <div class = 'col-md-8'>\
         <h3>" + data.persona + "</h3>\
         </div>\
         </div>\
