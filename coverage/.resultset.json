@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/aaron/Documentos/SYTW/proyecto/app.rb": [
+      "/Users/aaron/Documents/ETSII/4º/Sistemas y Tecnologías Web/SocialManager/app.rb": [
         null,
         1,
         1,
@@ -515,7 +515,7 @@
         null,
         null
       ],
-      "/home/aaron/Documentos/SYTW/proyecto/helper/helpers.rb": [
+      "/Users/aaron/Documents/ETSII/4º/Sistemas y Tecnologías Web/SocialManager/helper/helpers.rb": [
         1,
         null,
         1,
@@ -610,7 +610,7 @@
         null,
         null
       ],
-      "/home/aaron/Documentos/SYTW/proyecto/model.rb": [
+      "/Users/aaron/Documents/ETSII/4º/Sistemas y Tecnologías Web/SocialManager/model.rb": [
         1,
         1,
         null,
@@ -683,6 +683,6 @@
         null
       ]
     },
-    "timestamp": 1418921520
+    "timestamp": 1418928005
   }
 }
