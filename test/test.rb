@@ -133,11 +133,11 @@ describe "Test Chat App: Sign in page: Log&Reg" do
 	  @browser.manage().window().maximize()
 	  @browser.manage.timeouts.implicit_wait = 5
    end
-
+   
    after :all do
 	  @browser.quit
    end
-   
+ 
    it "##1. User not exist" do
 	  @browser.find_element(:id,"nickname").send_keys("someone")
 	  @browser.find_element(:id,"password").send_keys("1234")
@@ -169,34 +169,20 @@ describe "Test Chat App: Sign in page: Log&Reg" do
       element = @browser.find_element(:id,"text").text
 	  assert_equal("User created successfully.",element)   
    end
-end
-=begin
+
+   it "##5. Log in Ok" do
+ 	  @browser.find_element(:id,"nickname").send_keys("usuario")
+	  @browser.find_element(:id,"password").send_keys("12345")
+	  @browser.find_element(:id,"login").click
+	  sleep(3)
+ 	end
 
    it "##4. Log out" do
-       
-   
-
-
-
-
+       @browser.find_element(:id,"logout").click
+       sleep(3)
    end
+end
    
-   it "##5. Log in Ok" do
- 	@driver.get 'http://the-internet.herokuapp.com/login'
- 	@driver.find_element(id:'nickname').send_keys('aaronvc7')
- 	@driver.find_element(id:'password').send_keys('aaronvc7')
- 	@driver.find_element(id:'login').submit
-
- 	end
-end
-
-
-
-   end
-
-end
-
 # describe "Test Chat App: User's actions" do
 #    Postear, entrar a opciones, leer, eliminar, sincronizar
-# end
-=end   
+# end   
