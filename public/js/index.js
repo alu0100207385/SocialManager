@@ -15,11 +15,8 @@ $(document).ready(function(){
                         <div class = 'col-md-3'> \
                           <img src = 'http://cdn.flaticon.com/png/256/37943.png' width = '100px' height = '90px'> \
                         </div>\
-                        <div class = 'col-md-6'>\
+                        <div class = 'col-md-9'>\
                           <h3>" + obj.name + "</h3>\
-                        </div>\
-                        <div class = 'col-md-3'>\
-                        <button id = 'bshare' class = 'btn btn-info'> Share </button>\
                         </div>\
                       </div>\
                       <div class ='row'>\
@@ -127,11 +124,8 @@ $(document).ready(function(){
         <div class = 'col-md-3'> \
         <img src = '"+ data.img +"' width = '100px' height = '90px'> \
         </div>\
-        <div class = 'col-md-6'>\
+        <div class = 'col-md-9'>\
         <h3>" + data.persona + "</h3>\
-        </div>\
-        <div class = 'col-md-3'>\
-        <button id = 'bshare' class = 'btn btn-info'> Share </button>\
         </div>\
         </div>\
         <div class ='row'>\
@@ -152,7 +146,7 @@ $(document).ready(function(){
 
   posts();
 
-  setInterval(posts,30000);
+  setInterval(posts,50000);
 
 
 });

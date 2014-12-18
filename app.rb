@@ -522,13 +522,16 @@ get '/posts' do
   @user = session[:nickname]
   user = User.first(:nickname => @user)
 
+  cuentaT = TwitterData.first(:user => user)
+  cuentaL = LinkedinData.first(:user => user)
+
+
   random = rand(2)
 
-  if(random == 0)
+  if(random == 0) or (cuentaL.is_a? NilClass)
 
-  cuenta = TwitterData.first(:user => user)
-  if (!cuenta.is_a? NilClass)
-    client = my_twitter_client(config['tidentifier'], config['tsecret'],cuenta.access_token,cuenta.access_token_secret)
+  if (!cuentaT.is_a? NilClass)
+    client = my_twitter_client(config['tidentifier'], config['tsecret'],cuentaT.access_token,cuentaT.access_token_secret)
     persona = client.user.screen_name
     comentario = client.user_timeline(client.user.screen_name).first.text
     img = client.user(user.nickname).profile_image_url
@@ -538,12 +541,12 @@ get '/posts' do
 
   end
 
-  if(random == 1)
+  if(random == 1) or (cuentaT.is_a? NilClass)
 
-  cuenta = LinkedinData.first(:user => user)
-  if (!cuenta.is_a? NilClass) and (!cuenta.atoken.is_a? NilClass)
+
+  if (!cuentaL.is_a? NilClass) and (!cuentaL.atoken.is_a? NilClass)
     client = LinkedIn::Client.new(config['lidentifier'], config['lsecret'])
-    client.authorize_from_access(cuenta.atoken, cuenta.asecret)
+    client.authorize_from_access(cuentaL.atoken, cuentaL.asecret)
     l = client.network_updates
     total = l.all.size
     for n in 0...total
