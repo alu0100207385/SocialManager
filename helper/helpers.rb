@@ -11,9 +11,6 @@ module AppHelpers
 		 config.access_token_secret = ats
 	  end
    end
-   
-   def my_facebook_client()
-   end
 
    def loadparams()
      sm = 'social.manager.info@gmail.com'
@@ -36,16 +33,17 @@ module AppHelpers
     sm=loadparams()
 
     Mail.deliver do
-
        to mail
        from sm
        subject "Bienvenido a Social Manager #{name}!"
+	   content_type 'text/html; charset=UTF-8'
        body %Q|Gracias por registrarte en Social Manager
 
                 Tu usuario es: #{username}
 		            Tu contraseña es: #{pass}
 
                 Disfruta de tu experiencia con nosotros. |
+	   charset="UTF-8"
      end
    end
    
@@ -56,6 +54,7 @@ module AppHelpers
        to mail
        from sm
        subject "Social Manager: Recuperacion de contraseña #{name}!"
+	   content_type 'text/html; charset=UTF-8'
        body %Q|Has perdido o olvidado tu contraseña...
 	       No hay problema! Clickea en link que te ofrecemos a continuacion y podras volvera a cambiar tu contraseña.
 
@@ -63,6 +62,7 @@ module AppHelpers
 		Link re recuperacion: http://socialmanager.herokuapp.com/recovery/#{link}
 
                 Disfruta de tu experiencia con nosotros. |
+	   charset="UTF-8"
      end    
    end
    
@@ -73,11 +73,13 @@ module AppHelpers
        to mail
        from sm
        subject "Social Manager: Cambio de contraseña #{name}!"
+	   content_type 'text/html; charset=UTF-8'
        body %Q|
                 Tu usuario es: #{username}
 		Y tu nueva contraseña es : #{pass}
 
                 Disfruta de tu experiencia con nosotros. |
+	   charset="UTF-8"
      end    
    end
    

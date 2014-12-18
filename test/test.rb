@@ -30,7 +30,7 @@ describe "Test Chat App: Check pages and links" do
    it "##1. I can access index page" do
 	  assert_equal(@site, @browser.current_url)
    end
-
+=begin
    it "##2. I can see index page" do
 	  element = @browser.find_element(:tag_name,"h1").text
 	  assert_equal("Welcome to Social Manager", element)
@@ -141,4 +141,5 @@ end
 # describe "Test Chat App: User's actions" do
 #    Postear, entrar a opciones, leer, eliminar, sincronizar
 # end
-=end   
+=end
+end
