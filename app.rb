@@ -526,9 +526,9 @@ post '/support' do
   Thread.new do
     trashmail(params[:name],params[:mail],params[:text])
   end
-  
+
   redirect '/'
- 
+
 end
 
 
