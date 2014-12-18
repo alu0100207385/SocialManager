@@ -13,7 +13,8 @@ require 'linkedin'
 require 'json'
 require_relative 'helper/helpers.rb'
 require 'koala'
-#require 'google/api'
+require 'google/api_client'
+require  'google_plus'
 
 helpers AppHelpers
 
@@ -270,6 +271,16 @@ get '/user/:url' do
 				  cuenta.destroy #Borramos el registro incompleto (atoken y asecret estan vacios)
 			   end
 			end
+			cuenta = GoogleData.first(:user => user)
+			if (!cuenta.is_a? NilClass) and (!cuenta.token.is_a? NilClass)
+			  person = GooglePlus::Person.get(112742581738459754147, :access_token => cuenta.token)
+			  puts "----------------------------------#{person.display_name}"
+			  
+			  cursor = person.list_activities(:max_results => 3)
+			 #puts "--------------------------#{cursor.items[1]}"
+			 
+			end
+			
 			haml :index
 		 when "settings"
 			redirect '/settings'
