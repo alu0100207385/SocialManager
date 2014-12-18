@@ -15,8 +15,11 @@ $(document).ready(function(){
                         <div class = 'col-md-3'> \
                           <img src = 'http://cdn.flaticon.com/png/256/37943.png' width = '100px' height = '90px'> \
                         </div>\
-                        <div class = 'col-md-9'>\
+                        <div class = 'col-md-6'>\
                           <h3>" + obj.name + "</h3>\
+                        </div>\
+                        <div class = 'col-md-3'>\
+                        <button id = 'bshare' class = 'btn btn-info'> Share </button>\
                         </div>\
                       </div>\
                       <div class ='row'>\
@@ -24,7 +27,7 @@ $(document).ready(function(){
                         <p> "+ obj.time + "\
                         </div>\
                         <div class = 'col-md-9 message'>\
-                        <p> " + obj.message + "\
+                        <p id = 'tn'> " + obj.message + "\
                         </div>\
                       </div>\
                     </div>").fadeIn('slow');
@@ -57,7 +60,7 @@ $(document).ready(function(){
 
       linkedin = true;
     }
-    
+
 
     if(text == ''){
 
@@ -103,6 +106,53 @@ $(document).ready(function(){
 
   });
 
+  $("#bshare").click(function(){
+
+    $("#text").val($('#tn').text());
+  });
+
+  function posts(){
+
+    $.ajax({
+
+      url:'/posts',
+      type: 'get',
+      dataType: 'json',
+
+
+      success: function(data){
+
+        $('#div2').hide().html("<div class = 'div-custom'>\
+        <div class = 'row'>\
+        <div class = 'col-md-3'> \
+        <img src = '"+ data.img +"' width = '100px' height = '90px'> \
+        </div>\
+        <div class = 'col-md-6'>\
+        <h3>" + data.persona + "</h3>\
+        </div>\
+        <div class = 'col-md-3'>\
+        <button id = 'bshare' class = 'btn btn-info'> Share </button>\
+        </div>\
+        </div>\
+        <div class ='row'>\
+        <div class = 'col-md-3'>\
+        <p>\
+        </div>\
+        <div class = 'col-md-9 message'>\
+        <p id = 'tn'> " + data.comentario + "\
+        </div>\
+        </div>\
+        </div>").fadeIn('slow');
+
+      }
+
+    });
+
+  }
+
+  posts();
+
+  setInterval(posts,30000);
 
 
 });
