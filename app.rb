@@ -482,9 +482,6 @@ post '/edit_profile' do
    end
     if ((params[:new_pass]!= "") and (params[:act_pass] == params[:new_pass]))
 	   user.password = params[:new_pass]
-	   @warn = 0
-	else
-	   @warn = 1
 	end
    user.save
    { :key1 => 'ok' }.to_json
