@@ -171,14 +171,4 @@ describe "Test Chat App: Sign in page: Log&Reg" do
        end   
      end
 
-   it "##5. Log out" do
-      @browser.find_element(:id,"nickname").send_keys("usuario")
-	  @browser.find_element(:id,"password").send_keys("12345")
-	  @browser.find_element(:id,"login").click
-	  @browser.manage.timeouts.implicit_wait = 3
-      @browser.find_element(:id,"logout").click
-      @browser.manage.timeouts.implicit_wait = 3
-      assert_equal(@site,@browser.current_url)
-   end
-
 end
