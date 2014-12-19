@@ -57,6 +57,11 @@ describe "Test App: Get Methods" do
 	  get '/support'
 	  expect(last_response).to be_ok
    end
+   
+   it "Access post support" do
+	  post '/support'
+	  expect(last_response.body).to eq("")
+   end
 
    it "No Log in: no access settings page" do
 	  get '/settings'
@@ -119,15 +124,48 @@ describe "Test App: Get Methods" do
 	  assert_equal(Rack::MockResponse, resul.class)
    end
    
-   it "Check access return class twitter oauth" do
+   it "Check access callbacl" do
 	  resul = get '/auth/twitter/callback'
 	  assert_equal(Rack::MockResponse, resul.class)
    end
    
-#       it "Podemos enviar: post" do
-# 	  post '/login' , :nick => "Usuario"
-# 	  expect(last_response).to be_ok
-#    end
-# 	  expect(last_response.body).to eq("{\"key1\":\"error1\"}")
-# 	  expect(last_response.body).to eq("Not an ajax request")
+   it "Check access access to user/index" do
+	  get '/user/index'
+	  expect(last_response.body).to eq("")
+   end
+   
+   it "Check unlink" do
+	  get '/desvincular/twitter'
+	  expect(last_response.body).to eq("")
+   end
+   
+   it "Check recuperar n" do
+	  post '/recuperarn'
+	  expect(last_response.body).to eq("")
+   end
+
+   it "Check recuperar m" do
+	  post '/recuperarm'
+	  expect(last_response.body).to eq("")
+   end
+   
+   it "Check recuperar by link" do
+	  get '/recovery/link'
+	  expect(last_response).to be_ok
+   end
+
+   it "Check post recovery" do
+	  post '/recovery'
+	  expect(last_response.body).to eq("")
+   end
+
+   it "Check post edit_profile" do
+	  post '/edit_profile'
+	  expect(last_response).to be_ok
+   end
+   
+   it "Check posts in user/index" do
+	  get '/posts'
+	  expect(last_response).to be_ok
+   end
 end

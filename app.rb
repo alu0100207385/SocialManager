@@ -304,33 +304,37 @@ end
 
 #Desasociar una cuenta del usuario en la bbdd
 get '/desvincular/:net' do
-   user = User.first(:nickname => session[:nickname])
-   case(params[:net])
-   when "twitter"
-	   cuenta = TwitterData.first(:user =>user)
-	   cuenta.destroy
-	   redirect '/user/index'
-   when "facebook"
-	  cuenta = FacebookData.first(:user =>user)
-	  cuenta.destroy
-	  redirect '/user/index'
-   when "google"
-	  cuenta = GoogleData.first(:user =>user)
-	  cuenta.destroy
-	  redirect '/user/index'
-   when "linkedin"
-	  cuenta = LinkedinData.first(:user =>user)
-	  cuenta.destroy
-	  redirect '/user/index'
-   when "all"
-	  nets = [TwitterData, FacebookData, GoogleData, LinkedinData]
-	  nets.each do |n|
-		 cuenta = n.first(:user =>user)
-		 if (cuenta != nil) #Por si el usuario ha pulsado el boton y no todas estan asociadas
-			cuenta.destroy
+   if (session[:nickname] != nil)
+	  user = User.first(:nickname => session[:nickname])
+	  case(params[:net])
+	  when "twitter"
+		 cuenta = TwitterData.first(:user =>user)
+		 cuenta.destroy
+		 redirect '/user/index'
+	  when "facebook"
+		 cuenta = FacebookData.first(:user =>user)
+		 cuenta.destroy
+		 redirect '/user/index'
+	  when "google"
+		 cuenta = GoogleData.first(:user =>user)
+		 cuenta.destroy
+		 redirect '/user/index'
+	  when "linkedin"
+		 cuenta = LinkedinData.first(:user =>user)
+		 cuenta.destroy
+		 redirect '/user/index'
+	  when "all"
+		 nets = [TwitterData, FacebookData, GoogleData, LinkedinData]
+		 nets.each do |n|
+			cuenta = n.first(:user =>user)
+			if (cuenta != nil) #Por si el usuario ha pulsado el boton y no todas estan asociadas
+			   cuenta.destroy
+			end
 		 end
+		 redirect '/settings'
 	  end
-	  redirect '/settings'
+   else
+	  redirect '/user/index'
    end
 end
 
@@ -469,10 +473,6 @@ post '/edit_profile' do
 
   content_type :json
 
-   puts "name --- #{params[:new_name].class}"
-   puts "name --- #{params[:new_email].class}"
-   puts "name --- #{params[:cur_pass].class}"
-   puts "name --- #{params[:new_pass].class}"
    user = User.first(:nickname => session[:nickname])
    if params[:new_name]!= ""
 	  user.name = params[:new_name]
