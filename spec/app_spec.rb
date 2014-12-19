@@ -153,7 +153,7 @@ describe "Test App: Get Methods" do
 	  get '/recovery/link'
 	  expect(last_response).to be_ok
    end
-
+=begin
    it "Check post recovery" do
 	  post '/recovery'
 	  expect(last_response.body).to eq("")
@@ -163,7 +163,7 @@ describe "Test App: Get Methods" do
 	  post '/edit_profile'
 	  expect(last_response).to be_ok
    end
-   
+=end   
    it "Check posts in user/index" do
 	  get '/posts'
 	  expect(last_response).to be_ok
