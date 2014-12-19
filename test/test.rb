@@ -180,5 +180,5 @@ describe "Test Chat App: Sign in page: Log&Reg" do
       @browser.manage.timeouts.implicit_wait = 3
       assert_equal(@site,@browser.current_url)
    end
- end
+
 end
