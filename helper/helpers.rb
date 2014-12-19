@@ -11,7 +11,7 @@ module AppHelpers
 		 config.access_token_secret = ats
 	  end
    end
-   
+
    def my_facebook_client()
    end
 
@@ -20,7 +20,7 @@ module AppHelpers
 
      options = { :address              => "smtp.gmail.com",
             :port                 => 587,
-            :domain               => 'localhost', #Cambiar el dominio por socialmanager.herokuapp.com Cuando se suba a heroku
+            :domain               => 'socialmanager.herokuapp.com', #Cambiar el dominio por socialmanager.herokuapp.com Cuando se suba a heroku
 #             :domain               => 'socialmanager.herokuapp.com/',
             :user_name            => sm,
             :password             => 'sytw1234',
@@ -48,10 +48,10 @@ module AppHelpers
                 Disfruta de tu experiencia con nosotros. |
      end
    end
-   
+
    def sendrecoverymail(mail,name,username,link)
      sm=loadparams()
-     
+
      Mail.deliver do
        to mail
        from sm
@@ -63,12 +63,12 @@ module AppHelpers
 		Link re recuperacion: http://socialmanager.herokuapp.com/recovery/#{link}
 
                 Disfruta de tu experiencia con nosotros. |
-     end    
+     end
    end
-   
+
    def sendpasschange(mail,name,username,pass)
       sm=loadparams()
-      
+
        Mail.deliver do
        to mail
        from sm
@@ -78,12 +78,12 @@ module AppHelpers
 		Y tu nueva contraseña es : #{pass}
 
                 Disfruta de tu experiencia con nosotros. |
-     end    
+     end
    end
-   
+
    def trashmail(name,mail,text)
      sm=loadparams()
-     
+
        Mail.deliver do
        to 'social.manager.info@gmail.com'
        from 'social.manager.info@gmail.com'
@@ -91,14 +91,14 @@ module AppHelpers
        body %Q|
                 Usuario: #{name}
 		Email: #{mail}
-		
+
 		Consulta:
 		#{text}
 
          Paciencia. |
-     end 
+     end
    end
-   
+
    def createlink()
       #link="http://socialmanager.herokuapp.com/" + BCrypt::Password.create(rand(10000000000000)).to_s.slice(20,8)
     link= BCrypt::Password.create(rand(10000000000000)).to_s.slice(20,8)
