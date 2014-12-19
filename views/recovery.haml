@@ -13,21 +13,22 @@
           .row{:style=>"padding-top:20px;"}
           .col-md-3
           .col-md-6.text-center
-            %button.btn.btn-primary.btn-md{:style => "width:10%; display:inline;"} Send
+            %button.btn.btn-primary.btn-md{:style => "width:100px; display:inline;"} Send
       .row{:style=>"padding-top:20px;"}
       .col-md-3
       .col-md-6.text-center
         %form{:action=>"/recuperarm", :method=>"POST", :name=>"input", :role=>"form",:style=>"text-align:center;margin-top:50px;"}
           .row
-          .col-md-3
+          .col-md-1
           .col-md-6.text-center
             %label{:for => "mail"}* If you do not remember your nickname, enter your email where you signed up:
-            %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;width:30%; display:inline;"}
+          .col-md-3.text-center
+            %input.form-control{:name => "mail", :type => "email", :required => "required",:placeholder => "youremail@email.com",:style => "position:relative;width:200px; display:inline;"}
           .row{:style=>"padding-top:20px;"}
           .col-md-3
-          .col-md-6.text-center
-            %button.btn.btn-primary.btn-md{:style => "width:10%; display:inline;"} Send
+          .col-md-6.text-center{:style=>"padding-top:20px;"}
+            %button.btn.btn-primary.btn-md{:style => "width:100px; display:inline;"} Send
       .row{:style=>"padding-top:100px;"}
       .col-md-3
-      .col-md-6.text-center
-        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:10%;"} Back
+      .col-md-6.text-center{:style=>"padding-top:20px;"}
+        %a.btn.btn-primary.btn-md.center-block{:href => "/", :style => "width:100px;"} Back
